@@ -10,7 +10,8 @@ const Header = () => {
       <div className="Search-bar">
         <input type="text" placeholder="Search..."></input>
       </div>
-      <div className="Notification">
+      <div>
+        <div className="Notification">
         <i className="fa-regular fa-bell fa-2x"></i>
       </div>
       <div className="User Profile">
@@ -31,6 +32,7 @@ const Header = () => {
         </svg>
       </div>
 
+    </div>
     </div>
   );
 };
