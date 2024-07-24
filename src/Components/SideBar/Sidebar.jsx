@@ -4,9 +4,9 @@ import './Sidebar.css';
 const Sidebar = () => {
   return (
     <div>
-      <aside>
+      <aside className='sidebar'>
         <nav>
-            <ul>
+            <ul className='list-item'>
                 <li>
                     <a href='#'>Overview</a>
                 </li>
@@ -24,9 +24,6 @@ const Sidebar = () => {
                 </li>
                 <li>
                     <a href='#'>Settings</a>
-                </li>
-                <li>
-                    <a href='#'>Overview</a>
                 </li>
             </ul>
         </nav>
