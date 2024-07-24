@@ -11,15 +11,15 @@ const Header = () => {
         <input type="text" placeholder="Search..."></input>
       </div>
       <div className="Notification">
-        <i className="fa-regular fa-bell"></i>
+        <i className="fa-regular fa-bell fa-2x"></i>
       </div>
       <div className="User Profile">
         <svg
           className="w-6 h-6 text-gray-800 dark:text-white"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="40"
+          height="40"
           fill="currentColor"
           viewBox="0 0 24 24"
         >
@@ -30,6 +30,7 @@ const Header = () => {
           />
         </svg>
       </div>
+
     </div>
   );
 };
