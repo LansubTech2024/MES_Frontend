@@ -1,4 +1,4 @@
-import React from 'react'
+
 import {
     Chart as ChartJS, ArcElement, Legend,Tooltip
 }from'chart.js';
