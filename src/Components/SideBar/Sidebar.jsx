@@ -20,7 +20,6 @@ const Sidebar = () => {
         setHelpOpen(false)
     }
   return (
-    <div>
       <aside className="sidebar no-scrollbar">
         <nav>
           <ul className="list-item">
@@ -134,8 +133,7 @@ const Sidebar = () => {
           </ul>
         </nav>
       </aside>
-    </div>
-  );
+  )
 };
 
 export default Sidebar;
