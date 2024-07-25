@@ -4,6 +4,7 @@ import Header from "../../Components/Header/Header";
 import Sidebar from "../../Components/SideBar/Sidebar";
 import "./Home.css";
 import Piechart from "../../Components/Chart/Piechart";
+import Linechart from "../../Components/Chart/Linechart";
 
 const Home = () => {
   return (
@@ -17,6 +18,9 @@ const Home = () => {
           </div>
           <div className="piechart">
             <Piechart/>
+          </div>
+          <div>
+            <Linechart/>
           </div>
         </div>
       </main>
