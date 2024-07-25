@@ -36,20 +36,20 @@ const data={
         {
             label:'Present',
             data:[11,13,12],
-            backgroundColor:'rgba(255, 99, 132, 0.2)'
+            backgroundColor:'orange'
             
         },
         {
             label:'Absent',
             data:[4,2,3],
-            backgroundColor:'rgba(53,162,235,0.5)'
+            backgroundColor:'blue'
         }
     ]
 }
 
 function BarChart() {
   return (
-    <div style={{width:600,height:400}}>
+    <div style={{width:450,height:400}}>
       <Bar options={options} data={data}/>
     </div>
   );
