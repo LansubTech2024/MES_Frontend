@@ -1,14 +1,12 @@
 import React from 'react'
 import './App.css';
-import Header from './Components/Header/Header'
-import Sidebar from './Components/SideBar/Sidebar'
+import Home from './Pages/Home/Home';
 
 const App = () => {
   return (
     <div>
-        <Header/>
-        <Sidebar/>
-        </div>
+    <Home/>
+    </div>
   )
 }
 

@@ -8,9 +8,10 @@ const Header = () => {
         <h2>Manufacturing Dashboard</h2>
       </div>
       <div className="Search-bar">
-        <input type="text" placeholder="Search..."></input>
+        <input type="text" placeholder="Search..."/>
+        <i className="fa-solid fa-magnifying-glass"></i>
+        <button>Search</button>
       </div>
-      <div>
         <div className="Notification">
         <i className="fa-regular fa-bell fa-2x"></i>
       </div>
@@ -32,7 +33,6 @@ const Header = () => {
         </svg>
       </div>
 
-    </div>
     </div>
   );
 };
