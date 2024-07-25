@@ -1,7 +1,6 @@
-import React from "react";
-import BarChart from "../../Components/Chart/Barchart";
-import Header from "../../Components/Header/Header";
-import Sidebar from "../../Components/SideBar/Sidebar";
+import BarChart from '../../Components/Chart/Barchart.jsx'
+import Header from '../../Components/Header/Header'
+import Sidebar from '../../Components/SideBar/Sidebar'
 import "./Home.css";
 import Piechart from "../../Components/Chart/Piechart";
 import Linechart from "../../Components/Chart/Linechart";
