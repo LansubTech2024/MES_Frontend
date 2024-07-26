@@ -26,13 +26,13 @@ const Header = () => {
             <div className="notification">
               <Link href="#">
                 <span className="notify-icon">
-                  <RiNotification2Line size={24}/>
+                  <RiNotification2Line size={20}/>
                 </span>
               </Link>
 
               <Link href="#">
                 <span className="message-icon">
-                  <RiMessage2Line size={24}/>
+                  <RiMessage2Line size={20}/>
                 </span>
               </Link>
             </div>

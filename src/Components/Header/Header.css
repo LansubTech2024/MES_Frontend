@@ -55,15 +55,20 @@
     background-color: rgb(227, 220, 220);
     border-radius: 50%;
     border: 1px solid;
-    padding: 8px;
+    padding: 0.5rem;
+    width: 3rem;
+    height: 3rem;
+    position: relative;
     margin-right: 10px;
-    line-height: 100px;
 }
 .message-icon{
     background-color: rgb(227, 220, 220);
     border-radius: 50%;
     border: 1px solid;
-    padding: 8px;
+    padding: 0.5rem;
+    width: 3rem;
+    height: 3rem;
+    position: relative;
 }
 .msg-circle{
     position: absolute;
