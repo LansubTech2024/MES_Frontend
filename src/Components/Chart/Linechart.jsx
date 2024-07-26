@@ -15,22 +15,15 @@ PointElement
 )
 
 const data={
-  labels:["normal","strain","flat","hole"],
+  labels:["2010","2011","2012","2013"],
   datasets:[
     {
-      label: "Defects",
-      data: [0,25,6,13,15,19,21,26,30],
-      backgroundColor: [
-        "rgba(255.99,132,0.2)",
-        
-      ],
-      borderColor:[
-        "rgba(255,99,132,1)",
-       
-      ],
-      borderWidth:1
-    },
-  ],
+      label: "Year",
+      data: [3000,8000,6000,1000],
+      backgroundcolor:'orange'
+}
+],
+
 };
 
  function Linechart() {
