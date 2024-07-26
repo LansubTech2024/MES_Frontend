@@ -15,11 +15,11 @@ PointElement
 )
 
 const data={
-  labels:["normal","strain","flate","hole"],
+  labels:["2010","2011","2012","2013"],
   datasets:[
     {
-      label: "Assignment Completion",
-      data: [0,20,8,13],
+      label: "Year",
+      data: [3000,8000,6000,1000],
       backgroundColor: [
         "rgba(255.99,132,0.2)",
         
