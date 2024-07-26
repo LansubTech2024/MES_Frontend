@@ -4,7 +4,7 @@ import Sidebar from '../../Components/SideBar/Sidebar'
 import "./Home.css";
 import Piechart from "../../Components/Chart/Piechart";
 import Linechart from "../../Components/Chart/Linechart";
-import DataTable from '../../Components/Table/DataTable.jsx'
+import DataTable from '../../Components/Table/DataTable.jsx';
 
 
 const Home = () => {
@@ -18,7 +18,7 @@ const Home = () => {
             <BarChart />
           </div>
           <div className="piechart">
-            <Piechart/>
+            <Piechart />
           </div>
           <div className="linechart">
             <Linechart/>

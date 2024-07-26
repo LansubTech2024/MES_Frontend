@@ -5,10 +5,10 @@ import {Pie} from'react-chartjs-2';
 ChartJS.register(ArcElement,Legend,Tooltip)
 
 const data={
-  labels:["Hole","Strain","Flate"],
+  labels:["Hole","Strain","Flat"],
   datasets:[
     {
-      label: "Assignment Completion",
+      label: "Defect",
       data: [10,20,5],
       backgroundColor: [
         "rgba(255.99,132,0.2)",
@@ -27,7 +27,7 @@ const data={
 
  function Piechart() {
   return (
-    <div style={{width:300,height:850}} >
+    <div style={{width:300,height:550,marginTop:"20px",marginLeft:"70px"}} >
     <Pie  data={data}/>
   </div>
   );
