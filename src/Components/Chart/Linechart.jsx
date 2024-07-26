@@ -15,11 +15,11 @@ PointElement
 )
 
 const data={
-  labels:["normal","strain","flate","hole"],
+  labels:["normal","strain","flat","hole"],
   datasets:[
     {
-      label: "Assignment Completion",
-      data: [0,20,8,13],
+      label: "Defects",
+      data: [0,25,6,13,15,19,21,26,30],
       backgroundColor: [
         "rgba(255.99,132,0.2)",
         
