@@ -33,13 +33,13 @@ const data={
     labels:['Jan','Feb','Mar'],
     datasets:[
         {
-            label:'Present',
+            label:'Good',
             data:[11,13,12],
             backgroundColor:'orange'
             
         },
         {
-            label:'Absent',
+            label:'Defeat',
             data:[4,2,3],
             backgroundColor:'blue'
         }
