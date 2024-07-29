@@ -1,0 +1,45 @@
+.barchart {
+    position: absolute;
+    z-index: 0;
+    top: 200px;
+    left: 300px;
+    background-color: white;
+    box-shadow: 5px 5px 20px rgb(129, 123, 123);
+    width: 530px;
+    height: 300px;
+    padding-left: 40px;
+  }
+  .piechart {
+    position: absolute;
+    z-index: 0;
+    top: 550px;
+    left: 300px;
+    background-color: white;
+    box-shadow: 5px 5px 20px rgb(129, 123, 123);
+    width: 530px;
+    height: 350px;
+    padding-left: 40px;
+  }
+  .linechart {
+    position: absolute;
+    z-index: 0;
+    top: 200px;
+    left: 55rem;
+    background-color: white;
+    box-shadow: 5px 5px 20px rgb(129, 123, 123);
+    width: 530px;
+    height: 300px;
+    padding-left: 40px;
+  }
+  .datatable {
+    position: absolute;
+    z-index: 0;
+    background-color: white;
+    box-shadow: 5px 5px 20px rgb(129, 123, 123);
+    top: 550px;
+    left: 58rem;
+    width: 500px;
+    height: 350px;
+    padding-right: 20px;
+  }
+  

@@ -1,0 +1,35 @@
+import BarChart from '../../Components/Chart/Barchart.jsx'
+import Header from '../../Components/Header/Header'
+import Sidebar from '../../Components/SideBar/Sidebar'
+import "./Production.css";
+import Piechart from "../../Components/Chart/Piechart";
+import Linechart from "../../Components/Chart/Linechart";
+import DataTable from '../../Components/Table/DataTable.jsx';
+
+
+const Production = () => {
+  return (
+    <>
+      <Header />
+      <Sidebar />
+      <main className="main">
+        <div className="main-content">
+          <div className="barchart">
+            <BarChart />
+          </div>
+          <div className="piechart">
+            <Piechart />
+          </div>
+          <div className="linechart">
+            <Linechart/>
+          </div>
+          <div className="datatable">
+            <DataTable/>
+          </div>
+        </div>
+      </main>
+    </>
+  );
+};
+
+export default Production;

@@ -1,12 +1,23 @@
 import "./Header.css";
 import { RiAccountCircleLine,RiMessage2Line,RiNotification2Line } from "react-icons/ri";
+import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+
+  const handleToggleSideBar = ()=>{
+     document.body.classList.toggle('toggle-menu')
+  }
   return (
     <>
       <header className="header">
         <div className="header-part">
+          <div className="menu-bar">
+             <RxHamburgerMenu size={24} className="toggle-menu" onClick={handleToggleSideBar}/>
+          </div>
+          <div className="header-heading">
+            <h3 className="heading">Manufacturing</h3>
+          </div>
           <form className="search-box">
             <button type="submit" className="search-btn">
               <i className="fa-solid fa-magnifying-glass"></i>
@@ -19,9 +30,6 @@ const Header = () => {
               placeholder="Type to search..."
             />
           </form>
-          <div className="header-heading">
-            <h3 className="heading">Manufacturing</h3>
-          </div>
           <div className="message-profile">
             <div className="notification">
               <Link href="#">

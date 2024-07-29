@@ -1,6 +1,6 @@
 
 import {
-    Chart as ChartJS, 
+Chart as ChartJS, 
 LineElement, 
 CategoryScale,//x axis
 LinearScale,//y axis
@@ -20,8 +20,8 @@ const data={
     {
       label: "Year",
       data: [3000,8000,6000,1000],
-      backgroundcolor:'orange'
-}
+      backgroundColor:'orange'
+},
 ],
 
 };

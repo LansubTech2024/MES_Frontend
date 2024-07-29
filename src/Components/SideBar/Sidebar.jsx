@@ -24,47 +24,47 @@ const Sidebar = () => {
         <nav className="sidebar-menu">
           <ul className="list-item">
             <li>
-              <Link href="#">
+              <Link to="/">
               <i className="fa-solid fa-gauge-high"></i>Overview
               </Link>
             </li>
             <li>
-              <Link href="#">
+              <Link to="/production">
               <i className="fa-solid fa-gears"></i>Production
               </Link>
             </li>
             <li>
-              <Link href="#">
+              <Link to='/'>
               <i className="fa-solid fa-wrench"></i>Maintenance
               </Link>
             </li>
             <li>
-              <Link href="#">
+              <Link to="/">
                 <i className="fa-solid fa-boxes"></i>Inventory
               </Link>
             </li>
             <li>
-              <Link href="#">
+              <Link to="/">
                 <i className="fa-solid fa-file-lines"></i>Reports
               </Link>
             </li>
             <li>
-              <Link href="#">
+              <Link to="/">
                 <i className="fa-solid fa-clipboard-check"></i>Quality Control
               </Link>
             </li>
             <li>
-              <Link href="#">
+              <Link to="/">
                 <i className="fa-solid fa-truck"></i>Supply Chain
               </Link>
             </li>
             <li>
-              <Link href="#">
+              <Link to="/">
                 <i className="fa-solid fa-bolt"></i>Energy Consumption
               </Link>
             </li>
             <li>
-              <Link href="#" className="item">
+              <Link to="/" className="item">
                 <i className="fa-solid fa-cog"></i>Settings
                 {settingOpen ?(
                   <RxChevronUp
@@ -101,7 +101,7 @@ const Sidebar = () => {
               )}
             </li>
             <li>
-              <Link href="#" className="item">
+              <Link to="/" className="item">
                 <i className="fa-solid fa-question-circle"></i>
                 Help and Support
                 {helpOpen ?(
