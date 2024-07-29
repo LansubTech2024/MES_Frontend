@@ -30,37 +30,27 @@ const Sidebar = () => {
             </li>
             <li>
               <Link href="#">
-              <i className="fa-solid fa-gears"></i>Production
+              <i className="fa-solid fa-gears"></i>Data from Machines
               </Link>
             </li>
             <li>
               <Link href="#">
-              <i className="fa-solid fa-wrench"></i>Maintenance
+              <i className="fa-solid fa-wrench"></i>Energy Monoitoring
               </Link>
             </li>
             <li>
               <Link href="#">
-                <i className="fa-solid fa-boxes"></i>Inventory
+                <i className="fa-solid fa-boxes"></i>Employee Allocations
               </Link>
             </li>
             <li>
               <Link href="#">
-                <i className="fa-solid fa-file-lines"></i>Reports
+                <i className="fa-solid fa-file-lines"></i>Job Timeline
               </Link>
             </li>
             <li>
-              <Link href="#">
-                <i className="fa-solid fa-clipboard-check"></i>Quality Control
-              </Link>
-            </li>
-            <li>
-              <Link href="#">
-                <i className="fa-solid fa-truck"></i>Supply Chain
-              </Link>
-            </li>
-            <li>
-              <Link href="#">
-                <i className="fa-solid fa-bolt"></i>Energy Consumption
+              <Link to='/dashboard'>
+                <i className="fa-solid fa-clipboard-check"></i>Dashboard
               </Link>
             </li>
             <li>

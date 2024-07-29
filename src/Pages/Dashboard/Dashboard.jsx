@@ -1,13 +1,13 @@
 import BarChart from '../../Components/Chart/Barchart.jsx'
-import Header from '../../Components/Header/Header'
-import Sidebar from '../../Components/SideBar/Sidebar'
-import "./Production.css";
-import Piechart from "../../Components/Chart/Piechart";
-import Linechart from "../../Components/Chart/Linechart";
+import Header from '../../Components/Header/Header.jsx'
+import Sidebar from '../../Components/SideBar/Sidebar.jsx'
+import "./Dashboard.css";
+import Piechart from "../../Components/Chart/Piechart.jsx";
+import Linechart from "../../Components/Chart/Linechart.jsx";
 import DataTable from '../../Components/Table/DataTable.jsx';
 
 
-const Production = () => {
+const Dashboard = () => {
   return (
     <>
       <Header />
@@ -32,4 +32,4 @@ const Production = () => {
   );
 };
 
-export default Production;
+export default Dashboard;
