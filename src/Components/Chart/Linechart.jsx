@@ -20,8 +20,8 @@ const data={
     {
       label: "Year",
       data: [3000,8000,6000,1000],
-      backgroundColor:'orange'
-},
+      backgroundcolor:'orange'
+}
 ],
 
 };

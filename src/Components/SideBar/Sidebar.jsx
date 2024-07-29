@@ -29,37 +29,37 @@ const Sidebar = () => {
               </Link>
             </li>
             <li>
-              <Link to="/production">
+              <Link href="#">
               <i className="fa-solid fa-gears"></i>Production
               </Link>
             </li>
             <li>
-              <Link to='/'>
+              <Link href="#">
               <i className="fa-solid fa-wrench"></i>Maintenance
               </Link>
             </li>
             <li>
-              <Link to="/">
+              <Link href="#">
                 <i className="fa-solid fa-boxes"></i>Inventory
               </Link>
             </li>
             <li>
-              <Link to="/">
+              <Link href="#">
                 <i className="fa-solid fa-file-lines"></i>Reports
               </Link>
             </li>
             <li>
-              <Link to="/">
+              <Link href="#">
                 <i className="fa-solid fa-clipboard-check"></i>Quality Control
               </Link>
             </li>
             <li>
-              <Link to="/">
+              <Link href="#">
                 <i className="fa-solid fa-truck"></i>Supply Chain
               </Link>
             </li>
             <li>
-              <Link to="/">
+              <Link href="#">
                 <i className="fa-solid fa-bolt"></i>Energy Consumption
               </Link>
             </li>

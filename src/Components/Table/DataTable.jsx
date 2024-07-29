@@ -23,7 +23,7 @@ function table() {
     {
       id: 1,
       name: "keerthi",
-      email: "keerthikak0393@gmail.com",
+      email: "keerthi@gmail.com",
       department: "Technical",
     },
     {
@@ -57,7 +57,7 @@ function table() {
         data={data}
         selectableRows
         fixedHeader
-        pagination
+        
       ></DataTable>
     </div>
   );
