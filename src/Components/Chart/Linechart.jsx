@@ -19,8 +19,16 @@ const data={
   datasets:[
     {
       label: "Year",
-      data: [3000,8000,6000,1000],
-      backgroundcolor:'orange'
+      data: [3000,7000,6000,1000],
+      backgroundColor: [
+        "rgba(255.99,132,0.2)",
+        "rgba(54,162,235,0.2)",
+        "rgba(255,206,86,0.2)",
+      ],
+      borderColor:[
+        'Orange',
+      ],
+      borderWidth:1
 }
 ],
 
