@@ -3,7 +3,7 @@ body{
     padding: 0;
     height: 100vh;
 }
-.container{
+.login-container{
     background: linear-gradient(to left , white 60%, #1281ea 40%);
     width: 59rem;
     height: 30rem;

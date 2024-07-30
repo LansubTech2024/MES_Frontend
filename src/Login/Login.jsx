@@ -3,7 +3,7 @@ import Logo from "../../public/logo3.png";
 
 const Login = () => {
   return (
-    <div className="container">
+    <div className="login-container">
       <div className="login-part">
         <div className="login-background">
           <div className="logo">
