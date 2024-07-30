@@ -1,7 +1,6 @@
 body{
     margin: 0;
     padding: 0;
-    height: 100vh;
 }
 .login-container{
     background: linear-gradient(to left , white 60%, #1281ea 40%);
