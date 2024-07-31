@@ -3,6 +3,7 @@ import "./CompanyInfo.css";
 import Logo from "../../../public/logo3.png";
 import { FaMapMarkerAlt,FaEnvelope,FaPhone } from "react-icons/fa";
 
+
 const CompanyInfo = () => {
   const [logoClass, setLogoClass] = useState("logo-center");
   const [contentClass, setContentClass] = useState('');
@@ -19,6 +20,7 @@ const CompanyInfo = () => {
     }, 1500); // Delay to allow the logo to finish moving
   }, []);
   return (
+  
     <div className="company-details">
       <div className={`logo-container ${logoClass}`}>
         <img src={Logo} alt="company-logo" width={100} />
@@ -68,18 +70,18 @@ const CompanyInfo = () => {
                </div>
             </div>
             </div>
-            <div className="col-lg-3 col-md-6">
+            <div className="address-info col-lg-3 col-md-6">
                 <div className="info">
                     <div>
-                      <FaMapMarkerAlt size={22}/>
-                      <p> No. 22b1, Tamil Min Nagar, Tiruvannamalai Tiruvannamalai, Tamil Nadu, 606601 India </p>
+                      <FaMapMarkerAlt size={22} className="contact-icon"/>
+                      <p> No.22b1,Tamil Min Nagar,Tiruvannamalai Tiruvannamalai,<br/>Tamil Nadu, 606601 India </p>
                     </div>
                     <div>
-                        <FaPhone size={22}/>
+                        <FaPhone size={22} className="contact-icon"/>
                         <p></p>
                     </div>
                     <div>
-                        <FaEnvelope size={22}/>
+                        <FaEnvelope size={22} className="contact-icon"/>
                         <p></p>
                     </div>
                 </div>
