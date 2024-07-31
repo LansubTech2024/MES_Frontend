@@ -1,8 +1,3 @@
-body{
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-}
 .signup-container{
     background: linear-gradient(to left , white 60%, #1281ea 40%);
     width: 59rem;
