@@ -25,7 +25,7 @@ const Sidebar = () => {
           <ul className="list-item">
             <li>
               <Link to="/">
-              <i className="fa-solid fa-gauge-high"></i>Overview
+              <i className="fa-solid fa-house-chimney"></i>Home
               </Link>
             </li>
             <li>

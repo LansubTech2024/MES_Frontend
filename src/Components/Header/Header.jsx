@@ -31,6 +31,11 @@ const Header = () => {
             />
           </form>
           <div className="message-profile">
+          <div className="company-about">
+            <a href="/about">
+            <h4 >About us</h4></a>
+            
+          </div>
             <div className="notification">
               <Link href="#">
                 <span className="notify-icon">

@@ -3,6 +3,7 @@ import "./CompanyInfo.css";
 import Logo from "../../../public/logo3.png";
 import { FaMapMarkerAlt,FaEnvelope,FaPhone } from "react-icons/fa";
 
+
 const CompanyInfo = () => {
   const [logoClass, setLogoClass] = useState("logo-center");
   const [contentClass, setContentClass] = useState('');
@@ -19,6 +20,7 @@ const CompanyInfo = () => {
     }, 1500); // Delay to allow the logo to finish moving
   }, []);
   return (
+  
     <div className="company-details">
       <div className={`logo-container ${logoClass}`}>
         <img src={Logo} alt="company-logo" width={100} />
