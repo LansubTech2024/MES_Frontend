@@ -1,5 +1,6 @@
 import "./App.css";
 import Home from './Pages/Home/Home';
+import Predective from "./Pages/Predective/Predective";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Login from "./Login/Login";
 import Signup from "./Signup/Signup";
@@ -12,6 +13,7 @@ const App = () => {
        <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/about" element={<About/>}/>
+        <Route path="/predection" element={<Predective/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>

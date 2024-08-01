@@ -20,54 +20,59 @@ const Sidebar = () => {
         setHelpOpen(false)
     }
   return (
-      <aside className="sidebar no-scrollbar">
+      <aside className="no-scrollbar sidebar" >
         <nav className="sidebar-menu">
           <ul className="list-item">
             <li>
               <Link to="/">
-              <i className="fa-solid fa-house-chimney"></i>Home
+              <i className="fa-solid fa-house-chimney"></i><span>Home</span>
+              </Link>
+            </li>
+            <li>
+              <Link to='#'>
+              <i className="fa-solid fa-gears"></i><span>Data from SQL</span>
               </Link>
             </li>
             <li>
               <Link href="#">
-              <i className="fa-solid fa-gears"></i>Data from Machines
+              <i className="fa-solid fa-wrench"></i><span>Energy Monoitoring</span>
               </Link>
             </li>
             <li>
               <Link href="#">
-              <i className="fa-solid fa-wrench"></i>Energy Monoitoring
+                <i className="fa-solid fa-boxes"></i><span>Employee Allocations</span>
               </Link>
             </li>
             <li>
               <Link href="#">
-                <i className="fa-solid fa-boxes"></i>Employee Allocations
-              </Link>
-            </li>
-            <li>
-              <Link href="#">
-                <i className="fa-solid fa-file-lines"></i>Job Timeline
+                <i className="fa-solid fa-file-lines"></i><span>Job Timeline</span>
               </Link>
             </li>
             <li>
               <Link to='/dashboard'>
-                <i className="fa-solid fa-clipboard-check"></i>Dashboard
+                <i className="fa-solid fa-clipboard-check"></i><span>Dashboard</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/predection">
+                <i className="fa-solid fa-file-lines"></i><span>Predictive Analysis</span>
               </Link>
             </li>
             <li>
               <Link to="/" className="item">
-                <i className="fa-solid fa-cog"></i>Settings
+                <i className="fa-solid fa-cog"></i><span>Settings</span>
                 {settingOpen ?(
                   <RxChevronUp
                   onClick={CloseSetting}
                   className="drop-icon"
-                  size={22}
+                  size={26}
                   />
                 ):
                 (
                  <RxChevronDown 
                  onClick={ToggleSetting}
                  className="drop-icon"
-                 size={22}
+                 size={26}
                  />
                 )}
               </Link>
@@ -93,7 +98,7 @@ const Sidebar = () => {
             <li>
               <Link to="/" className="item">
                 <i className="fa-solid fa-question-circle"></i>
-                Help and Support
+                <span>Help and Support</span>
                 {helpOpen ?(
                     <RxChevronUp
                     onClick={CloseHelp}

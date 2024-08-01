@@ -1,19 +1,21 @@
+import { useState } from "react";
 import "./Header.css";
 import { RiAccountCircleLine,RiMessage2Line,RiNotification2Line } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
 
-  const handleToggleSideBar = ()=>{
-     document.body.classList.toggle('toggle-menu')
-  }
+  const toggleSidebar = () => {
+      setSidebarOpen(!isSidebarOpen);
+  };
   return (
     <>
       <header className="header">
         <div className="header-part">
           <div className="menu-bar">
-             <RxHamburgerMenu size={24} className="toggle-menu" onClick={handleToggleSideBar}/>
+             <RxHamburgerMenu size={24} className="toggle-menu" onClick={toggleSidebar}/>
           </div>
           <div className="header-heading">
             <h3 className="heading">Manufacturing</h3>
