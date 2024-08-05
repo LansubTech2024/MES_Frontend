@@ -1,0 +1,24 @@
+/* Dropdown.css */
+.dropdown-container {
+    position: relative;
+  }
+ .dropdown-menu{
+    width: 100%;
+ } 
+  .dropdown-container:hover .dropdown-menu {
+    display: block;
+  }
+  
+  .dropdown-menu a {
+    display: block;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 50px;
+    text-decoration: none;
+    color: rgb(153, 150, 150);
+  }
+  
+  .dropdown-menu a:hover {
+    color: #f0f0f0;
+  }
+  

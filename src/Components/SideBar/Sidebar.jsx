@@ -1,11 +1,14 @@
 import {useState} from "react";
 import { Link } from "react-router-dom";
 import { RxChevronUp,RxChevronDown } from "react-icons/rx";
+import Dropdown from "../Dropdown/Dropdown";
 import "./Sidebar.css";
 
 const Sidebar = () => {
     const[settingOpen,setSettingOpen] = useState(false);
     const[helpOpen,setHelpOpen] = useState(false)
+    const[toggle,setToggle] = useState(false);
+    const[dataOpen,setDataOpen] = useState(false);
 
     const ToggleSetting = () =>{
         setSettingOpen(!settingOpen);
@@ -19,8 +22,14 @@ const Sidebar = () => {
     const CloseHelp = () =>{
         setHelpOpen(false)
     }
+    const ToggleData = () =>{
+      setDataOpen(!dataOpen)
+    }
+    const CloseData = () =>{
+      setDataOpen(false)
+    }
   return (
-      <aside className="no-scrollbar sidebar" >
+      <aside className={`no-scrollbar sidebar ${toggle ? "active" : ""}`} >
         <nav className="sidebar-menu">
           <ul className="list-item">
             <li>
@@ -30,8 +39,25 @@ const Sidebar = () => {
             </li>
             <li>
               <Link to='#'>
-              <i className="fa-solid fa-gears"></i><span>Data from SQL</span>
+              <i className="fa-solid fa-gears"></i><span>Get Data</span>
+              {dataOpen ?(
+                  <RxChevronUp
+                  onClick={CloseData}
+                  className="drop-icon"
+                  size={24}
+                  />
+                ):
+                (
+                 <RxChevronDown 
+                 onClick={ToggleData}
+                 className="drop-icon"
+                 size={24}
+                 />
+                )}
               </Link>
+              {dataOpen &&(
+                 <Dropdown/>
+              )}
             </li>
             <li>
               <Link href="#">
@@ -65,14 +91,14 @@ const Sidebar = () => {
                   <RxChevronUp
                   onClick={CloseSetting}
                   className="drop-icon"
-                  size={26}
+                  size={24}
                   />
                 ):
                 (
                  <RxChevronDown 
                  onClick={ToggleSetting}
                  className="drop-icon"
-                 size={26}
+                 size={24}
                  />
                 )}
               </Link>
@@ -103,7 +129,7 @@ const Sidebar = () => {
                     <RxChevronUp
                     onClick={CloseHelp}
                     className="drop-icon"
-                    size={40}
+                    size={24}
                     />
                 )
                 :
@@ -111,7 +137,7 @@ const Sidebar = () => {
                     <RxChevronDown
                     onClick={ToggleHelp}
                     className="drop-icon"
-                    size={40}
+                    size={24}
                     />
                 )}
               </Link>
@@ -135,6 +161,14 @@ const Sidebar = () => {
               )}
             </li>
           </ul>
+          <div
+          className={`nav-toggle ${
+            toggle ? "active" : ""
+          }`}
+          onClick={() => setToggle(!toggle)}
+        >
+          <div className={`toggle-menu ${toggle ? "active" : " "}`}></div>
+        </div>
         </nav>
       </aside>
   )

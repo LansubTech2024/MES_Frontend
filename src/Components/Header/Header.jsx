@@ -15,7 +15,7 @@ const Header = () => {
       <header className="header">
         <div className="header-part">
           <div className="menu-bar">
-             <RxHamburgerMenu size={24} className="toggle-menu" onClick={toggleSidebar}/>
+             <RxHamburgerMenu size={24} className="toggle-menubar" onClick={toggleSidebar}/>
           </div>
           <div className="header-heading">
             <h3 className="heading">Manufacturing</h3>
