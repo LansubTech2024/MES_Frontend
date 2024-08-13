@@ -1,35 +1,51 @@
-import BarChart from '../../Components/Chart/Barchart.jsx'
-import Header from '../../Components/Header/Header.jsx'
-import Sidebar from '../../Components/SideBar/Sidebar.jsx'
-import "./Dashboard.css";
-import Piechart from "../../Components/Chart/Piechart.jsx";
-import Linechart from "../../Components/Chart/Linechart.jsx";
-import DataTable from '../../Components/Table/DataTable.jsx';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
+const Chart = () => {
+  const [charts, setCharts] = useState({});
 
-const Dashboard = () => {
+  useEffect(() => {
+    const fetchCharts = async () => {
+      try {
+        const response = await axios.get('/api/charts/');
+        setCharts(response.data);
+      } catch (error) {
+        console.error('Error fetching charts:', error);
+      }
+    };
+
+    fetchCharts();
+  }, []);
+
   return (
-    <>
-      <Header />
-      <Sidebar />
-      <main className="main">
-        <div className="main-content">
-          <div className="barchart">
-            <BarChart />
-          </div>
-          <div className="piechart">
-            <Piechart />
-          </div>
-          <div className="linechart">
-            <Linechart/>
-          </div>
-          <div className="datatable">
-            <DataTable/>
-          </div>
-        </div>
-      </main>
-    </>
+    <div>
+      <h1>Charts</h1>
+      {charts.bar && <div>
+        <h2>Bar Chart</h2>
+        <img src={`data:image/png;base64,${charts.bar}`} alt="Bar Chart" />
+      </div>}
+      {charts.pie && <div>
+        <h2>Pie Chart</h2>
+        <img src={`data:image/png;base64,${charts.pie}`} alt="Pie Chart" />
+      </div>}
+      {charts.heatmap && <div>
+        <h2>Heatmap</h2>
+        <img src={`data:image/png;base64,${charts.heatmap}`} alt="Heatmap" />
+      </div>}
+      {charts.histogram && <div>
+        <h2>Histogram</h2>
+        <img src={`data:image/png;base64,${charts.histogram}`} alt="Histogram" />
+      </div>}
+      {charts.scatter && <div>
+        <h2>Scatter Plot</h2>
+        <img src={`data:image/png;base64,${charts.scatter}`} alt="Scatter Plot" />
+      </div>}
+      {charts.box && <div>
+        <h2>Box Plot</h2>
+        <img src={`data:image/png;base64,${charts.box}`} alt="Box Plot" />
+      </div>}
+    </div>
   );
 };
 
-export default Dashboard;
+export default Chart;
