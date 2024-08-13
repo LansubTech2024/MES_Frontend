@@ -1,14 +1,12 @@
 import {useState} from "react";
 import { Link } from "react-router-dom";
 import { RxChevronUp,RxChevronDown } from "react-icons/rx";
-import Dropdown from "../Dropdown/Dropdown";
 import "./Sidebar.css";
 
 const Sidebar = () => {
     const[settingOpen,setSettingOpen] = useState(false);
     const[helpOpen,setHelpOpen] = useState(false)
     const[toggle,setToggle] = useState(false);
-    const[dataOpen,setDataOpen] = useState(false);
 
     const ToggleSetting = () =>{
         setSettingOpen(!settingOpen);
@@ -22,12 +20,7 @@ const Sidebar = () => {
     const CloseHelp = () =>{
         setHelpOpen(false)
     }
-    const ToggleData = () =>{
-      setDataOpen(!dataOpen)
-    }
-    const CloseData = () =>{
-      setDataOpen(false)
-    }
+    
   return (
       <aside className={`no-scrollbar sidebar ${toggle ? "active" : ""}`} >
         <nav className="sidebar-menu">
@@ -39,49 +32,32 @@ const Sidebar = () => {
             </li>
             <li>
               <Link to='#'>
-              <i className="fa-solid fa-gears"></i><span>Get Data</span>
-              {dataOpen ?(
-                  <RxChevronUp
-                  onClick={CloseData}
-                  className="drop-icon"
-                  size={24}
-                  />
-                ):
-                (
-                 <RxChevronDown 
-                 onClick={ToggleData}
-                 className="drop-icon"
-                 size={24}
-                 />
-                )}
-              </Link>
-              {dataOpen &&(
-                 <Dropdown/>
-              )}
-            </li>
-            <li>
-              <Link href="#">
-              <i className="fa-solid fa-wrench"></i><span>Energy Monoitoring</span>
+              <i className="fa-solid fa-database"></i><span>Get Data</span>
               </Link>
             </li>
             <li>
               <Link href="#">
-                <i className="fa-solid fa-boxes"></i><span>Employee Allocations</span>
+              <i className="fa-solid fa-bolt"></i><span>Energy Monoitoring</span>
               </Link>
             </li>
             <li>
               <Link href="#">
-                <i className="fa-solid fa-file-lines"></i><span>Job Timeline</span>
+              <i className="fa-solid fa-users"></i><span>Employee Allocations</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="#">
+              <i className="fa-solid fa-business-time"></i><span>Job Timeline</span>
               </Link>
             </li>
             <li>
               <Link to='/dashboard'>
-                <i className="fa-solid fa-clipboard-check"></i><span>Dashboard</span>
+              <i className="fa-solid fa-gauge-high"></i><span>Dashboard</span>
               </Link>
             </li>
             <li>
               <Link to="/predection">
-                <i className="fa-solid fa-file-lines"></i><span>Predictive Analysis</span>
+              <i className="fa-solid fa-magnifying-glass-chart"></i><span>Predictive Analysis</span>
               </Link>
             </li>
             <li>
@@ -90,7 +66,6 @@ const Sidebar = () => {
                 {settingOpen ?(
                   <RxChevronUp
                   onClick={CloseSetting}
-                  className="drop-icon"
                   size={24}
                   />
                 ):

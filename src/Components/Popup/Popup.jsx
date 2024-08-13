@@ -10,7 +10,7 @@ const Popup = ({ onClose }) => {
 
   const handleOk = async () => {
     try {
-      const response = await axios.post('/api/connect_sql', {
+      const response = await axios.post('http://127.0.0.1:5000/api/data', {
         serverName,
         databaseName,
       });

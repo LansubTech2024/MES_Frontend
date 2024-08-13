@@ -1,17 +1,13 @@
 import { useEffect, useState } from 'react';
-import Header from '../../Components/Header/Header';
-import Sidebar from '../../Components/SideBar/Sidebar';
 import axios from 'axios';
-import './GetData.css';
 
-function GetData() {
+function DataTable() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
         // Fetch data from the Flask API when the component mounts
         axios.get('http://127.0.0.1:5000/api/data')
             .then(response => {
-              console.log('Data fetched:', response.data);
                 setData(response.data);
             })
             .catch(error => {
@@ -20,12 +16,9 @@ function GetData() {
     }, []);
 
     return (
-        <>
-          <Header/>
-          <Sidebar/>
-          <div className='getdata-container'>
+        <div>
             <h2>Data from SQL Database</h2>
-            <table className='table-container'>
+            <table>
                 <thead>
                     <tr>
                         {/* Adjust column headers according to your data */}
@@ -38,8 +31,8 @@ function GetData() {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((item) => (
-                        <tr key={item.id}>
+                    {data.map((item, index) => (
+                        <tr key={index}>
                             <td>{item.ID}</td>
                             <td>{item.CHW_IN_TEMP}</td>
                             <td>{item.CHW_OUT_TEMP}</td>
@@ -50,10 +43,8 @@ function GetData() {
                     ))}
                 </tbody>
             </table>
-            </div>
-        </>
+        </div>
     );
 }
 
-export default GetData;
-
+export default DataTable;
