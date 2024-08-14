@@ -1,51 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Chart = () => {
-  const [charts, setCharts] = useState({});
+function Graphs() {
+  const [graphs, setGraphs] = useState([]);
 
   useEffect(() => {
-    const fetchCharts = async () => {
-      try {
-        const response = await axios.get('/api/charts/');
-        setCharts(response.data);
-      } catch (error) {
-        console.error('Error fetching charts:', error);
-      }
-    };
-
-    fetchCharts();
+    axios.get('http://127.0.0.1:8000/api/charts/')  // Adjust this URL to match your Django URL
+      .then(response => {
+        setGraphs(response.data.graphs);
+      })
+      .catch(error => {
+        console.error('Error fetching graphs:', error);
+      });
   }, []);
 
   return (
     <div>
-      <h1>Charts</h1>
-      {charts.bar && <div>
-        <h2>Bar Chart</h2>
-        <img src={`data:image/png;base64,${charts.bar}`} alt="Bar Chart" />
-      </div>}
-      {charts.pie && <div>
-        <h2>Pie Chart</h2>
-        <img src={`data:image/png;base64,${charts.pie}`} alt="Pie Chart" />
-      </div>}
-      {charts.heatmap && <div>
-        <h2>Heatmap</h2>
-        <img src={`data:image/png;base64,${charts.heatmap}`} alt="Heatmap" />
-      </div>}
-      {charts.histogram && <div>
-        <h2>Histogram</h2>
-        <img src={`data:image/png;base64,${charts.histogram}`} alt="Histogram" />
-      </div>}
-      {charts.scatter && <div>
-        <h2>Scatter Plot</h2>
-        <img src={`data:image/png;base64,${charts.scatter}`} alt="Scatter Plot" />
-      </div>}
-      {charts.box && <div>
-        <h2>Box Plot</h2>
-        <img src={`data:image/png;base64,${charts.box}`} alt="Box Plot" />
-      </div>}
+      {graphs.map((graph, index) => (
+        <div key={index}>
+          <h2>{graph.type} Chart</h2>
+          <img src={`data:image/png;base64,${graph.data}`} alt={`${graph.type} chart`} />
+        </div>
+      ))}
     </div>
   );
-};
+}
 
-export default Chart;
+export default Graphs;
