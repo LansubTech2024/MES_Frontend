@@ -1,45 +1,41 @@
-.barchart {
-    position: absolute;
-    z-index: 0;
-    top: 200px;
-    left: 300px;
-    background-color: white;
-    box-shadow: 5px 5px 20px rgb(129, 123, 123);
-    width: 530px;
-    height: 300px;
-    padding-left: 40px;
+.graphs-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.graphs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.graph-item {
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.graph-title {
+  color: #333;
+  font-size: 20px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.graph-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .graphs-grid {
+    grid-template-columns: 1fr;
   }
-  .piechart {
-    position: absolute;
-    z-index: 0;
-    top: 550px;
-    left: 300px;
-    background-color: white;
-    box-shadow: 5px 5px 20px rgb(129, 123, 123);
-    width: 530px;
-    height: 350px;
-    padding-left: 40px;
-  }
-  .linechart {
-    position: absolute;
-    z-index: 0;
-    top: 200px;
-    left: 55rem;
-    background-color: white;
-    box-shadow: 5px 5px 20px rgb(129, 123, 123);
-    width: 530px;
-    height: 300px;
-    padding-left: 40px;
-  }
-  .datatable {
-    position: absolute;
-    z-index: 0;
-    background-color: white;
-    box-shadow: 5px 5px 20px rgb(129, 123, 123);
-    top: 550px;
-    left: 58rem;
-    width: 500px;
-    height: 350px;
-    padding-right: 20px;
-  }
-  
+}
