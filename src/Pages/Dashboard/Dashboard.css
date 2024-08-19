@@ -4,7 +4,15 @@
   padding: 20px;
   font-family: Arial, sans-serif;
 }
-
+.download-btn{
+  float: inline-end;
+  margin-top: 50px;
+  padding: 10px;
+  cursor: pointer;
+}
+.download-btn .fa-down:hover{
+  color: aliceblue;
+}
 .graphs-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

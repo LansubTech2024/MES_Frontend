@@ -1,0 +1,31 @@
+.popup {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+    width: 80%;
+    height: 80%;
+    overflow-y: scroll;
+}
+.popup-graphs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.popup-graph-item{
+     width:50%;
+}
+.popup button {
+    align-self: flex-end;
+    padding: 5px 10px;
+    border: none;
+    background: #f44336;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
