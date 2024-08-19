@@ -1,25 +1,25 @@
 import {useState} from "react";
 import { Link } from "react-router-dom";
-import { RxChevronUp,RxChevronDown } from "react-icons/rx";
+//import { RxChevronUp,RxChevronDown } from "react-icons/rx";
 import "./Sidebar.css";
 
 const Sidebar = () => {
-    const[settingOpen,setSettingOpen] = useState(false);
-    const[helpOpen,setHelpOpen] = useState(false)
+    // const[settingOpen,setSettingOpen] = useState(false);
+    // const[helpOpen,setHelpOpen] = useState(false)
     const[toggle,setToggle] = useState(false);
 
-    const ToggleSetting = () =>{
-        setSettingOpen(!settingOpen);
-    }
-    const CloseSetting = () =>{
-        setSettingOpen(false)
-    }
-    const ToggleHelp = () =>{
-        setHelpOpen(!helpOpen)
-    }
-    const CloseHelp = () =>{
-        setHelpOpen(false)
-    }
+    // const ToggleSetting = () =>{
+    //     setSettingOpen(!settingOpen);
+    // }
+    // const CloseSetting = () =>{
+    //     setSettingOpen(false)
+    // }
+    // const ToggleHelp = () =>{
+    //     setHelpOpen(!helpOpen)
+    // }
+    // const CloseHelp = () =>{
+    //     setHelpOpen(false)
+    // }
     
   return (
       <aside className={`no-scrollbar sidebar ${toggle ? "active" : ""}`} >
@@ -36,6 +36,11 @@ const Sidebar = () => {
               </Link>
             </li>
             <li>
+              <Link to='/dashboard'>
+              <i className="fa-solid fa-gauge-high"></i><span>Dashboard</span>
+              </Link>
+            </li>
+            {/* <li>
               <Link href="#">
               <i className="fa-solid fa-bolt"></i><span>Energy Monoitoring</span>
               </Link>
@@ -48,11 +53,6 @@ const Sidebar = () => {
             <li>
               <Link href="#">
               <i className="fa-solid fa-business-time"></i><span>Job Timeline</span>
-              </Link>
-            </li>
-            <li>
-              <Link to='/dashboard'>
-              <i className="fa-solid fa-gauge-high"></i><span>Dashboard</span>
               </Link>
             </li>
             <li>
@@ -134,7 +134,7 @@ const Sidebar = () => {
                     </ul>
                 </div>
               )}
-            </li>
+            </li> */}
           </ul>
           <div
           className={`nav-toggle ${

@@ -8,6 +8,8 @@ import { Bar, Line, Pie, Scatter } from "react-chartjs-2";
 import Plot from "react-plotly.js";
 import "./GraphPopup.css";
 
+Modal.setAppElement('#root');
+
 function GraphPopup({ isOpen, onRequestClose, graphType }) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null); // Add error state
@@ -29,12 +31,12 @@ function GraphPopup({ isOpen, onRequestClose, graphType }) {
   }, [isOpen, graphType]);
 
   const handleDownload = () => {
-    const input = document.querySelector('.graph-popup-content');
+    const input = document.querySelector('.popup-graphs');
     html2canvas(input).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF();
       pdf.addImage(imgData, 'PNG', 0, 0);
-      pdf.save('graph.pdf');
+      pdf.save('detailedgraph.pdf');
     });
   };
 
@@ -57,7 +59,7 @@ function GraphPopup({ isOpen, onRequestClose, graphType }) {
   const renderPlotly = (plotData, title, plotType) => (
     <div className="popup-graph-item">
       <h3>{title}</h3>
-      <Plot data={plotData} layout={{ title: title }} />
+      <Plot data={plotData} layout={{ title: title, width:500, height:400 }} />
     </div>
   );
 
