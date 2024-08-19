@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import './Signup.css'
 import Logo from "../../public/logo3.png";
 
@@ -16,24 +17,16 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = () => {
-    setFormData(true)
-
-    fetch('http://127.0.0.1:8000/users/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-    setFormData(false)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('/api/signup/', { formData });
+      console.log(response.data.message);
+      // Handle successful signup (e.g., redirect to login page)
+    } catch (error) {
+      console.error('Signup failed:', error.response.data);
+      // Handle signup error (e.g., show error message)
+    }
   };
   return (
     <div className="signup-container">

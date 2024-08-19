@@ -6,6 +6,7 @@ import Login from "./Login/Login";
 import Signup from "./Signup/Signup";
 import About from "./Pages/About/About";
 import GetData from "./Pages/GetData/GetData";
+import Profile from"./Pages/Profile/Profile";
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 
 const App = () => {
@@ -19,7 +20,8 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
-       </Routes>
+        <Route path="/profile" element={<Profile/>}/>
+        </Routes>
     </BrowserRouter>
   )
 }

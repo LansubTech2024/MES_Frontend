@@ -1,21 +1,50 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Header.css";
-import { RiAccountCircleLine,RiMessage2Line,RiNotification2Line } from "react-icons/ri";
+import { RiAccountCircleLine, RiMessage2Line, RiNotification2Line } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Header = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
-      setSidebarOpen(!isSidebarOpen);
+    setSidebarOpen(!isSidebarOpen);
   };
+
+  const handleMenuToggle = () => {
+    setShowMenu(!showMenu);
+  };
+
+  const handleLogout = async () => {
+    try {
+      // Perform logout API call if necessary
+      await axios.post('http://localhost:8000/api/logout/', {}, {
+        withCredentials: true // If you're using session authentication
+      });
+
+      // Clear user data from local storage or state
+      localStorage.removeItem('authToken'); // Adjust as necessary
+
+      // Redirect to login page
+      navigate('/login');
+    } catch (error) {
+      console.error('Logout failed:', error);
+      // Handle logout error if needed
+      // Optionally, redirect to an error page or login page
+      navigate('/login');
+    }
+  };
+
   return (
     <>
       <header className="header">
         <div className="header-part">
           <div className="menu-bar">
-             <RxHamburgerMenu size={24} className="toggle-menubar" onClick={toggleSidebar}/>
+            <RxHamburgerMenu size={24} className="toggle-menubar" onClick={toggleSidebar} />
           </div>
           <div className="header-heading">
             <h3 className="heading">Manufacturing</h3>
@@ -33,30 +62,31 @@ const Header = () => {
             />
           </form>
           <div className="message-profile">
-          <div className="company-about">
-            <a href="/about">
-            <h4 >About us</h4></a>
-            
-          </div>
+            <div className="company-about">
+              <a href="/about">
+                <h4>About us</h4>
+              </a>
+            </div>
             <div className="notification">
-              <Link href="#">
+              <Link to="#">
                 <span className="notify-icon">
-                  <RiNotification2Line size={20}/>
+                  <RiNotification2Line size={20} />
                 </span>
               </Link>
-
-              <Link href="#">
+              <Link to="#">
                 <span className="message-icon">
-                  <RiMessage2Line size={20}/>
+                  <RiMessage2Line size={20} />
                 </span>
               </Link>
             </div>
-            <div className="profile">
-              <span className="user">
-              <span className="user-name">Thomas Anree</span><br/>
-              <span className="user-role">UX Designer</span>
-              </span>
-              <RiAccountCircleLine size={42} className="picture" />
+            <div className="user-menu">
+              <RiAccountCircleLine size={42} className="picture" onClick={handleMenuToggle} />
+              {showMenu && (
+                <div className="dropdown-menu">
+                  <li><Link to="/profile">Profile</Link></li>
+                  <li><a href="#" onClick={handleLogout}>Logout</a></li>
+                </div>
+              )}
             </div>
           </div>
         </div>
