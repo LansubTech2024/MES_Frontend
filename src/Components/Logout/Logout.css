@@ -1,0 +1,23 @@
+.logout-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4; /* Light grey background */
+    font-family: Arial, sans-serif; /* Basic font */
+}
+
+.logout-container button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #007bff; /* Bootstrap primary color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-container button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
