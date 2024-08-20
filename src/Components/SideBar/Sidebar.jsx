@@ -40,6 +40,11 @@ const Sidebar = () => {
               <i className="fa-solid fa-gauge-high"></i><span>Dashboard</span>
               </Link>
             </li>
+            <li>
+              <Link to="/predection">
+              <i className="fa-solid fa-magnifying-glass-chart"></i><span>Predictive Analysis</span>
+              </Link>
+            </li>
             {/* <li>
               <Link href="#">
               <i className="fa-solid fa-bolt"></i><span>Energy Monoitoring</span>
@@ -55,11 +60,7 @@ const Sidebar = () => {
               <i className="fa-solid fa-business-time"></i><span>Job Timeline</span>
               </Link>
             </li>
-            <li>
-              <Link to="/predection">
-              <i className="fa-solid fa-magnifying-glass-chart"></i><span>Predictive Analysis</span>
-              </Link>
-            </li>
+            
             <li>
               <Link to="/" className="item">
                 <i className="fa-solid fa-cog"></i><span>Settings</span>
