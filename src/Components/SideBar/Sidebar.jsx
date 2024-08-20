@@ -22,7 +22,7 @@ const Sidebar = () => {
     // }
     
   return (
-      <aside className={`no-scrollbar sidebar ${toggle ? "active" : ""}`} >
+      <aside className='no-scrollbar sidebar'>
         <nav className="sidebar-menu">
           <ul className="list-item">
             <li>

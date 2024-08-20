@@ -6,7 +6,7 @@
     position: fixed;
     left: 0;
     top: 0;
-    z-index: 0;
+    z-index: 1;
     user-select: none;
     transition-property: width;
     transition-duration: 0.5s;

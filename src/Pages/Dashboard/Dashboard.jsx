@@ -64,14 +64,29 @@ function Dashboard() {
   };
 
   const handleDownload = () => {
-    const input = document.querySelector('.graphs-grid');
-    html2canvas(input).then(canvas => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF();
-      pdf.addImage(imgData, 'PNG', 0, 0);
-      pdf.save('graphs.pdf');
-    });
-  };
+    const graphItems = document.querySelectorAll('.graph-item');
+  const pdf = new jsPDF();
+
+  let promises = [];
+  graphItems.forEach((item, index) => {
+    promises.push(
+      html2canvas(item).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const imgWidth = pdf.internal.pageSize.getWidth();
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        if (index > 0) {
+          pdf.addPage();
+        }
+        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      })
+    );
+  });
+
+  Promise.all(promises).then(() => {
+    pdf.save('graphs.pdf');
+  });
+};
 
   if (!chartData) return <div className="loading">Loading...</div>;
 
@@ -100,17 +115,18 @@ function Dashboard() {
                     y: chartData.heatmap_data.y,
                     type: 'heatmap',
                     colorscale: 'Viridis'
-                  }] : [
+                  }]  : [
                     ...chartData.box_plot_data.map(item => ({ ...item, type: 'box' }))
                   ]}
-                  layout={{ title: title, barmode: type === 'histogram' ? 'overlay' : undefined }}
+                  layout={{ title: title, width: 550, height: 400, barmode: type === 'histogram' ? 'overlay' : undefined }}
+                  useResizeHandler={true}
                 />
               ) : (
                 React.createElement(type === 'bar' ? Bar :
                   type === 'line' ? Line :
                   type === 'pie' ? Pie :
                   Scatter, 
-                  { data: chartData[key] })
+                  { data: chartData[key], width: 600, height: 300 })
               )}
             </div>
           ))}

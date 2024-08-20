@@ -46,9 +46,6 @@ const Header = () => {
           <div className="menu-bar">
             <RxHamburgerMenu size={24} className="toggle-menubar" onClick={toggleSidebar} />
           </div>
-          <div className="header-heading">
-            <h3 className="heading">Manufacturing</h3>
-          </div>
           <form className="search-box">
             <button type="submit" className="search-btn">
               <i className="fa-solid fa-magnifying-glass"></i>
@@ -62,11 +59,6 @@ const Header = () => {
             />
           </form>
           <div className="message-profile">
-            <div className="company-about">
-              <a href="/about">
-                <h4>About us</h4>
-              </a>
-            </div>
             <div className="notification">
               <Link to="#">
                 <span className="notify-icon">
