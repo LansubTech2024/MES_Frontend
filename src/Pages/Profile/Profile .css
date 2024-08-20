@@ -63,7 +63,7 @@ input:disabled {
     font-size: 1em;
 }
 
-button:hover {
+.profile-container button:hover {
     background-color: #0056b3;
 }
 

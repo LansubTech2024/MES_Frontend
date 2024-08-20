@@ -31,12 +31,29 @@ function GraphPopup({ isOpen, onRequestClose, graphType }) {
   }, [isOpen, graphType]);
 
   const handleDownload = () => {
-    const input = document.querySelector('.popup-graphs');
-    html2canvas(input).then(canvas => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF();
-      pdf.addImage(imgData, 'PNG', 0, 0);
-      pdf.save('detailedgraph.pdf');
+    const pdf = new jsPDF('p', 'pt', 'a4');
+    const charts = document.querySelectorAll('.popup-graphs');
+
+    let position = 20;
+
+    charts.forEach((chart, index) => {
+      html2canvas(chart).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const imgWidth = 500;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        if (position + imgHeight > pdf.internal.pageSize.height) {
+          pdf.addPage();
+          position = 20;
+        }
+
+        pdf.addImage(imgData, 'PNG', 20, position, imgWidth, imgHeight);
+        position += imgHeight + 20;
+
+        if (index === charts.length - 1) {
+          pdf.save('graph.pdf');
+        }
+      });
     });
   };
 
@@ -59,7 +76,7 @@ function GraphPopup({ isOpen, onRequestClose, graphType }) {
   const renderPlotly = (plotData, title, plotType) => (
     <div className="popup-graph-item">
       <h3>{title}</h3>
-      <Plot data={plotData} layout={{ title: title, width:500, height:400 }} />
+      <Plot data={plotData} layout={{ title: title }} />
     </div>
   );
 
