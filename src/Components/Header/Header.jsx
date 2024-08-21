@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
-import { RiAccountCircleLine, RiMessage2Line, RiNotification2Line } from "react-icons/ri";
+import { RiAccountCircleLine, RiMessage2Line, RiNotification2Line, RiLogoutBoxLine, RiUser3Line } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -78,8 +78,8 @@ const Header = () => {
               <RiAccountCircleLine size={42} className="picture" onClick={handleMenuToggle} />
               {showMenu && (
                 <div className="dropdown-menu">
-                  <li><Link to="/profile">Profile</Link></li>
-                  <li><a href="#" onClick={handleLogout}>Logout</a></li>
+                  <li><RiUser3Line size={22}/><Link to="/profile">Profile</Link></li>
+                  <li><RiLogoutBoxLine size={22}/><a href="#" onClick={handleLogout}>Logout</a></li>
                 </div>
               )}
             </div>

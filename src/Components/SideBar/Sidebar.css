@@ -39,6 +39,9 @@
 .list-item li{
     margin: 10px 0 10px;
 }
+.list-item li a:hover{
+  color: #4b0dba;
+}
 ul li a{
     color: rgb(241 245 249);
     text-decoration: none;
