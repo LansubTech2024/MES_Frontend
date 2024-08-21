@@ -5,14 +5,15 @@ import { RiAccountCircleLine, RiMessage2Line, RiNotification2Line } from "react-
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Sidebar from "../SideBar/Sidebar";
 
 const Header = () => {
-  const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [isSidebarOpen, setSidebarIsOpen] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
 
   const toggleSidebar = () => {
-    setSidebarOpen(!isSidebarOpen);
+    setSidebarIsOpen(!isSidebarOpen);
   };
 
   const handleMenuToggle = () => {
@@ -45,7 +46,9 @@ const Header = () => {
         <div className="header-part">
           <div className="menu-bar">
             <RxHamburgerMenu size={24} className="toggle-menubar" onClick={toggleSidebar} />
+            
           </div>
+         
           <form className="search-box">
             <button type="submit" className="search-btn">
               <i className="fa-solid fa-magnifying-glass"></i>
@@ -83,6 +86,7 @@ const Header = () => {
           </div>
         </div>
       </header>
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../../Components/Header/Header';
 import Sidebar from '../../Components/SideBar/Sidebar';
@@ -54,7 +54,6 @@ function Dashboard() {
       .then(response => setChartData(response.data))
       .catch(error => {
         console.error('Error fetching graph data:', error);
-        // Consider setting an error state here
       });
   }, []);
 
@@ -65,28 +64,28 @@ function Dashboard() {
 
   const handleDownload = () => {
     const graphItems = document.querySelectorAll('.graph-item');
-  const pdf = new jsPDF();
+    const pdf = new jsPDF();
 
-  let promises = [];
-  graphItems.forEach((item, index) => {
-    promises.push(
-      html2canvas(item).then(canvas => {
-        const imgData = canvas.toDataURL('image/png');
-        const imgWidth = pdf.internal.pageSize.getWidth();
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    let promises = [];
+    graphItems.forEach((item, index) => {
+      promises.push(
+        html2canvas(item).then(canvas => {
+          const imgData = canvas.toDataURL('image/png');
+          const imgWidth = pdf.internal.pageSize.getWidth();
+          const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-        if (index > 0) {
-          pdf.addPage();
-        }
-        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-      })
-    );
-  });
+          if (index > 0) {
+            pdf.addPage();
+          }
+          pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+        })
+      );
+    });
 
-  Promise.all(promises).then(() => {
-    pdf.save('graphs.pdf');
-  });
-};
+    Promise.all(promises).then(() => {
+      pdf.save('graphs.pdf');
+    });
+  };
 
   if (!chartData) return <div className="loading">Loading...</div>;
 
@@ -95,9 +94,9 @@ function Dashboard() {
       <Header />
       <Sidebar />
       <div className="graphs-container">
-      <button className="download-btn" onClick={handleDownload}>
-        <FaDownload size={22} color='blue' className='fa-down'/>
-      </button>
+        <button className="download-btn" onClick={handleDownload}>
+          <FaDownload size={22} color='blue' className='fa-down' />
+        </button>
         <div className="graphs-grid">
           {graphs.map(({ type, title, key, plot }) => (
             <div key={type} className="graph-item" onClick={() => handleGraphClick(type)}>
@@ -115,18 +114,24 @@ function Dashboard() {
                     y: chartData.heatmap_data.y,
                     type: 'heatmap',
                     colorscale: 'Viridis'
-                  }]  : [
+                  }] : [
                     ...chartData.box_plot_data.map(item => ({ ...item, type: 'box' }))
                   ]}
-                  layout={{ title: title, width: 550, height: 400, barmode: type === 'histogram' ? 'overlay' : undefined }}
+                  layout={{ title: title, width: '100%', height: 400, barmode: type === 'histogram' ? 'overlay' : undefined }}
                   useResizeHandler={true}
+                  style={{ width: "100%", height: "100%" }}
                 />
               ) : (
-                React.createElement(type === 'bar' ? Bar :
+                React.createElement(
+                  type === 'bar' ? Bar :
                   type === 'line' ? Line :
                   type === 'pie' ? Pie :
-                  Scatter, 
-                  { data: chartData[key], width: 600, height: 300 })
+                  Scatter,
+                  { 
+                    data: chartData[key],
+                    options: { responsive: true, maintainAspectRatio: false }
+                  }
+                )
               )}
             </div>
           ))}
