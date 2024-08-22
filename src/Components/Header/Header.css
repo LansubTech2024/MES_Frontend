@@ -35,7 +35,6 @@
   padding: 4px;
   font-size: 18px;
   outline: none;
-  margin-top: 10px;
 }
 .search-btn {
   border: none;
@@ -161,13 +160,19 @@
 
 .dropdown-menu li {
   margin: 10px 0;
+  display: flex;
+  align-items: center;
 }
 .dropdown-menu a {
   text-decoration: none;
   color: #333;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
+  padding: 10px;
 }
 
-.dropdown-menu a:hover {
+.dropdown-menu li:hover {
+  color: #007bff;
+}
+.dropdown-menu li a:hover {
   color: #007bff;
 }
