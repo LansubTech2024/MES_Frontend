@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 //import { RxChevronUp,RxChevronDown } from "react-icons/rx";
 import "./Sidebar.css";
 
-const Sidebar = () => {
+const Sidebar = ( isSidebarOpen, toggleSidebar ) => {
     // const[settingOpen,setSettingOpen] = useState(false);
     // const[helpOpen,setHelpOpen] = useState(false)
     const[toggle,setToggle] = useState(false);
@@ -22,6 +22,10 @@ const Sidebar = () => {
     // }
     
   return (
+    <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
+    <div className="close-btn" onClick={toggleSidebar}>
+      &times;
+    </div>
       <aside className='no-scrollbar sidebar'>
         <nav className="sidebar-menu">
           <ul className="list-item">
@@ -147,6 +151,7 @@ const Sidebar = () => {
         </div>
         </nav>
       </aside>
+      </div>
   )
 };
 

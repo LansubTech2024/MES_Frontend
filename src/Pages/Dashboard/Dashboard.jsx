@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../../Components/Header/Header";
@@ -5,6 +6,15 @@ import Sidebar from "../../Components/SideBar/Sidebar";
 import { FaDownload } from "react-icons/fa6";
 import { Line } from "react-chartjs-2";
 import Plot from "react-plotly.js";
+=======
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Header from '../../Components/Header/Header';
+import Sidebar from '../../Components/SideBar/Sidebar';
+import { FaDownload } from 'react-icons/fa6';
+import { Bar, Line, Pie, Scatter } from 'react-chartjs-2';
+import Plot from 'react-plotly.js';
+>>>>>>> cb3ca4ad1525b58909988e9e4a669732bff96d8e
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -36,11 +46,18 @@ function Dashboard() {
   const [selectedGraphType, setSelectedGraphType] = useState(null);
 
   useEffect(() => {
+<<<<<<< HEAD
     axios
       .get("http://127.0.0.1:8000/api/charts/")
       .then((response) => setChartData(response.data))
       .catch((error) => {
         console.error("Error fetching graph data:", error);
+=======
+    axios.get('http://127.0.0.1:8000/api/charts/')
+      .then(response => setChartData(response.data))
+      .catch(error => {
+        console.error('Error fetching graph data:', error);
+>>>>>>> cb3ca4ad1525b58909988e9e4a669732bff96d8e
       });
   }, []);
 
@@ -50,27 +67,44 @@ function Dashboard() {
   };
 
   const handleDownload = () => {
+<<<<<<< HEAD
     const graphItems = document.querySelectorAll(".graph-item");
+=======
+    const graphItems = document.querySelectorAll('.graph-item');
+>>>>>>> cb3ca4ad1525b58909988e9e4a669732bff96d8e
     const pdf = new jsPDF();
 
     let promises = [];
     graphItems.forEach((item, index) => {
       promises.push(
+<<<<<<< HEAD
         html2canvas(item).then((canvas) => {
           const imgData = canvas.toDataURL("image/png");
+=======
+        html2canvas(item).then(canvas => {
+          const imgData = canvas.toDataURL('image/png');
+>>>>>>> cb3ca4ad1525b58909988e9e4a669732bff96d8e
           const imgWidth = pdf.internal.pageSize.getWidth();
           const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
           if (index > 0) {
             pdf.addPage();
           }
+<<<<<<< HEAD
           pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+=======
+          pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+>>>>>>> cb3ca4ad1525b58909988e9e4a669732bff96d8e
         })
       );
     });
 
     Promise.all(promises).then(() => {
+<<<<<<< HEAD
       pdf.save("graphs.pdf");
+=======
+      pdf.save('graphs.pdf');
+>>>>>>> cb3ca4ad1525b58909988e9e4a669732bff96d8e
     });
   };
 
@@ -88,6 +122,7 @@ function Dashboard() {
       <Sidebar />
       <div className="graphs-container">
         <button className="download-btn" onClick={handleDownload}>
+<<<<<<< HEAD
           <FaDownload size={22} color="blue" className="fa-down" />
         </button>
         <div className="cards-container">
@@ -359,6 +394,48 @@ function Dashboard() {
             style={{ width: 650, height: 500 }}
           />
         </div>
+=======
+          <FaDownload size={22} color='blue' className='fa-down' />
+        </button>
+        <div className="graphs-grid">
+          {graphs.map(({ type, title, key, plot }) => (
+            <div key={type} className="graph-item" onClick={() => handleGraphClick(type)}>
+              <h2 className="graph-title">{title}</h2>
+              {plot ? (
+                <Plot
+                  data={type === 'histogram' ? [
+                    { x: chartData.histogram_data.chw_in, type: 'histogram', name: 'CHW In' },
+                    { x: chartData.histogram_data.chw_out, type: 'histogram', name: 'CHW Out' },
+                    { x: chartData.histogram_data.cow_in, type: 'histogram', name: 'COW In' },
+                    { x: chartData.histogram_data.cow_out, type: 'histogram', name: 'COW Out' }
+                  ] : type === 'heatmap' ? [{
+                    z: chartData.heatmap_data.z,
+                    x: chartData.heatmap_data.x,
+                    y: chartData.heatmap_data.y,
+                    type: 'heatmap',
+                    colorscale: 'Viridis'
+                  }] : [
+                    ...chartData.box_plot_data.map(item => ({ ...item, type: 'box' }))
+                  ]}
+                  layout={{ title: title, width: '100%', height: 400, barmode: type === 'histogram' ? 'overlay' : undefined }}
+                  useResizeHandler={true}
+                  style={{ width: "100%", height: "100%" }}
+                />
+              ) : (
+                React.createElement(
+                  type === 'bar' ? Bar :
+                  type === 'line' ? Line :
+                  type === 'pie' ? Pie :
+                  Scatter,
+                  { 
+                    data: chartData[key],
+                    options: { responsive: true, maintainAspectRatio: false }
+                  }
+                )
+              )}
+            </div>
+          ))}
+>>>>>>> cb3ca4ad1525b58909988e9e4a669732bff96d8e
         </div>
       </div>
 
