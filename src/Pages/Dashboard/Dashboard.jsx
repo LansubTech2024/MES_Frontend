@@ -120,7 +120,7 @@ function Dashboard() {
         </div>
         <div className="graphs-grid">
           {/* Line Chart */}
-          <div className="graph-item" onClick={()=>handleGraphClick('line')}>
+          <div className="graph-item" onClick={()=>handleGraphClick('line-chart')}>
             <h2 className="graph-title" style={{ marginBottom: "80px" }}>
               Temperature Trends
             </h2>
@@ -189,7 +189,7 @@ function Dashboard() {
           {/* Waterfall Chart */}
           <div
             className="graph-item"
-            onClick={()=>handleGraphClick('waterfall')}
+            onClick={()=>handleGraphClick('waterfall-chart')}
           >
             <h2 className="graph-title" style={{ marginBottom: "0px" }}>
               Temperature Changes
@@ -270,7 +270,7 @@ function Dashboard() {
             />
           </div>
           {/* Donut Chart */}
-          <div className="graph-item" onClick={()=>handleGraphClick('donut')}>
+          <div className="graph-item" onClick={()=>handleGraphClick('donut-chart')}>
             <h2 className="graph-title" style={{ marginRight: "30px" }}>
               Temperature Distribution
             </h2>
@@ -302,7 +302,7 @@ function Dashboard() {
           {/* Combination Chart */}
           <div
             className="graph-item"
-            onClick={()=>handleGraphClick('combination')}
+            onClick={()=>handleGraphClick('combination-chart')}
             style={{marginLeft:"50px"}}
           >
             <h2 className="graph-title">Temperature and Pressure Over Time</h2>

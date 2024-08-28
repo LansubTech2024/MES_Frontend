@@ -12,20 +12,70 @@
     height: 80%;
     overflow-y: scroll;
 }
-.popup-graphs {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.popup-graph-item{
-     width:50%;
-}
-.popup button {
-    align-self: flex-end;
-    padding: 5px 10px;
-    border: none;
-    background: #f44336;
+.popup-content {
+    position: relative;
+  }
+  
+  .popup-content h2 {
+    margin: 0 0 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .popup-content button {
+    background-color: #ff4d4d;
     color: white;
-    border-radius: 5px;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
     cursor: pointer;
-}
+    margin-top: 20px;
+  }
+  
+  .popup-content button:hover {
+    background-color: #e03e3e;
+  }
+  
+  /* Chart Container */
+  .popup-content .chart-container {
+    margin-bottom: 20px;
+  }
+  
+  .popup-content .chart-container canvas {
+    width: 100% !important;
+    height: 400px !important;
+  }
+  
+  /* Impact Cards */
+  .impact-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .impact-card {
+    background: #f8f9fa;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    padding: 15px;
+    width: calc(33.333% - 10px);
+    box-sizing: border-box;
+  }
+  
+  .impact-card h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .impact-card p {
+    margin: 0;
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .impact-card .description {
+    font-size: 14px;
+    color: #999;
+  }
