@@ -171,7 +171,7 @@ const Login = () => {
                   />
                   <label htmlFor="showPassword"> Show Password</label>
                 </div>
-                <Link href="#" className="forget">
+                <Link to="/forgetpassword">
                   Forget Password?
                 </Link>
                 <br />
@@ -190,6 +190,7 @@ const Login = () => {
                   <p>Don&apos;t have an account?</p>
                   <a href="/signup">Signup</a>
                 </div>
+                
               </Form>
             )}
           </Formik>

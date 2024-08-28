@@ -8,6 +8,9 @@ import About from "./Pages/About/About";
 import GetData from "./Pages/GetData/GetData";
 import Profile from"./Pages/Profile/Profile";
 import { BrowserRouter,Routes,Route } from "react-router-dom";
+import ForgetPassword from "./Forgetpassword/Forgetpassword";
+import ResetPassword from "./Resetpassword/Resetpassword";
+
 
 const App = () => {
   return (
@@ -22,6 +25,8 @@ const App = () => {
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/profile" element={<Profile/>}/>
+        <Route path="/forgetpassword" element={<ForgetPassword/>}/>
+        <Route path="/resetpassword" element={<ResetPassword/>}/>
         </Routes>
     </BrowserRouter>
   )
