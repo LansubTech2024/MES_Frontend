@@ -1,7 +1,7 @@
 import "./Assumption.css";
 import ReactSpeedometer from "react-d3-speedometer";
 import { BarChart, Bar,LineChart,Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { Card, CardContent, CardHeader, CardTitle } from './Components/ui/card'
+
 
 const Assumption = () => {
   const calculateDuration = (startDate, endDate) => {
@@ -54,63 +54,44 @@ const Assumption = () => {
   };
   return (
     <>
-    <div className="grid grid-cols-2 gap-4 p-4">
-      <Card>
-        <CardHeader>
-          <CardTitle>Total Duration</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p>{totalDuration} days</p>
-          <p>From : {startDate}</p>
-          <p>To: {endDate}</p>
-        </CardContent>
-      </Card>
-      
-      <Card>
-        <CardHeader>
-          <CardTitle>Total Resources</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p>{totalResources} workers</p>
-        </CardContent>
-      </Card>
-      
-      <Card className="col-span-2">
-        <CardHeader>
-          <CardTitle>Project Completion Rate</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={completionData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line type="monotone" dataKey="rate" stroke="#8884d8" />
-            </LineChart>
-          </ResponsiveContainer>
-        </CardContent>
-      </Card>
-      
-      <Card className="col-span-2">
-        <CardHeader>
-          <CardTitle>Resources Allocated</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={resourceData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="allocated" fill="#82ca9d" />
-              <Bar dataKey="total" fill="#8884d8" />
-            </BarChart>
-          </ResponsiveContainer>
-        </CardContent>
-      </Card>
+<div className="dashboard">
+      <div className="card">
+        <h3>Total Duration</h3>
+        <p>{totalDuration} days</p>
+        <p>From: {startDate}</p>
+        <p>To: {endDate}</p>
+      </div>
+      <div className="card">
+        <h3>Total Resources</h3>
+        <p>{totalResources} workers</p>
+      </div>
+      <div className="card full-width">
+        <h3>Project Completion Rate</h3>
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={completionData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="date" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Line type="monotone" dataKey="rate" stroke="#8884d8" />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="card full-width">
+        <h3>Resources Allocated</h3>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={resourceData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="date" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="allocated" fill="#82ca9d" />
+            <Bar dataKey="total" fill="#8884d8" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
     </div>
     <div className="performance">
         <h2>Performance</h2>
