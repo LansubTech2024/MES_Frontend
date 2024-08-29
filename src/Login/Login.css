@@ -40,20 +40,20 @@ body{
     margin: 0 0 10px;
     text-align: center;
 }
-.login-form form{
+.login-form Form{
     margin-top: 30px;
 }
-.user-box{
+.form-group{
     position: relative;
 }
-.user-box label{
+.form-group label{
     padding: 10px 0;
     font-size: 19px;
     color: #333;
     pointer-events: none;
     transition: 0.5s;
 }
-.user-box input{
+.form-group .form-control{
     width: 100%;
     padding: 10px 0;
     font-size: 16px;
@@ -74,6 +74,7 @@ body{
     justify-content: end;
     text-decoration: none;
     color: black;
+    font-size: 18px;
 }
 .login-form a:hover{
     color: #1281ea;
@@ -137,4 +138,20 @@ body{
     font-size: 19px;
     text-decoration: none;
 }
+.spinner-border {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    vertical-align: text-bottom;
+    border: 0.25em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+  }
+  
+  @keyframes spinner-border {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 

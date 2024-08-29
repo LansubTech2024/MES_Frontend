@@ -4,11 +4,15 @@ import Modal from "react-modal";
 import axios from "axios";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import { Bar, Line, Pie, Scatter } from "react-chartjs-2";
-import Plot from "react-plotly.js";
-import "./GraphPopup.css";
+import { Line,Doughnut,Bar } from "react-chartjs-2";
+import { Chart as ChartJS, LineElement, Title, Tooltip, Legend, BarElement } from 'chart.js';
+import GaugeChart from 'react-gauge-chart'; // Ensure you have the GaugeChart component
+import './GraphPopup.css';
 
 Modal.setAppElement('#root');
+
+// Register chart types
+ChartJS.register(LineElement, Title, Tooltip, Legend, BarElement);
 
 function GraphPopup({ isOpen, onRequestClose, graphType }) {
   const [data, setData] = useState(null);
@@ -16,135 +20,231 @@ function GraphPopup({ isOpen, onRequestClose, graphType }) {
 
   useEffect(() => {
     if (isOpen) {
-      fetchData();
+      axios
+        .get(`http://127.0.0.1:8000/api/graph-data/?type=${graphType}`)
+        .then((response) => {
+          console.log("Received data:", response.data);
+          setData(response.data);
+          setError(null);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+          setError("Error fetching data. Please try again later.");
+        });
     }
   }, [isOpen, graphType]);
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/graph-data/?type=${graphType}`);
-      setData(response.data);
-      setError(null);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setError("Error fetching data. Please try again later.");
-    }
-  };
-
   const handleDownload = () => {
     const pdf = new jsPDF('p', 'pt', 'a4');
-    const charts = document.querySelectorAll('.popup-graphs');
+    const charts = document.querySelectorAll('.popup-graph-item');
 
     let position = 20;
 
+    const addImageToPDF = (canvas, index) => {
+      const imgData = canvas.toDataURL('image/png');
+      const imgWidth = 500;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+      if (position + imgHeight > pdf.internal.pageSize.height) {
+        pdf.addPage();
+        position = 20;
+      }
+
+      pdf.addImage(imgData, 'PNG', 20, position, imgWidth, imgHeight);
+      position += imgHeight + 20;
+
+      if (index === charts.length - 1) {
+        pdf.save('graph.pdf');
+      }
+    };
+
     charts.forEach((chart, index) => {
       html2canvas(chart).then(canvas => {
-        const imgData = canvas.toDataURL('image/png');
-        const imgWidth = 500;
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-        if (position + imgHeight > pdf.internal.pageSize.height) {
-          pdf.addPage();
-          position = 20;
-        }
-
-        pdf.addImage(imgData, 'PNG', 20, position, imgWidth, imgHeight);
-        position += imgHeight + 20;
-
-        if (index === charts.length - 1) {
-          pdf.save('graph.pdf');
-        }
+        addImageToPDF(canvas, index);
       });
     });
   };
 
-  const getChartData = (dataSet, chartType) => {
-    const formatData = (dataSet) => {
-      const colors = [
-        { backgroundColor: "rgba(0, 123, 255, 0.5)", borderColor: "rgba(0, 123, 255, 1)" },
-        { backgroundColor: "rgba(255, 99, 132, 0.5)", borderColor: "rgba(255, 99, 132, 1)" },
-        { backgroundColor: "rgba(75, 192, 192, 0.5)", borderColor: "rgba(75, 192, 192, 1)" },
-      ];
+  if (error) return <div className="popup-error">{error}</div>;
 
-      return dataSet.datasets.map((dataset, index) => ({
-        ...dataset,
-        backgroundColor: colors[index % colors.length].backgroundColor,
-        borderColor: colors[index % colors.length].borderColor,
-        borderWidth: 1,
-      }));
-    };
-
-    if (Array.isArray(dataSet)) {
-      const labels = dataSet.map((d) => d.date || d.device_date);
-      const temperatureData = dataSet.map((d) => d.temperature || d.chw_in_temp);
-
-      return {
-        labels,
-        datasets: [
-          {
-            label: "Temperature",
-            data: temperatureData,
-            backgroundColor: "rgba(0, 123, 255, 0.5)",
-            borderColor: "rgba(0, 123, 255, 1)",
-            borderWidth: 1,
-          },
-        ],
-      };
-    } else if (dataSet?.labels && dataSet?.datasets) {
-      return {
-        ...dataSet,
-        datasets: formatData(dataSet),
-      };
-    }
-
-    console.error("Unexpected data format:", dataSet);
-    return null;
-  };
+  if (!data) return <div>Loading...</div>;
 
   const renderChart = (chartData, title, ChartComponent) => {
-    return chartData ? (
+    if (!chartData) {
+      return <div>{title}: No data available</div>;
+    }
+    return (
       <div className="popup-graph-item">
         <h3>{title}</h3>
         <ChartComponent data={chartData} />
       </div>
-    ) : (
-      <div>{title}: No data available</div>
     );
   };
 
-  const renderPlotly = (plotData, title, plotType) => (
-    <div className="popup-graph-item">
-      <h3>{title}</h3>
-      <Plot data={plotData} layout={{ title }} />
-    </div>
-  );
+  const getChartData = (dataSet, chartType) => {
+    console.log("getChartData input:", dataSet, chartType);
+
+    switch (chartType) {
+      case "line":
+        if (Array.isArray(dataSet)) {
+          return {
+            labels: dataSet.map((d) => d.date || d.device_date),
+            datasets: [
+              {
+                label: "Temperature",
+                data: dataSet.map((d) => d.temperature || d.chw_in_temp),
+                backgroundColor: "rgba(0, 123, 255, 0.5)",
+                borderColor: "rgba(0, 123, 255, 1)",
+                borderWidth: 1,
+              },
+            ],
+          };
+        } else if (dataSet && dataSet.labels && dataSet.datasets) {
+          return {
+            ...dataSet,
+            datasets: dataSet.datasets.map(dataset => ({
+              ...dataset,
+              backgroundColor: "rgba(0, 123, 255, 0.5)",
+              borderColor: "rgba(0, 123, 255, 1)",
+              borderWidth: 1,
+            })),
+          };
+        } else {
+          console.error("Unexpected data format for line chart:", dataSet);
+          return { labels: [], datasets: [] };
+        }
+
+      case "waterfall":
+        if (Array.isArray(dataSet)) {
+          return {
+            labels: dataSet.map((d) => d.label),
+            datasets: [
+              {
+                label: "Values",
+                data: dataSet.map((d) => d.value),
+                backgroundColor: "rgba(0, 123, 255, 0.5)",
+                borderColor: "rgba(0, 123, 255, 1)",
+                borderWidth: 1,
+              },
+            ],
+          };
+        } else {
+          console.error("Unexpected data format for bar chart:", dataSet);
+          return { labels: [], datasets: [] };
+        }
+
+      case "donut":
+        if (typeof dataSet === "object") {
+          return {
+            labels: Object.keys(dataSet),
+            datasets: [
+              {
+                data: Object.values(dataSet),
+                backgroundColor: [
+                  "rgba(255, 99, 132, 0.5)",
+                  "rgba(54, 162, 235, 0.5)",
+                  "rgba(255, 206, 86, 0.5)",
+                  "rgba(75, 192, 192, 0.5)",
+                  "rgba(153, 102, 255, 0.5)",
+                  "rgba(255, 159, 64, 0.5)",
+                ],
+              },
+            ],
+          };
+        } else {
+          console.error("Expected object data for donut chart, got:", dataSet);
+          return { labels: [], datasets: [] };
+        }
+
+      case "combination":
+        if (Array.isArray(dataSet)) {
+          return {
+            labels: dataSet.map((d) => d.date || d.device_date),
+            datasets: [
+              {
+                label: "Average Temperature",
+                type: 'line',
+                data: dataSet.map((d) => d.average_temp),
+                backgroundColor: "rgba(0, 123, 255, 0.5)",
+                borderColor: "rgba(0, 123, 255, 1)",
+                borderWidth: 1,
+              },
+              {
+                label: "Pressure",
+                type: 'bar',
+                data: dataSet.map((d) => d.pressure),
+                backgroundColor: "rgba(255, 99, 132, 0.5)",
+                borderColor: "rgba(255, 99, 132, 1)",
+                borderWidth: 1,
+              },
+            ],
+          };
+        } else {
+          console.error("Expected array data for combination chart, got:", dataSet);
+          return { labels: [], datasets: [] };
+        }
+
+      default:
+        console.error("Unsupported chart type:", chartType);
+        return { labels: [], datasets: [] };
+    }
+  };
 
   const renderGraphs = () => {
-    const ChartComponent = graphType === "bar" ? Bar :
-      graphType === "line" ? Line :
-      graphType === "pie" ? Pie :
-      graphType === "scatter" ? Scatter : null;
-
-    if (!ChartComponent) return <div>Unsupported graph type</div>;
-
-    return (
-      <>
-        {data?.historical && renderChart(getChartData(data.historical, graphType), "Historical Data", ChartComponent)}
-        {data?.predictive && renderChart(getChartData(data.predictive, graphType), "Predictive Data", ChartComponent)}
-        {data?.impact && renderChart(getChartData(data.impact, graphType), "Impact Analysis", ChartComponent)}
-      </>
-    );
+    switch (graphType) {
+      case "line":
+      case "waterfall":
+      case "donut":
+      case "combination":
+        const ChartComponent =
+          graphType === "line"
+            ? Line
+            : graphType === "waterfall"
+            ? Bar
+            : graphType === "donut"
+            ? Doughnut
+            : null;
+        return (
+          <>
+            {data.historical &&
+              renderChart(
+                getChartData(data.historical, graphType),
+                "Historical Data",
+                ChartComponent
+              )}
+            {data.predictive &&
+              renderChart(
+                getChartData(data.predictive, graphType),
+                "Predictive Data",
+                ChartComponent
+              )}
+            {data.impact &&
+              renderChart(
+                getChartData(data.impact, graphType),
+                "Impact Analysis",
+                ChartComponent
+              )}
+          </>
+        );
+      default:
+        return <div>Unsupported graph type</div>;
+    }
   };
 
-  if (error) return <div className="popup-error">{error}</div>;
-
   return (
-    <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel="Graph Details" className="popup">
-      <h2>{`Graph Details for ${graphType.charAt(0).toUpperCase() + graphType.slice(1)} Chart`}</h2>
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
+      contentLabel="Graph Details"
+      className="popup"
+      overlayClassName="popup-overlay"
+    >
+      <h2>
+        Graph Details for{" "}
+        {graphType.charAt(0).toUpperCase() + graphType.slice(1)} Chart
+      </h2>
       <button className="download-btn" onClick={handleDownload}>Download</button>
-      <div className="popup-graphs">
-        {data ? renderGraphs() : <div>Loading...</div>}
-      </div>
+      <div className="popup-graphs">{renderGraphs()}</div>
       <button onClick={onRequestClose}>Close</button>
     </Modal>
   );

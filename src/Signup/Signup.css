@@ -35,20 +35,20 @@
     margin: 0 0 10px;
     text-align: center;
 }
-.signup-form form{
+.signup-form Form{
     margin-top: 25px;
 }
-.user-box{
+.form-group{
     position: relative;
 }
-.user-box label{
+.form-group label{
     padding: 10px 0;
     font-size: 19px;
     color: #333;
     pointer-events: none;
     transition: 0.5s;
 }
-.user-box input{
+.form-group .form-control{
     width: 100%;
     padding: 10px 0;
     font-size: 16px;
@@ -60,7 +60,7 @@
     background: transparent;
 
 }
-.signup-form input::placeholder{
+.signup-form .form-control::placeholder{
     color: rgb(117, 115, 115);
     font-size: 14px;
 }
@@ -132,4 +132,20 @@
     font-size: 19px;
     text-decoration: none;
 }
+.spinner-border {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    vertical-align: text-bottom;
+    border: 0.25em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+  }
+  
+  @keyframes spinner-border {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 

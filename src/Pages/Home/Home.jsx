@@ -1,6 +1,6 @@
 import Header from '../../Components/Header/Header'
 import Sidebar from '../../Components/SideBar/Sidebar'
-import Logo from '../../../public/logopng.png'
+import Logo from '/logopng.png'
 import { RiLinkedinBoxLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import "./Home.css";

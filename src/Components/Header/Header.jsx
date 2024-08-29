@@ -5,16 +5,11 @@ import { RiAccountCircleLine, RiMessage2Line, RiNotification2Line, RiLogoutBoxLi
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Sidebar from "../SideBar/Sidebar";
 
 const Header = () => {
-  const [isSidebarOpen, setSidebarIsOpen] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  
   const navigate = useNavigate();
-
-  const toggleSidebar = () => {
-    setSidebarIsOpen(!isSidebarOpen);
-  };
 
   const handleMenuToggle = () => {
     setShowMenu(!showMenu);
@@ -45,7 +40,7 @@ const Header = () => {
       <header className="header">
         <div className="header-part">
           <div className="menu-bar">
-            <RxHamburgerMenu size={24} className="toggle-menubar" onClick={toggleSidebar} />
+            <RxHamburgerMenu size={24} className="toggle-menubar"/>
             
           </div>
          
@@ -86,7 +81,6 @@ const Header = () => {
           </div>
         </div>
       </header>
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
     </>
   );
 };

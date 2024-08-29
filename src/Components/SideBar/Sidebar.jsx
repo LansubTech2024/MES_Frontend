@@ -1,52 +1,57 @@
-import {useState} from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 //import { RxChevronUp,RxChevronDown } from "react-icons/rx";
 import "./Sidebar.css";
 
-const Sidebar = ( isSidebarOpen, toggleSidebar ) => {
-    // const[settingOpen,setSettingOpen] = useState(false);
-    // const[helpOpen,setHelpOpen] = useState(false)
-    const[toggle,setToggle] = useState(false);
+const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
+  // const[settingOpen,setSettingOpen] = useState(false);
+  // const[helpOpen,setHelpOpen] = useState(false)
+  const [toggle, setToggle] = useState(false);
 
-    // const ToggleSetting = () =>{
-    //     setSettingOpen(!settingOpen);
-    // }
-    // const CloseSetting = () =>{
-    //     setSettingOpen(false)
-    // }
-    // const ToggleHelp = () =>{
-    //     setHelpOpen(!helpOpen)
-    // }
-    // const CloseHelp = () =>{
-    //     setHelpOpen(false)
-    // }
-    
+  // const ToggleSetting = () =>{
+  //     setSettingOpen(!settingOpen);
+  // }
+  // const CloseSetting = () =>{
+  //     setSettingOpen(false)
+  // }
+  // const ToggleHelp = () =>{
+  //     setHelpOpen(!helpOpen)
+  // }
+  // const CloseHelp = () =>{
+  //     setHelpOpen(false)
+  // }
+
   return (
     <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
-    <div className="close-btn" onClick={toggleSidebar}>
-      &times;
-    </div>
-      <aside className='no-scrollbar sidebar'>
+      <div className="close-btn" onClick={toggleSidebar}>
+        &times;
+      </div>
+      <aside className="no-scrollbar sidebar">
         <nav className="sidebar-menu">
           <ul className="list-item">
             <li>
               <Link to="/">
-              <i className="fa-solid fa-house-chimney"></i><span>Home</span>
+                <i className="fa-solid fa-house-chimney"></i>
+                <span>Home</span>
               </Link>
             </li>
             <li>
-              <Link to='#'>
-              <i className="fa-solid fa-database"></i><span>Get Data</span>
+              <Link to="#">
+                <i className="fa-solid fa-database"></i>
+                <span>Get Data</span>
               </Link>
             </li>
             <li>
-              <Link to='/dashboard'>
-              <i className="fa-solid fa-gauge-high"></i><span>Dashboard</span>
+              <Link to="/dashboard">
+                <i className="fa-solid fa-gauge-high"></i>
+                <span>Dashboard</span>
               </Link>
             </li>
             <li>
               <Link to="/predection">
-              <i className="fa-solid fa-magnifying-glass-chart"></i><span>Predictive Analysis</span>
+                <i className="fa-solid fa-magnifying-glass-chart"></i>
+                <span>Predictive Analysis</span>
               </Link>
             </li>
             {/* <li>
@@ -142,17 +147,20 @@ const Sidebar = ( isSidebarOpen, toggleSidebar ) => {
             </li> */}
           </ul>
           <div
-          className={`nav-toggle ${
-            toggle ? "active" : ""
-          }`}
-          onClick={() => setToggle(!toggle)}
-        >
-          <div className={`toggle-menu ${toggle ? "active" : " "}`}></div>
-        </div>
+            className={`nav-toggle ${toggle ? "active" : ""}`}
+            onClick={() => setToggle(!toggle)}
+          >
+            <div className={`toggle-menu ${toggle ? "active" : " "}`}></div>
+          </div>
         </nav>
       </aside>
-      </div>
-  )
+    </div>
+  );
+};
+
+Sidebar.propTypes = {
+  isSidebarOpen: PropTypes.bool,
+  toggleSidebar: PropTypes.func.isRequired,
 };
 
 export default Sidebar;
