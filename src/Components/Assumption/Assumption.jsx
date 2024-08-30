@@ -1,39 +1,49 @@
 import "./Assumption.css";
 import ReactSpeedometer from "react-d3-speedometer";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
+import { BarChart, Bar,LineChart,Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { Card, CardContent, CardHeader, CardTitle } from './Components/ui/card'
 
 const Assumption = () => {
-    const data = [
-        {
-            name: 'Work Hours',
-            TotalHours: 10,
-            CompletedHours: 10,
-            Availability: 100, // 100% available because workers completed early
-            ResourcesAllocated: 5, // Example number of resources/tasks allocated
-          },
-          {
-            name: 'Worker 1',
-            TotalHours: 8,
-            CompletedHours: 8,
-            Availability: 100, // Completed early, available for allocation
-            ResourcesAllocated: 3, // Resources allocated to this worker
-          },
-          {
-            name: 'Worker 2',
-            TotalHours: 10,
-            CompletedHours: 8,
-            Availability: 80, // 80% availability due to finishing early
-            ResourcesAllocated: 0, // No additional resources allocated
-          },
-          {
-            name: 'Worker 3',
-            TotalHours: 10,
-            CompletedHours: 9,
-            Availability: 90, // Almost done, availability soon
-            ResourcesAllocated: 1, // Resources allocated to this worker
-          },
-      ];
+  const calculateDuration = (startDate, endDate) => {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const diffTime = Math.abs(end - start);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
+  };
+  const startDate = '2024-08-25';
+  const endDate = '2024-09-05';
+  const totalDuration = calculateDuration(startDate, endDate);
+  const totalResources = 10;
+  
+  const completionData = [
+    { date: '2024-08-25', rate: 0 },
+    { date: '2024-08-26', rate: 20 },
+    { date: '2024-08-27', rate: 20 },
+    { date: '2024-08-28', rate: 20 },
+    { date: '2024-08-29', rate: 20 },
+    { date: '2024-08-30', rate: 20 },
+    { date: '2024-08-31', rate: 40 },
+    { date: '2024-09-01', rate: 40 },
+    { date: '2024-09-02', rate: 40 },
+    { date: '2024-09-03', rate: 70 },
+    { date: '2024-09-04', rate: 70 },
+    { date: '2024-09-05', rate: 90 },
+  ];
+  
+  const resourceData = [
+    { date: '2024-08-25', allocated: 3, total: 10 },
+    { date: '2024-08-26', allocated: 4, total: 10 },
+    { date: '2024-08-27', allocated: 5, total: 10 },
+    { date: '2024-08-28', allocated: 6, total: 10 },
+    { date: '2024-08-29', allocated: 6, total: 10 },
+    { date: '2024-08-30', allocated: 7, total: 10 },
+    { date: '2024-08-31', allocated: 8, total: 10 },
+    { date: '2024-09-01', allocated: 10, total: 10 },
+    { date: '2024-09-03', allocated: 10, total: 10 },
+    { date: '2024-09-04', allocated: 8, total: 10 },
+    { date: '2024-09-05', allocated: 9, total: 10 },
+  ];
   const machinePerformance = 75; // Machine performance in percentage (0-100)
   const employeePerformance = 90; // Employee performance in percentage (0-100)
   const qualityData = {
@@ -44,21 +54,63 @@ const Assumption = () => {
   };
   return (
     <>
-    <div className="availablity">
-    <h2>Availability</h2>
-    <ResponsiveContainer width="100%" height={400}>
-      <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="CompletedHours" stackId="a" fill="#82ca9d" />
-        <Bar dataKey="RemainingHours" stackId="a" fill="#8884d8" />
-        <Bar dataKey="Availability" fill="#ffc658" />
-        <Bar dataKey="ResourcesAllocated" fill="#ff7300" />
-      </BarChart>
-    </ResponsiveContainer>
+    <div className="grid grid-cols-2 gap-4 p-4">
+      <Card>
+        <CardHeader>
+          <CardTitle>Total Duration</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>{totalDuration} days</p>
+          <p>From : {startDate}</p>
+          <p>To: {endDate}</p>
+        </CardContent>
+      </Card>
+      
+      <Card>
+        <CardHeader>
+          <CardTitle>Total Resources</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>{totalResources} workers</p>
+        </CardContent>
+      </Card>
+      
+      <Card className="col-span-2">
+        <CardHeader>
+          <CardTitle>Project Completion Rate</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={completionData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="date" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="rate" stroke="#8884d8" />
+            </LineChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+      
+      <Card className="col-span-2">
+        <CardHeader>
+          <CardTitle>Resources Allocated</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={resourceData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="date" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="allocated" fill="#82ca9d" />
+              <Bar dataKey="total" fill="#8884d8" />
+            </BarChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
     </div>
     <div className="performance">
         <h2>Performance</h2>
