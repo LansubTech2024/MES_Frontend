@@ -1,11 +1,37 @@
 import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
-import { Line } from 'react-chartjs-2';
+import { Line, Bar, Pie } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  ArcElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  ArcElement,
+  Title,
+  Tooltip,
+  Legend
+);
+import './GraphPopup.css';
 
 const GraphPopup = ({ isOpen, onRequestClose, graphType }) => {
     const [predictiveData, setPredictiveData] = useState(null);
     const [impactCards, setImpactCards] = useState([]);
+    const [recommendation, setRecommendation] = useState('');
 
     useEffect(() => {
         if (isOpen) {
@@ -13,6 +39,7 @@ const GraphPopup = ({ isOpen, onRequestClose, graphType }) => {
                 .then(response => {
                     setPredictiveData(response.data.predictive_graph);
                     setImpactCards(response.data.impact_cards);
+                    setRecommendation(response.data.recommendation);
                 })
                 .catch(error => {
                     console.error("There was an error fetching the data!", error);
@@ -24,8 +51,8 @@ const GraphPopup = ({ isOpen, onRequestClose, graphType }) => {
         return impactCards.map((card, index) => (
             <div key={index} className="impact-card">
                 <h3>{card.title}</h3>
-                <p>{card.value}</p>
-                <p className='description'>{card.description}</p>
+                <p className="value">{card.value}</p>
+                <p className="description">{card.description}</p>
             </div>
         ));
     };
@@ -33,36 +60,119 @@ const GraphPopup = ({ isOpen, onRequestClose, graphType }) => {
     const renderPredictiveGraph = () => {
         if (!predictiveData) return null;
 
+        switch (predictiveData.type) {
+            case 'time_series_forecast':
+                return renderTimeSeriesForecast();
+            case 'cumulative_flow':
+                return renderCumulativeFlow();
+            case 'partitioned_donut':
+                return renderPartitionedDonut();
+            case 'overlay_combination':
+                return renderOverlayCombination();
+            default:
+                return null;
+        }
+    };
+
+    const renderTimeSeriesForecast = () => {
+        const data = {
+            labels: predictiveData.dates,
+            datasets: [{
+                label: 'Predicted Values',
+                data: predictiveData.values,
+                borderColor: 'rgba(75,192,192,1)',
+                backgroundColor: 'rgba(75,192,192,0.2)',
+                fill: true,
+            }],
+        };
+
+        return <Line data={data} />;
+    };
+
+    const renderCumulativeFlow = () => {
+        const data = {
+            labels: predictiveData.dates,
+            datasets: [{
+                label: 'Cumulative Difference',
+                data: predictiveData.values,
+                backgroundColor: 'rgba(75,192,192,0.6)',
+            }],
+        };
+
+        return <Bar data={data} />;
+    };
+
+    const renderPartitionedDonut = () => {
+        const data = {
+            labels: predictiveData.labels,
+            datasets: [{
+                data: predictiveData.values,
+                backgroundColor: [
+                    '#0b1d78',
+                    '#0069c0',
+                    '#00a9b5',
+                ],
+            }],
+        };
+
+        return <Pie data={data} width={100} height={100} />;
+    };
+
+    const renderOverlayCombination = () => {
         const data = {
             labels: predictiveData.dates,
             datasets: [
                 {
-                    label: 'Predicted Values',
-                    data: predictiveData.values,
-                    borderColor: 'rgba(75,192,192,1)',
-                    backgroundColor: 'rgba(75,192,192,0.2)',
-                    fill: true,
+                    label: 'Temperature',
+                    data: predictiveData.temp_values,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    yAxisID: 'y-axis-1',
+                },
+                {
+                    label: 'Pressure',
+                    data: predictiveData.pressure_values,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    yAxisID: 'y-axis-2',
                 },
             ],
         };
 
-        return (
-          <div className="chart-container">
-              <Line data={data} />
-          </div>
-      );
+        const options = {
+            scales: {
+                'y-axis-1': {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                },
+                'y-axis-2': {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                },
+            },
+        };
 
+        return <Line data={data} options={options} />;
     };
 
     return (
-        <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel="Graph Popup">
+        <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel="Graph Popup" className="graph-popup">
             <div className="popup-content">
-                <h2>{graphType.charAt(0).toUpperCase() + graphType.slice(1)} Chart Predictive & Impact Analysis</h2>
-                {renderPredictiveGraph()}
+                <h2>{graphType.charAt(0).toUpperCase() + graphType.slice(1)} Analysis</h2>
+                <div className="chart-container">
+                    <h2>Predictive Chart</h2>
+                    {renderPredictiveGraph()}
+                </div>
+                <h2>Impact Analysis</h2>
                 <div className="impact-cards">
                     {renderImpactCards()}
                 </div>
-                <button onClick={onRequestClose}>Close</button>
+                <button onClick={onRequestClose} className="close-button">Close</button>
             </div>
         </Modal>
     );

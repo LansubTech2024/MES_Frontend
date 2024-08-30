@@ -1,0 +1,49 @@
+.availablity{
+    margin-top: 20px;
+    text-align: center;
+}
+.availablity h2{
+    font-size: 23px;
+    font-weight: 600;
+    color: white;
+}
+.performance{
+    margin-top: 10px;
+    text-align: center;
+}
+.performance h2{
+    font-size: 23px;
+    font-weight: 600;
+    color: white;
+}
+.quality-cards{
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px;
+}
+.quality{
+    text-align: center;
+}
+.quality h2{
+    color: white;
+    font-size: 23px;
+    font-weight: 600;
+}
+.cardStyle {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: blue;
+  }
+  .cardStyle h3{
+    font-size: 18px;
+    color: white;
+  }
+  .cardStyle p{
+    font-size: 16px;
+    color: antiquewhite;
+  }

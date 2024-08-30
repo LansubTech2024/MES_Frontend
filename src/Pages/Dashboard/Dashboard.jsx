@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Assumption from "../../Components/Assumption/Assumption";
 import Header from "../../Components/Header/Header";
 import Sidebar from "../../Components/SideBar/Sidebar";
 import { FaDownload } from "react-icons/fa6";
@@ -117,6 +118,9 @@ function Dashboard() {
             <p>In : {avg_temps.avg_chw_in_temp.toFixed(2)}°C</p>
             <p>Out : {avg_temps.avg_chw_out_temp.toFixed(2)}°C</p>
           </div>
+        </div>
+        <div className="assumption">
+          <Assumption/>
         </div>
         <div className="graphs-grid">
           {/* Line Chart */}
