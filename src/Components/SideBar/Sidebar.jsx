@@ -37,12 +37,6 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               </Link>
             </li>
             <li>
-              <Link to="#">
-                <i className="fa-solid fa-database"></i>
-                <span>Get Data</span>
-              </Link>
-            </li>
-            <li>
               <Link to="/dashboard">
                 <i className="fa-solid fa-gauge-high"></i>
                 <span>Dashboard</span>
@@ -54,7 +48,14 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <span>Predictive Analysis</span>
               </Link>
             </li>
-            {/* <li>
+            {/* 
+            <li>
+              <Link to="#">
+                <i className="fa-solid fa-database"></i>
+                <span>Get Data</span>
+              </Link>
+            </li>
+            <li>
               <Link href="#">
               <i className="fa-solid fa-bolt"></i><span>Energy Monoitoring</span>
               </Link>

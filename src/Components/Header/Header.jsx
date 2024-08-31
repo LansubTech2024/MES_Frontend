@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
-import { RiAccountCircleLine, RiMessage2Line, RiNotification2Line, RiLogoutBoxLine, RiUser3Line } from "react-icons/ri";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { RiAccountCircleLine, RiMessage2Line, RiLogoutBoxLine, RiUser3Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Logo from '../../../public/logo3.png';
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -26,25 +26,24 @@ const Header = () => {
       localStorage.removeItem('authToken'); // Adjust as necessary
 
       // Redirect to login page
-      navigate('/login');
+      navigate('/');
     } catch (error) {
       console.error('Logout failed:', error);
-      // Handle logout error if needed
-      // Optionally, redirect to an error page or login page
-      navigate('/login');
     }
   };
 
   return (
     <>
       <header className="header">
-        <div className="header-part">
-          <div className="menu-bar">
+      <div className = "company-name-header">
+              <p>Vivarthi</p>
+            </div>
+          {/* <div className="menu-bar">
             <RxHamburgerMenu size={24} className="toggle-menubar"/>
             
-          </div>
+          </div> */}
          
-          <form className="search-box">
+          {/* <form className="search-box">
             <button type="submit" className="search-btn">
               <i className="fa-solid fa-magnifying-glass"></i>
             </button>
@@ -55,14 +54,9 @@ const Header = () => {
               className="search"
               placeholder="Type to search..."
             />
-          </form>
+          </form> */}
           <div className="message-profile">
             <div className="notification">
-              <Link to="#">
-                <span className="notify-icon">
-                  <RiNotification2Line size={20} />
-                </span>
-              </Link>
               <Link to="#">
                 <span className="message-icon">
                   <RiMessage2Line size={20} />
@@ -73,13 +67,12 @@ const Header = () => {
               <RiAccountCircleLine size={42} className="picture" onClick={handleMenuToggle} />
               {showMenu && (
                 <div className="dropdown-menu">
-                  <li><RiUser3Line size={22}/><Link to="/profile">Profile</Link></li>
+                  <li><RiUser3Line className="profile-img" size={22}/><Link to="/profile">Profile</Link></li>
                   <li><RiLogoutBoxLine size={22}/><a href="#" onClick={handleLogout}>Logout</a></li>
                 </div>
               )}
             </div>
           </div>
-        </div>
       </header>
     </>
   );

@@ -135,26 +135,26 @@ function Dashboard() {
                   {
                     label: "CHW In",
                     data: chartData.line_chart.datasets[0].data,
-                    borderColor: "Yellow", // Line color
+                    borderColor: "#0b1d78",// Line color
                     backgroundColor: "Blue", // Background color under the line
                   },
                   {
                     label: "CHW Out",
                     data: chartData.line_chart.datasets[1].data,
-                    borderColor: "Beige", // Line color
-                    backgroundColor: "DarkGreen", // Background color under the line
+                    borderColor: "Violet", // Line color
+                    backgroundColor: "Green", // Background color under the line
                   },
                   {
                     label: "COW In",
                     data: chartData.line_chart.datasets[2].data,
                     borderColor: "LightBlue", // Line color
-                    backgroundColor: "Maroon", // Background color under the line
+                    backgroundColor: "#800080", // Background color under the line
                   },
                   {
                     label: "COW Out",
                     data: chartData.line_chart.datasets[3].data,
                     borderColor: "Black", // Line color
-                    backgroundColor: "Orange", // Background color under the line
+                    backgroundColor: "#1cac78", // Background color under the line
                   },
                 ],
               }}
@@ -162,25 +162,28 @@ function Dashboard() {
                 plugins: {
                   legend: {
                     labels: {
-                      color: "rgb(255, 255, 255)", // Legend text color
+                      color: "black",
+                      size: "16", // Legend text color
                     },
                   },
                 },
                 scales: {
                   x: {
                     ticks: {
-                      color: "rgb(255, 255, 255)", // X-axis ticks color
+                      color: "black",
+                      size: "16", // X-axis ticks color
                     },
                     grid: {
-                      color: "rgba(255, 255, 255, 0.5)", // X-axis grid lines color
+                      color: "black", // X-axis grid lines color
                     },
                   },
                   y: {
                     ticks: {
-                      color: "rgb(255, 255, 255)", // Y-axis ticks color
+                      color: "black",
+                      size: "16", // Y-axis ticks color
                     },
                     grid: {
-                      color: "rgba(255, 255, 255, 0.5)", // X-axis grid lines color
+                      color: "black", // X-axis grid lines color
                     },
                   },
                 },
@@ -207,10 +210,19 @@ function Dashboard() {
                   measure: chartData.waterfall_chart.measure,
                   text: scaledWaterfallY.map(String),
                   textposition: "outside",
-                  decreasing: { marker: { color: "#0069c0" } }, // Color for decreasing values
-                  increasing: { marker: { color: "#00a9b5" } }, // Color for increasing values
-                  totals: { marker: { color: "#00c698" } }, // Color for totals
-                  connector: { line: { color: "Tan" } }, // Color for connectors
+                  decreasing: { marker: { color: "#0069c0", line: {
+                    color: "black",  
+                    width: 2,  
+                  }, } }, 
+                  increasing: { marker: { color: "#00c698", line: {
+                    color: "black",  
+                    width: 2,  
+                  },  } }, 
+                  totals: { marker: { color: "#1fe074", line: {
+                    color: "black",  
+                    width: 2,  
+                  },  } },
+                  connector: { line: { color: "Tan" } }, 
                 },
               ]}
               layout={{
@@ -219,18 +231,24 @@ function Dashboard() {
                   autorange: true,
                   title: "Temperature (°C)",
                   titlefont: {
-                    color: "white", // Y-axis title color
+                    color: "black", 
+                    size: "18",
+                    weight: "bold", // Y-axis title color
                   },
                   tickfont: {
-                    color: "rgb(255, 255, 255)", // Y-axis tick labels color
+                    color: "black",
+                    size: "16",
+                    weight: "bold", // Y-axis tick labels color
                   },
-                  gridcolor: "rgba(255, 255, 255, 0.5)", // Y-axis grid line color
+                  gridcolor: "black", // Y-axis grid line color
                 },
                 xaxis: {
                   tickfont: {
-                    color: "rgb(255, 255, 255)", // X-axis tick labels color
+                    color: "black",
+                    size: "16",
+                    weight: "bold", // X-axis tick labels color
                   },
-                  gridcolor: "rgba(255, 255, 255, 0.5)",
+                  gridcolor: "black",
                 },
                 paper_bgcolor: "rgba(0,0,0,0)", // Transparent background for the entire plot
                 plot_bgcolor: "rgba(0,0,0,0)", // Transparent background for the plot area
@@ -252,17 +270,18 @@ function Dashboard() {
                   mode: "gauge+number",
                   value: chartData.gauge_chart.value,
                   gauge: {
-                    axis: { range: chartData.gauge_chart.range },
+                    axis: { range: chartData.gauge_chart.range},
                     steps: chartData.gauge_chart.steps,
                     threshold: chartData.gauge_chart.threshold,
                   },
                   number: {
-                    font: { size: 60, color: "blue" }, // Customize the font size and color
+                    font: { size: 80, color: "blue" }, // Customize the font size and color
                   },
                 },
               ]}
               layout={{
                 margin: { t:30, b: 50, l: 50, r: 50 },
+                size: "20",
                 paper_bgcolor: "rgba(0,0,0,0)", // Transparent background for the entire plot
                 plot_bgcolor: "rgba(0,0,0,0)", // Transparent background for the plot area
               }}
@@ -296,7 +315,7 @@ function Dashboard() {
                 showlegend: true,
                 paper_bgcolor: "rgba(0,0,0,0)",
                 plot_bgcolor: "rgba(0,0,0,0)",
-                font: { color: "white" },
+                font: { color: "black" },
               }}
               config={{ displayModeBar: false }}
               useResizeHandler={true}
@@ -319,44 +338,93 @@ function Dashboard() {
                   name: "Avg CHW In Temperature",
                   marker: {
                     color: 'rgba(0, 123, 255, 0.8)',
+                    line:{
+                      color:"black",
+                      width: 2,
+                    },
                   },
                   yaxis: "y1",
                 },
                 {
-                  type: "scatter",
-                  mode: "lines",
+                  type: "line",
                   x: chartData.combination_chart.labels,
                   y: chartData.combination_chart.datasets[1].data,
                   name: "Avg Pressure",
-                  line: {
-                    color: 'red',
+                  marker: {
+                    color: 'darkgreen',
+                    size: '16'
                   },
                   yaxis: "y2",
                 },
               ]}
               layout={{
                 xaxis: {
-                  title: "Month",
-                  color: "white",
-                  gridcolor: "rgba(255, 255, 255, 0.3)",
+                  title: {
+                    text: "Month",
+                    font: {
+                      size: 18, // Change X-axis title font size
+                      color: "black",
+                      family: "Arial",
+                      weight: "bold", // Make it bold
+                    },
+                  },
+                  tickfont: {
+                    size: 16, // X-axis tick font size
+                    color: "black",
+                    family: "Arial",
+                    weight: "bold", // Make it bold
+                  },
+                  linecolor: "black",
+                  linewidth: 2,
+                  gridcolor: "black",
                 },
                 yaxis: {
-                  title: "Temperature (°C)",
-                  color: "white",
-                  gridcolor: "rgba(255, 255, 255, 0.3)",
+                  title: {
+                    text: "Temperature (°C)",
+                    font: {
+                      size: 18, // Change Y-axis title font size
+                      color: "black",
+                      family: "Arial",
+                      weight: "bold", // Make it bold
+                    },
+                  },
+                  tickfont: {
+                    size: 16, // Y-axis tick font size
+                    color: "black",
+                    family: "Arial",
+                    weight: "bold", // Make it bold
+                  },
+                  linecolor: "black",
+                  linewidth: 2,
+                  gridcolor: "black",
                   side: "left",
                 },
                 yaxis2: {
-                  title: "Pressure",
-                  color: "white",
-                  gridcolor: "rgba(255, 255, 255, 0.3)",
+                  title: {
+                    text: "Pressure",
+                    font: {
+                      size: 18, // Change Y-axis 2 title font size
+                      color: "black",
+                      family: "Arial",
+                      weight: "bold", // Make it bold
+                    },
+                  },
+                  tickfont: {
+                    size: 16, // Y-axis 2 tick font size
+                    color: "black",
+                    family: "Arial",
+                    weight: "bold", // Make it bold
+                  },
+                  linecolor: "black",
+                  linewidth:2,
+                  gridcolor: "black",
                   overlaying: "y",
                   side: "right",
                 },
                 legend: {
                   x: 1.05,
                   y: 1,
-                  font: { color: "white" },
+                  font: { color: "black" },
                 },
                 paper_bgcolor: "rgba(0,0,0,0)",
                 plot_bgcolor: "rgba(0,0,0,0)",

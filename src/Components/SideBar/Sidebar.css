@@ -8,11 +8,10 @@
     top: 0;
     z-index: 1;
     user-select: none;
-   
     transition-property: width;
     transition-duration: 0.5s;
     box-shadow: 0px 0px 6px rgba(0,0,0,0.73);
-    background-color: rgb(15 23 42);
+    background-color: #030972;
 }
 
 

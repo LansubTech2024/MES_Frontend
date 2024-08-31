@@ -1,93 +1,113 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import"./Profile .css";
+import { Formik, Form, Field, ErrorMessage } from 'formik';  // Formik imports
+import * as Yup from 'yup';  // Yup for validation
+import './Profile .css';
 import Header from '../../Components/Header/Header';
 import Sidebar from '../../Components/SideBar/Sidebar';
 
+// Validation schema using Yup
+const validationSchema = Yup.object({
+    name: Yup.string().required('Name is required'),
+    email: Yup.string().email('Invalid email format').required('Email is required'),
+    designation: Yup.string().required('Designation is required'),
+});
+
 const ProfileForm = () => {
-    const [profileData, setProfileData] = useState({
+    const [initialValues, setInitialValues] = useState({
         name: '',
         email: '',
         designation: ''
     });
+    
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchProfileData = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/api/profile/', {
-                    withCredentials: true  // If you're using session authentication
+                const response = await axios.get('http://127.0.0.1:8000/api/auth/update-profile/', {
+                    withCredentials: true
                 });
-                setProfileData({
-                    name: `${response.data.first_name} ${response.data.last_name}`,
+                setInitialValues({
+                    name: response.data.name,
                     email: response.data.email,
                     designation: response.data.designation || 'Not specified'
                 });
             } catch (error) {
                 console.error('Error fetching profile data:', error);
-                // Handle error (e.g., redirect to login if unauthorized)
+            } finally {
+                setIsLoading(false);
             }
         };
 
         fetchProfileData();
     }, []);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setProfileData((prevData) => ({
-            ...prevData,
-            [name]: value
-        }));
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async (values, { setSubmitting }) => {
         try {
-            const response = await axios.put('http://localhost:8000/api/profile/', profileData, {
+            await axios.put('http://127.0.0.1:8000/api/auth/update-profile/', values, {
                 withCredentials: true
             });
             alert('Profile updated successfully!');
-            // Optionally, you can re-fetch the profile data here
         } catch (error) {
             console.error('Error updating profile:', error);
-            // Handle error (e.g., display error message)
+            alert('Failed to update profile. Please try again.');
+        } finally {
+            setSubmitting(false);
         }
     };
 
+    if (isLoading) {
+        return <div>Loading...</div>;  // Show loading state while data is being fetched
+    }
+
     return (
         <>
-            <Header/>
-            <Sidebar/>
+            <Header />
+            <Sidebar />
             <div className="profile-container">
-                <form onSubmit={handleSubmit}>
-                    <div className="profile-details">
-                        <h3>Profile Details</h3>
-                        
-                        <label>Name:</label>
-                        <input 
-                            type="text" 
-                            name="name"  // Specify the name attribute
-                            value={profileData.name} 
-                            onChange={handleChange}  // Allow editing
-                        />
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={validationSchema}
+                    enableReinitialize  // Reinitialize form with fetched data
+                    onSubmit={handleSubmit}
+                >
+                    {({ isSubmitting }) => (
+                        <Form>
+                            <div className="profile-details">
+                                <h3>Profile Details</h3>
 
-                        <label>Email:</label>
-                        <input 
-                            type="email" 
-                            name="email"  // Specify the name attribute
-                            value={profileData.email} 
-                            onChange={handleChange}  // Allow editing
-                        />
+                                <label>Name:</label>
+                                <Field 
+                                    type="text" 
+                                    name="name"
+                                    className="input-field"
+                                />
+                                <ErrorMessage name="name" component="div" className="error-message" />
 
-                        <label>Designation:</label>
-                        <input 
-                            type="text" 
-                            name="designation"  // Specify the name attribute
-                            value={profileData.designation} 
-                            onChange={handleChange}  // Allow editing
-                        />
-                    </div>
-                    <button type="submit">Save</button>  {/* Submit button */}
-                </form>
+                                <label>Email:</label>
+                                <Field 
+                                    type="email" 
+                                    name="email"
+                                    className="input-field"
+                                    disabled  // Read-only field
+                                />
+                                <ErrorMessage name="email" component="div" className="error-message" />
+
+                                <label>Designation:</label>
+                                <Field 
+                                    type="text" 
+                                    name="designation"
+                                    className="input-field"
+                                />
+                                <ErrorMessage name="designation" component="div" className="error-message" />
+                            </div>
+                            <button type="submit" className='save-btn' disabled={isSubmitting}>
+                                {isSubmitting ? 'Saving...' : 'Save'}
+                            </button>
+                        </Form>
+                    )}
+                </Formik>
             </div>
         </>
     );
