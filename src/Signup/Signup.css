@@ -1,39 +1,41 @@
-.signup-container{
-    background: linear-gradient(to left , white 60%, #1281ea 40%);
-    width: 59rem;
-    height: 32rem;
-    margin-left: 168px;
-    margin-top: 60px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
 }
-.signup-part{
-    display: flex;
-    justify-content: space-around;
+.signup-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100vh;
 }
 .signup-background{
     width: 30%;
     text-align: center;
     line-height: 18px;
 }
-.logo{
+.signup-background span{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 9rem;
-}
-.signup-background p{
-    line-height: 1.5;
-    font-size: 18px;
-    font-weight: 500;
+   justify-content: flex-start;
+   margin-left: 120px;
+   font-size: 40px;
+   font-weight: 600;
+   color: #2d038f;
+   font-family:'Courier New', Courier, monospace;
 }
 .signup-form{
-    width: 50%;
-    padding: 40px;
+    width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  color: #1b4d7b;
+  background-color: #7db6ec;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .signup-form h2{
-    margin: 0 0 10px;
-    text-align: center;
+  margin: 0 0 10px;
+  font-size: 40px;
+  text-align: center;
+  padding: 40px;
 }
 .signup-form Form{
     margin-top: 25px;

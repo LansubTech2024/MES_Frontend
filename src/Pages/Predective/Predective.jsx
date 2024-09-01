@@ -17,6 +17,10 @@ import {
 } from "chart.js";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6fb19b35b4dda35273028c8bd52338a4cf77149d
 import Modal from "react-modal";
 
 ChartJS.register(
