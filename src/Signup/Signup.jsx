@@ -5,7 +5,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import AxiosService from "../Components/AuthService/AuthService";
 import "./Signup.css";
-import Logo from "../../public/logo3.png";
+import Logo from "../../public/logopng5.png";
 
 const Validate = Yup.object().shape({
   name: Yup.string()
@@ -57,17 +57,9 @@ const Signup = () => {
 
   return (
     <div className="signup-container">
-      <div className="signup-part">
-        <div className="signup-background">
-          <div className="logo">
-            <img src={Logo} alt="logo" width={40} height={60} />
-          </div>
-          <div className="company-name">
-            <h3>Lansub Technologies</h3>
-          </div>
-          <div className="company-des">
-            <p>Enhancing Operational Productivity</p>
-          </div>
+      <div className="signup-background">
+          <img src={Logo} alt="Company Logo" className="logo-image" />
+          <span>Private Limited</span>
         </div>
         <div className="signup-form">
           <div className="signup-heading">
@@ -162,7 +154,7 @@ const Signup = () => {
               </Form>
             )}
           </Formik>
-        </div>
+        
       </div>
       <ToastContainer position="top-center" autoClose={3000} />
     </div>
