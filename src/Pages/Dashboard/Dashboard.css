@@ -1,11 +1,11 @@
-.graphs-container {
+.cards-container {
   max-width: 1200px;
   padding: 20px;
   margin: 0 auto;
   font-family: Arial, sans-serif;
 
 }
-.cards-container {
+.card-container {
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -1,17 +1,25 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./Header.css";
 import {
   RiMessage3Line,
   RiLogoutBoxLine,
   RiUser3Line,
 } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import MessagePopup from "../MessagePopup/MessagePopup";
 import axios from "axios";
-import Logo from "../../../public/logo3.png";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [isDialogOpen, setDialogOpen] = useState(false);
+
+  const openDialog = () => {
+    setDialogOpen(true);
+  };
+
+  const closeDialog = () => {
+    setDialogOpen(false);
+  };
 
   const navigate = useNavigate();
 
@@ -46,15 +54,8 @@ const Header = () => {
         <div className="company-name-header">
           <p>VIVARDHI</p>
         </div>
-        {/* <div className="menu-bar">
-            <RxHamburgerMenu size={24} className="toggle-menubar"/>
-            
-          </div> */}
 
-        {/* <form className="search-box">
-            <button type="submit" className="search-btn">
-              <i className="fa-solid fa-magnifying-glass"></i>
-            </button>
+       <form className="search-box">
             <input
               type="text"
               name="query"
@@ -62,14 +63,18 @@ const Header = () => {
               className="search"
               placeholder="Type to search..."
             />
-          </form> */}
+            <button type="submit" className="search-btn">
+              <i className="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
         <div className="message-profile">
           <div className="notification">
-            <Link to="#">
               <span className="message-icon-div">
-                <RiMessage3Line className="message-icon" />
+                <RiMessage3Line className="message-icon" onClick={openDialog} />
               </span>
-            </Link>
+              {isDialogOpen && (
+                <MessagePopup onClose={closeDialog}/>
+              )}
           </div>
           <div className="user-menu">
             <svg

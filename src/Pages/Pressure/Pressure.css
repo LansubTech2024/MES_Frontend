@@ -1,0 +1,32 @@
+.pressure-container {
+    max-width: 1200px;
+    padding: 20px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+  .download-btn{
+    float: inline-end;
+    margin-top: 50px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+.pressure-item {
+    margin-bottom: 10px;
+    cursor:pointer;
+  }
+  
+  .pressure-title {
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    margin-top: 70px;
+  }
+  
+  @media (max-width: 768px) {
+    .graphs-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  

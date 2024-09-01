@@ -19,29 +19,13 @@ body{
     width: 100%;
 }
 .login-background{
-    width: 50%; /* Adjust width as needed */
+    width: 60%; 
     background-image: url("bg-login2.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content:center;
-    align-items: center;
     padding: 20px;
     color: white; 
-}
-.logo {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-.company-add-name {
-    font-size: 18px;
-    font-weight: bold;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-    margin-top: 0;
-    color: #1281ea;
 }
 .login-form{
     width: 40%;

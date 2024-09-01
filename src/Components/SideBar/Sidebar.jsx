@@ -43,9 +43,27 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               </Link>
             </li>
             <li>
-              <Link to="/predection">
+              <Link to="/temperature">
                 <i className="fa-solid fa-magnifying-glass-chart"></i>
                 <span>Predictive Analysis</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/pressure">
+              <i className="fa-solid fa-gauge-simple-high"></i>
+                <span>Pressure Status</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/oee-data">
+                <i className="fa-solid fa-wrench"></i>
+                <span>Overall Equipment<br/>Efficiency(OEE)</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/help">
+                <i className="fa-solid fa-question-circle"></i>
+                <span>Help and Support</span>
               </Link>
             </li>
             {/* 

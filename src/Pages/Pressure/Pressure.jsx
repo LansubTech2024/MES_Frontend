@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Assumption from "../../Components/Assumption/Assumption";
 import Header from "../../Components/Header/Header";
 import Sidebar from "../../Components/SideBar/Sidebar";
 import { FaDownload } from "react-icons/fa6";
+import Plot from "react-plotly.js";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -16,7 +16,7 @@ import {
 } from "chart.js";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-import "./Dashboard.css";
+import "./Pressure.css";
 
 ChartJS.register(
   CategoryScale,
@@ -28,7 +28,7 @@ ChartJS.register(
   Legend
 );
 
-function Dashboard() {
+function Pressure() {
   const [chartData, setChartData] = useState(null);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ function Dashboard() {
   }, []);
 
   const handleDownload = () => {
-    const graphItems = document.querySelectorAll(".cards-container");
+    const graphItems = document.querySelectorAll(".graph-item");
     const pdf = new jsPDF();
 
     let promises = [];
@@ -67,50 +67,56 @@ function Dashboard() {
 
   if (!chartData) return <div className="loading">Loading...</div>;
 
-  const { total_entries, chw_in_temp, chw_out_temp, avg_temps } = chartData;
-
   return (
     <>
       <Header />
       <Sidebar />
-      <div className="cards-container">
+      <div className="pressure-container">
         <button className="download-btn" onClick={handleDownload}>
           <FaDownload size={22} color="blue" className="fa-down" />
         </button>
-        <div className="card-container">
-          {/* Total Entries */}
-          <div className="card" style={{ padding: "34px" }}>
-            <h2>Total Entries</h2>
-            <p style={{ fontSize: "20px" }}>{total_entries.total_entries}</p>
+        <div className="pressure-grid">
+          {/* Gauge Meter */}
+          <div className="pressure-item">
+            <h2
+              className="pressure-title font-effect-shadow-multiple"
+              style={{ marginLeft: "40px" }}
+            >
+              Average Pressure
+            </h2>
+            <Plot
+              data={[
+                {
+                  type: "indicator",
+                  mode: "gauge+number",
+                  value: chartData.gauge_chart.value,
+                  gauge: {
+                    axis: { range: chartData.gauge_chart.range },
+                    steps: chartData.gauge_chart.steps,
+                    threshold: chartData.gauge_chart.threshold,
+                  },
+                  number: {
+                    font: { size: 80, color: "blue" }, // Customize the font size and color
+                  },
+                },
+              ]}
+              layout={{
+                margin: { t: 30, b: 50, l: 50, r: 50 },
+                size: "20",
+                paper_bgcolor: "rgba(0,0,0,0)", // Transparent background for the entire plot
+                plot_bgcolor: "rgba(0,0,0,0)", // Transparent background for the plot area
+              }}
+              config={{
+                displayModeBar: false, // Hides the mode bar
+              }}
+              useResizeHandler={true}
+              style={{ width: 600, height: 450 }}
+            />
           </div>
-
-          {/* CHW In Temp Card */}
-          <div className="card">
-            <h2>Inlet Temperature</h2>
-            <p>Min : {chw_in_temp.min_chw_in_temp}°C</p>
-            <p>Max : {chw_in_temp.max_chw_in_temp}°C</p>
-          </div>
-
-          {/* CHW Out Temp Card */}
-          <div className="card">
-            <h2>Outlet Temperature</h2>
-            <p>Min : {chw_out_temp.min_chw_out_temp}°C</p>
-            <p>Max : {chw_out_temp.max_chw_out_temp}°C</p>
-          </div>
-
-          {/* Average Temperatures Card */}
-          <div className="card" style={{ width: "450px" }}>
-            <h2>Average Temperature</h2>
-            <p>In : {avg_temps.avg_chw_in_temp.toFixed(2)}°C</p>
-            <p>Out : {avg_temps.avg_chw_out_temp.toFixed(2)}°C</p>
-          </div>
-        </div>
-        <div className="assumption">
-          <Assumption />
         </div>
       </div>
     </>
   );
 }
 
-export default Dashboard;
+export default Pressure;

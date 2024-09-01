@@ -1,0 +1,9 @@
+.oee-container {
+    max-width: 1200px;
+    padding: 20px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+.oee-grid{
+    margin-top: 60px;
+}

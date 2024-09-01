@@ -105,8 +105,7 @@ const Login = () => {
       <div className="login-part">
         <div className="login-background">
           <div className="logo">
-            <img src={Logo} alt="logo"/>
-            <span className="company-add-name">Private Limited</span>
+            <img src={Logo} alt="logo" className="logo-img"/>
           </div>
         </div>
         <div className="login-form">
