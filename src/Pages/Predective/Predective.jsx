@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { FaDownload } from "react-icons/fa6";
 import { Line } from "react-chartjs-2";
