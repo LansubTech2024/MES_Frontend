@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import "./Login.css";
-import Logo from "../../public/logo3.png";
+import Logo from "../../public/logopng5.png";
 
 const Validate = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -15,7 +15,7 @@ const Validate = Yup.object().shape({
     .max(15, "Must be less than 15 characters")
     .required("Required")
     .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/,
       "Make it More Strong"
     ),
 });
@@ -105,13 +105,9 @@ const Login = () => {
       <div className="login-part">
         <div className="login-background">
           <div className="logo">
-            <img src={Logo} alt="logo" width={40} height={60} />
-          </div>
-          <div className="company-name">
-            <h3>Lansub Technologies</h3>
-          </div>
-          <div className="company-des">
-            <p>Enhancing Operational Productivity</p>
+            <img src={Logo} alt="logo"/>
+            <span className="company-add-name">Private Limited</span>
+            <span className="company-tag-line">Enhancing operational productivity</span>
           </div>
         </div>
         <div className="login-form">
@@ -132,53 +128,53 @@ const Login = () => {
             {({ errors, touched }) => (
               <Form>
                 <div className="form-group">
-                  <label className="label-style" htmlFor="email">
-                    Email
-                  </label>
                   <Field
                     type="email"
                     name="email"
                     placeholder="Eg: john@abc.com"
-                    className="form-control"
+                    className="input"
                   />
                   {errors.email && touched.email && (
-                    <p style={{ color: "red" }}>{errors.email}</p>
+                    <p className="error-message" style={{ color: "red" }}>
+                      {errors.email}
+                    </p>
                   )}
                 </div>
                 <br />
 
                 <div className="form-group">
-                  <label className="label-style" htmlFor="password">
-                    Password
-                  </label>
                   <Field
                     type={showPassword ? "text" : "password"}
                     name="password"
                     placeholder="********"
-                    className="form-control"
+                    className={`input ${
+                      errors.password && touched.password ? "input-error" : ""
+                    }`}
                   />
                   {errors.password && touched.password && (
-                    <p style={{ color: "red" }}>{errors.password}</p>
+                    <p className="error-message" style={{ color: "red" }}>
+                      {errors.password}
+                    </p>
                   )}
                 </div>
-                <div className="form-check">
+                <div className="check-div">
                   <input
-                    className="form-check-input"
+                    className="check-input"
                     type="checkbox"
                     id="showPassword"
                     checked={showPassword}
                     onChange={PasswordVisible}
                   />
                   <label htmlFor="showPassword"> Show Password</label>
+                  <Link to="/forgetpassword" className="forget">
+                    Forget Password?
+                  </Link>
                 </div>
-                <Link to="/forgetpassword">
-                  Forget Password?
-                </Link>
                 <br />
-                
+
                 <button
                   type="submit"
-                  className="col-12 btn btn-lg btn-block login__btn mt-4 mb-4 d-flex justify-content-center"
+                  className="col-12 btn btn-lg btn-block login-btn mt-4 mb-4 d-flex justify-content-center"
                 >
                   {loading ? (
                     <span className="spinner-border text-warning"></span>
@@ -188,9 +184,10 @@ const Login = () => {
                 </button>
                 <div className="signup">
                   <p>Don&apos;t have an account?</p>
-                  <a href="/signup">Signup</a>
+                  <Link to="/signup" className="signup-link">
+                    Signup
+                  </Link>
                 </div>
-                
               </Form>
             )}
           </Formik>
