@@ -4,37 +4,49 @@ body{
     height: 100vh;
 }
 .login-container{
-    background: linear-gradient(to left , white 60%, #1281ea 40%);
-    width: 59rem;
-    height: 30rem;
-    margin-left: 168px;
+    background: white;
+    width: 80%;
+    height: 38rem;
+    margin-left: 100px;
     margin-top: 80px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 30px;
+    display: flex; 
 }
 .login-part{
     display: flex;
-    justify-content: space-around;
+    width: 100%;
 }
 .login-background{
-    width: 30%;
-    text-align: center;
-    line-height: 18px;
-}
-.logo{
+    width: 50%; /* Adjust width as needed */
+    background-image: url("bg-login2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content:center;
     align-items: center;
-    margin-top: 9rem;
+    padding: 20px;
+    color: white; 
 }
-.login-background p{
-    line-height: 1.5;
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.company-add-name {
     font-size: 18px;
-    font-weight: 500;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    margin-top: 0;
+    color: #1281ea;
 }
 .login-form{
-    width: 50%;
-    padding: 40px;
+    width: 40%;
+    padding:40px;
+    margin-right: 90px;
 }
 .login-form h2{
     margin: 0 0 10px;
@@ -43,6 +55,19 @@ body{
 .login-form Form{
     margin-top: 30px;
 }
+.form-control:focus {
+    border-color: #1281ea;
+  }
+  
+  .input-error {
+    border-color: red;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 16px;
+    margin-top: 0px;
+  }
 .form-group{
     position: relative;
 }
@@ -53,25 +78,30 @@ body{
     pointer-events: none;
     transition: 0.5s;
 }
-.form-group .form-control{
+.form-group,.input{
     width: 100%;
-    padding: 10px 0;
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 30px;
-    border: none;
-    border-bottom: 1px solid #333;
-    outline: none;
-    background: transparent;
-
+    padding: 17px 0;
+    font-size: 20px;
+    color: black;
+    border-radius: 27px;
+    padding-left: 20px;
 }
-.login-form input::placeholder{
+.login-form,.input::placeholder{
     color: rgb(117, 115, 115);
-    font-size: 14px;
+    font-size: 18px;
+    padding-left: 10px;
+}
+.form-check-div{
+    display: inline;
+    justify-content: space-around;
+    align-items: center;
+}
+.form-check-div,.form-check-input{
+    font-weight: normal;
+    font-size: 18px;
+    color: black;
 }
 .forget{
-    display: flex;
-    justify-content: end;
     text-decoration: none;
     color: black;
     font-size: 18px;
@@ -154,4 +184,3 @@ body{
       transform: rotate(360deg);
     }
   }
-

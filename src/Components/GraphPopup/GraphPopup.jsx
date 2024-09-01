@@ -71,8 +71,8 @@ const GraphPopup = ({ isOpen, onRequestClose, graphType }) => {
         return renderTimeSeriesForecast();
       case "line_chart":
         return renderLineChart();
-      case "partitioned_donut":
-        return renderPartitionedDonut();
+      case "line":
+        return renderDonutLineChart();
       case "overlay_combination":
         return renderOverlayCombination();
       default:
@@ -140,19 +140,50 @@ const GraphPopup = ({ isOpen, onRequestClose, graphType }) => {
     return <Line data={data} options={options} />;
 };
 
-  const renderPartitionedDonut = () => {
-    const data = {
-      labels: predictiveData.labels,
-      datasets: [
-        {
-          data: predictiveData.values,
-          backgroundColor: ["#0b1d78", "#0069c0", "#00a9b5"],
-        },
-      ],
-    };
-
-    return <Pie data={data} />;
+const renderDonutLineChart = () => {
+  const data = {
+    labels: predictiveData.labels,
+    datasets: [
+      {
+        label: 'Temperature',
+        data: predictiveData.datasets[0].data,
+        borderColor: '#0069c0',
+        backgroundColor: 'rgba(0, 105, 192, 0.2)',
+        tension: 0.1,
+      },
+    ],
   };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Temperature Over Time',
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: 'Temperature (°C)',
+        },
+      },
+      x: {
+        title: {
+          display: true,
+          text: 'Date',
+        },
+      },
+    },
+  };
+
+  return <Line data={data} options={options} />;
+};
 
   const renderOverlayCombination = () => {
     const data = {

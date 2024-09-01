@@ -17,7 +17,6 @@ import {
 } from "chart.js";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-import "./Dashboard.css";
 import Modal from "react-modal";
 
 ChartJS.register(

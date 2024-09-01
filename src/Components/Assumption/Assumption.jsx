@@ -65,7 +65,7 @@ const Assumption = () => {
   return (
     <>
       <div className="available">
-        <h2>Availability</h2>
+        <h2 className="font-effect-shadow-multiple">Availability</h2>
       </div>
       <div className="availability">
         <div className="availabilty-cards">
@@ -82,12 +82,12 @@ const Assumption = () => {
         </div>
         <div className="availabilty-graphs">
           <div className="available-graph full-width">
-            <h3>Project Completion Rate</h3>
+            <h3 className="font-effect-emboss">Project Completion Rate</h3>
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={completionData}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <YAxis />
+                <XAxis dataKey="date" label={{ value: 'Date', position: 'bottom', offset: 0}} />
+                <YAxis label={{ value: 'Completion Rate (%)', angle: 90, position: 'center',  }} />
                 <Tooltip />
                 <Legend />
                 <Line type="monotone" dataKey="rate" stroke="blue" />
@@ -95,12 +95,12 @@ const Assumption = () => {
             </ResponsiveContainer>
           </div>
           <div className="available-graph full-width">
-            <h3>Resources Allocated</h3>
+            <h3 className="font-effect-emboss">Resources Allocated</h3>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={resourceData}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <YAxis />
+                <XAxis dataKey="date" label={{ value: 'Date', position: 'bottom', offset: 0 }}  />
+                <YAxis  label={{ value: 'Resources', angle: -90, position: 'insideLeft' }}/>
                 <Tooltip />
                 <Legend />
                 <Bar dataKey="allocated" fill="#1fe074" />
@@ -111,9 +111,10 @@ const Assumption = () => {
         </div>
       </div>
       <div className="performance">
-        <h2>Performance</h2>
+        <h2 className="font-effect-shadow-multiple">Performance</h2>
       </div>
       <div
+       className="performance-graphs"
         style={{
           display: "flex",
           justifyContent: "space-around",
@@ -122,7 +123,7 @@ const Assumption = () => {
       >
         {/* Machine Performance Meter */}
         <div>
-          <h3>Machine Performance</h3>
+          <h3 className="font-effect-emboss">Machine Performance</h3>
           <ReactSpeedometer
             value={machinePerformance}
             minValue={0}
@@ -137,7 +138,7 @@ const Assumption = () => {
 
         {/* Employee Performance Meter */}
         <div>
-          <h3>Employee Performance</h3>
+          <h3 className="font-effect-emboss">Employee Performance</h3>
           <ReactSpeedometer
             value={employeePerformance}
             minValue={0}
@@ -151,15 +152,15 @@ const Assumption = () => {
         </div>
       </div>
       <div className="quality">
-        <h2>Quality</h2>
+        <h2 className="font-effect-shadow-multiple">Quality</h2>
       </div>
       <div className="quality-cards">
         <div className="cardStyle">
-          <h3>Total Products</h3>
+          <h3>Total<br/>Products</h3>
           <p>{qualityData.TotalProducts}</p>
         </div>
         <div className="cardStyle">
-          <h3>Defective Products</h3>
+          <h3>Defective<br/>Products</h3>
           <p>{qualityData.defectiveProducts}</p>
         </div>
         <div className="cardStyle">
@@ -167,7 +168,7 @@ const Assumption = () => {
           <p>{qualityData.dispatchedProducts}</p>
         </div>
         <div className="cardStyle">
-          <h3>Scrap Products</h3>
+          <h3>Scrap<br/>Products</h3>
           <p>{qualityData.scrapProducts}</p>
         </div>
       </div>

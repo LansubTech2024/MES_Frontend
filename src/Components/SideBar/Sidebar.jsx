@@ -31,7 +31,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
         <nav className="sidebar-menu">
           <ul className="list-item">
             <li>
-              <Link to="/">
+              <Link to="/home">
                 <i className="fa-solid fa-house-chimney"></i>
                 <span>Home</span>
               </Link>
