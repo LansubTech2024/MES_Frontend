@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { FaDownload } from "react-icons/fa6";
 import { Line } from "react-chartjs-2";
@@ -17,10 +17,6 @@ import {
 } from "chart.js";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-<<<<<<< HEAD
-
-=======
->>>>>>> 6fb19b35b4dda35273028c8bd52338a4cf77149d
 import Modal from "react-modal";
 
 ChartJS.register(
