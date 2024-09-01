@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import axios from "axios";
-import { Line, Bar, Pie } from "react-chartjs-2";
+import { FaDownload } from "react-icons/fa6";
+import { Line, Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -27,6 +28,8 @@ ChartJS.register(
   Legend
 );
 import "./GraphPopup.css";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 const GraphPopup = ({ isOpen, onRequestClose, graphType }) => {
   const [predictiveData, setPredictiveData] = useState(null);
@@ -66,10 +69,10 @@ const GraphPopup = ({ isOpen, onRequestClose, graphType }) => {
     switch (predictiveData.type) {
       case "time_series_forecast":
         return renderTimeSeriesForecast();
-      case "bar_chart":
-        return renderBarChart();
-      case "partitioned_donut":
-        return renderPartitionedDonut();
+      case "line_chart":
+        return renderLineChart();
+      case "line":
+        return renderDonutLineChart();
       case "overlay_combination":
         return renderOverlayCombination();
       default:
@@ -94,81 +97,93 @@ const GraphPopup = ({ isOpen, onRequestClose, graphType }) => {
     return <Line data={data} />;
   };
 
-  const renderBarChart = () => {
-    if (!predictiveData || !predictiveData.categories || !predictiveData.values) {
-        console.error("Invalid or missing data for bar chart");
-        return null;
-    }
+  const renderLineChart = () => {
+    if (!predictiveData) return null;
 
     const data = {
-        labels: predictiveData.categories,
-        datasets: [{
-            label: 'Temperature Difference',
-            data: predictiveData.values,
-            backgroundColor: predictiveData.is_predicted.map(isPredicted => 
-                isPredicted ? 'rgba(255,99,132,0.6)' : 'rgba(75,192,192,0.6)'
-            ),
-        }],
+        labels: predictiveData.dates,
+        datasets: [
+            {
+                label: 'CHW In Temperature',
+                data: predictiveData.chw_in_temp,
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            },
+            {
+                label: 'CHW Out Temperature',
+                data: predictiveData.chw_out_temp,
+                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            },
+            {
+                label: 'Temperature Difference',
+                data: predictiveData.temp_diff,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            }
+        ],
     };
 
     const options = {
         responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-            y: {
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: 'Temperature Difference (°C)'
-                }
-            },
-            x: {
-                title: {
-                    display: true,
-                    text: 'Week'
-                }
-            }
-        },
         plugins: {
             legend: {
-                display: false
+                position: 'top',
             },
-            tooltip: {
-                callbacks: {
-                    label: function(context) {
-                        let label = context.dataset.label || '';
-                        if (label) {
-                            label += ': ';
-                        }
-                        if (context.parsed.y !== null) {
-                            label += context.parsed.y.toFixed(2) + '°C';
-                        }
-                        if (predictiveData.is_predicted[context.dataIndex]) {
-                            label += ' (Predicted)';
-                        }
-                        return label;
-                    }
-                }
-            }
-        }
+            title: {
+                display: true,
+                text: 'Temperature Data',
+            },
+        },
     };
 
-    return <Bar data={data} options={options} height={300} />;
+    return <Line data={data} options={options} />;
 };
 
-  const renderPartitionedDonut = () => {
-    const data = {
-      labels: predictiveData.labels,
-      datasets: [
-        {
-          data: predictiveData.values,
-          backgroundColor: ["#0b1d78", "#0069c0", "#00a9b5"],
-        },
-      ],
-    };
-
-    return <Pie data={data} />;
+const renderDonutLineChart = () => {
+  const data = {
+    labels: predictiveData.labels,
+    datasets: [
+      {
+        label: 'Temperature',
+        data: predictiveData.datasets[0].data,
+        borderColor: '#0069c0',
+        backgroundColor: 'rgba(0, 105, 192, 0.2)',
+        tension: 0.1,
+      },
+    ],
   };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Temperature Over Time',
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: 'Temperature (°C)',
+        },
+      },
+      x: {
+        title: {
+          display: true,
+          text: 'Date',
+        },
+      },
+    },
+  };
+
+  return <Line data={data} options={options} />;
+};
 
   const renderOverlayCombination = () => {
     const data = {
@@ -212,6 +227,32 @@ const GraphPopup = ({ isOpen, onRequestClose, graphType }) => {
     return <Line data={data} options={options} />;
   };
 
+  const handleDownload = () => {
+    const graphItems = document.querySelectorAll(".chart-container");
+    const pdf = new jsPDF();
+
+    let promises = [];
+    graphItems.forEach((item, index) => {
+      promises.push(
+        html2canvas(item).then((canvas) => {
+          const imgData = canvas.toDataURL("image/png");
+          const imgWidth = pdf.internal.pageSize.getWidth();
+          const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+          if (index > 0) {
+            pdf.addPage();
+          }
+          pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+        })
+      );
+    });
+
+    Promise.all(promises).then(() => {
+      pdf.save("graphs.pdf");
+    });
+  };
+
+
   return (
     <Modal
       isOpen={isOpen}
@@ -220,10 +261,14 @@ const GraphPopup = ({ isOpen, onRequestClose, graphType }) => {
       className="graph-popup"
     >
       <div className="popup-content">
+      <button className="detail-download-btn" onClick={handleDownload}>
+          <FaDownload size={22} color="blue" className="fa-down" />
+        </button>
         <h2>
           {graphType.charAt(0).toUpperCase() + graphType.slice(1)} Analysis
         </h2>
         <div className="chart-container">
+        <div className="chart-item">
           <h2>Predictive Chart</h2>
           {renderPredictiveGraph()}
         </div>
@@ -231,9 +276,10 @@ const GraphPopup = ({ isOpen, onRequestClose, graphType }) => {
         <div className="impact-cards">{renderImpactCards()}</div>
         {recommendation && (
           <div className="recommendation">
-            <p>Info : {recommendation}</p>
+            <p><span>Alert :</span>{recommendation}</p>
           </div>
         )}
+        </div>
         <button onClick={onRequestClose} className="close-button">
           Close
         </button>

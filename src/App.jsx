@@ -22,7 +22,6 @@ const App = () => {
         <Route path="/get-data" element={<GetData/>}/>
         <Route path="/predection" element={<Predective/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
-        <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/forgetpassword" element={<ForgetPassword/>}/>

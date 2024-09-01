@@ -31,15 +31,9 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
         <nav className="sidebar-menu">
           <ul className="list-item">
             <li>
-              <Link to="/">
+              <Link to="/home">
                 <i className="fa-solid fa-house-chimney"></i>
                 <span>Home</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="#">
-                <i className="fa-solid fa-database"></i>
-                <span>Get Data</span>
               </Link>
             </li>
             <li>
@@ -54,7 +48,14 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <span>Predictive Analysis</span>
               </Link>
             </li>
-            {/* <li>
+            {/* 
+            <li>
+              <Link to="#">
+                <i className="fa-solid fa-database"></i>
+                <span>Get Data</span>
+              </Link>
+            </li>
+            <li>
               <Link href="#">
               <i className="fa-solid fa-bolt"></i><span>Energy Monoitoring</span>
               </Link>

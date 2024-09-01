@@ -77,25 +77,21 @@ function Dashboard() {
 
   if (!chartData) return <div className="loading">Loading...</div>;
 
-  const scaledWaterfallY = chartData.waterfall_chart.y.map((val) =>
-    parseFloat(val.toFixed(2))
-  );
-
   const { total_entries, chw_in_temp, chw_out_temp, avg_temps } = chartData;
 
   return (
     <>
       <Header />
-      <Sidebar/>
+      <Sidebar />
       <div className="graphs-container">
         <button className="download-btn" onClick={handleDownload}>
           <FaDownload size={22} color="blue" className="fa-down" />
         </button>
         <div className="cards-container">
           {/* Total Entries */}
-          <div className="card" style={{ padding: "32px" }}>
+          <div className="card" style={{ padding: "34px" }}>
             <h2>Total Entries</h2>
-            <p style={{ fontSize: "19px" }}>{total_entries.total_entries}</p>
+            <p style={{ fontSize: "20px" }}>{total_entries.total_entries}</p>
           </div>
 
           {/* CHW In Temp Card */}
@@ -113,19 +109,25 @@ function Dashboard() {
           </div>
 
           {/* Average Temperatures Card */}
-          <div className="card">
-            <h2>Average Temperatures</h2>
+          <div className="card" style={{ width: "450px" }}>
+            <h2>Average Temperature</h2>
             <p>In : {avg_temps.avg_chw_in_temp.toFixed(2)}°C</p>
             <p>Out : {avg_temps.avg_chw_out_temp.toFixed(2)}°C</p>
           </div>
         </div>
         <div className="assumption">
-          <Assumption/>
+          <Assumption />
         </div>
         <div className="graphs-grid">
           {/* Line Chart */}
-          <div className="graph-item" onClick={()=>handleGraphClick('line-chart')}>
-            <h2 className="graph-title" style={{ marginBottom: "80px" }}>
+          <div
+            className="graph-item"
+            onClick={() => handleGraphClick("line-chart")}
+          >
+            <h2
+              className="graph-title font-effect-shadow-multiple"
+              style={{ marginBottom: "80px" }}
+            >
               Temperature Trends
             </h2>
             <Line
@@ -135,26 +137,26 @@ function Dashboard() {
                   {
                     label: "CHW In",
                     data: chartData.line_chart.datasets[0].data,
-                    borderColor: "Yellow", // Line color
+                    borderColor: "#0b1d78", // Line color
                     backgroundColor: "Blue", // Background color under the line
                   },
                   {
                     label: "CHW Out",
                     data: chartData.line_chart.datasets[1].data,
-                    borderColor: "Beige", // Line color
-                    backgroundColor: "DarkGreen", // Background color under the line
+                    borderColor: "Violet", // Line color
+                    backgroundColor: "Green", // Background color under the line
                   },
                   {
                     label: "COW In",
                     data: chartData.line_chart.datasets[2].data,
                     borderColor: "LightBlue", // Line color
-                    backgroundColor: "Maroon", // Background color under the line
+                    backgroundColor: "#800080", // Background color under the line
                   },
                   {
                     label: "COW Out",
                     data: chartData.line_chart.datasets[3].data,
                     borderColor: "Black", // Line color
-                    backgroundColor: "Orange", // Background color under the line
+                    backgroundColor: "#1cac78", // Background color under the line
                   },
                 ],
               }}
@@ -162,25 +164,44 @@ function Dashboard() {
                 plugins: {
                   legend: {
                     labels: {
-                      color: "rgb(255, 255, 255)", // Legend text color
+                      color: "black",
+                      size: "16", // Legend text color
                     },
                   },
                 },
                 scales: {
                   x: {
+                    title: {
+                      display: true,
+                      text: "Time",
+                      color: "black",
+                      font: {
+                        size: 16,
+                      },
+                    },
                     ticks: {
-                      color: "rgb(255, 255, 255)", // X-axis ticks color
+                      color: "black",
+                      size: "16", // X-axis ticks color
                     },
                     grid: {
-                      color: "rgba(255, 255, 255, 0.5)", // X-axis grid lines color
+                      color: "black", // X-axis grid lines color
                     },
                   },
                   y: {
+                    title: {
+                      display: true,
+                      text: "Temperature",
+                      color: "black",
+                      font: {
+                        size: 16,
+                      },
+                    },
                     ticks: {
-                      color: "rgb(255, 255, 255)", // Y-axis ticks color
+                      color: "black",
+                      size: "16", // Y-axis ticks color
                     },
                     grid: {
-                      color: "rgba(255, 255, 255, 0.5)", // X-axis grid lines color
+                      color: "black", // X-axis grid lines color
                     },
                   },
                 },
@@ -189,28 +210,33 @@ function Dashboard() {
               height={400}
             />
           </div>
-
-          {/* Waterfall Chart */}
+          {/*Temp changes Line Chart */}
           <div
             className="graph-item"
-            onClick={()=>handleGraphClick('waterfall-chart')}
+            onClick={() => handleGraphClick("waterfall-chart")}
           >
-            <h2 className="graph-title" style={{ marginBottom: "0px" }}>
+            <h2
+              className="graph-title font-effect-shadow-multiple"
+              style={{ marginBottom: "0px" }}
+            >
               Temperature Changes
             </h2>
             <Plot
               data={[
                 {
-                  type: "waterfall",
-                  x: chartData.waterfall_chart.x,
-                  y: scaledWaterfallY,
-                  measure: chartData.waterfall_chart.measure,
-                  text: scaledWaterfallY.map(String),
-                  textposition: "outside",
-                  decreasing: { marker: { color: "#0069c0" } }, // Color for decreasing values
-                  increasing: { marker: { color: "#00a9b5" } }, // Color for increasing values
-                  totals: { marker: { color: "#00c698" } }, // Color for totals
-                  connector: { line: { color: "Tan" } }, // Color for connectors
+                  type: "scatter",
+                  mode: "lines+markers",
+                  x: chartData.tempchange_line_chart.x,
+                  y: chartData.tempchange_line_chart.y,
+                  line: {
+                    color: "#00c698",
+                    width: 3,
+                    shape: "spline",
+                    smoothing: 1.3,
+                  },
+                  marker: { color: "#0069c0", size: 8 },
+                  text: chartData.tempchange_line_chart.y.map(String),
+                  textposition: "top center",
                 },
               ]}
               layout={{
@@ -219,24 +245,32 @@ function Dashboard() {
                   autorange: true,
                   title: "Temperature (°C)",
                   titlefont: {
-                    color: "white", // Y-axis title color
+                    color: "black",
+                    size: 18,
                   },
                   tickfont: {
-                    color: "rgb(255, 255, 255)", // Y-axis tick labels color
+                    color: "black",
+                    size: 16,
                   },
-                  gridcolor: "rgba(255, 255, 255, 0.5)", // Y-axis grid line color
+                  gridcolor: "black",
                 },
                 xaxis: {
-                  tickfont: {
-                    color: "rgb(255, 255, 255)", // X-axis tick labels color
+                  title: "Process Stage",
+                  titlefont: {
+                    color: "black",
+                    size: 18,
                   },
-                  gridcolor: "rgba(255, 255, 255, 0.5)",
+                  tickfont: {
+                    color: "black",
+                    size: 16,
+                  },
+                  gridcolor: "black",
                 },
-                paper_bgcolor: "rgba(0,0,0,0)", // Transparent background for the entire plot
-                plot_bgcolor: "rgba(0,0,0,0)", // Transparent background for the plot area
+                paper_bgcolor: "rgba(0,0,0,0)",
+                plot_bgcolor: "rgba(0,0,0,0)",
               }}
               config={{
-                displayModeBar: false, // Hides the mode bar
+                displayModeBar: false,
               }}
               useResizeHandler={true}
               style={{ width: 650, height: 500 }}
@@ -244,7 +278,12 @@ function Dashboard() {
           </div>
           {/* Gauge Chart */}
           <div className="graph-item">
-            <h2 className="graph-title" style={{marginLeft:"40px"}}>Average Pressure</h2>
+            <h2
+              className="graph-title font-effect-shadow-multiple"
+              style={{ marginLeft: "40px" }}
+            >
+              Average Pressure
+            </h2>
             <Plot
               data={[
                 {
@@ -257,12 +296,13 @@ function Dashboard() {
                     threshold: chartData.gauge_chart.threshold,
                   },
                   number: {
-                    font: { size: 60, color: "blue" }, // Customize the font size and color
+                    font: { size: 80, color: "blue" }, // Customize the font size and color
                   },
                 },
               ]}
               layout={{
-                margin: { t:30, b: 50, l: 50, r: 50 },
+                margin: { t: 30, b: 50, l: 50, r: 50 },
+                size: "20",
                 paper_bgcolor: "rgba(0,0,0,0)", // Transparent background for the entire plot
                 plot_bgcolor: "rgba(0,0,0,0)", // Transparent background for the plot area
               }}
@@ -274,8 +314,14 @@ function Dashboard() {
             />
           </div>
           {/* Donut Chart */}
-          <div className="graph-item" onClick={()=>handleGraphClick('donut-chart')}>
-            <h2 className="graph-title" style={{ marginRight: "30px" }}>
+          <div
+            className="graph-item"
+            onClick={() => handleGraphClick("donut-chart")}
+          >
+            <h2
+              className="graph-title font-effect-shadow-multiple"
+              style={{ marginRight: "30px" }}
+            >
               Temperature Distribution
             </h2>
             <Plot
@@ -296,7 +342,7 @@ function Dashboard() {
                 showlegend: true,
                 paper_bgcolor: "rgba(0,0,0,0)",
                 plot_bgcolor: "rgba(0,0,0,0)",
-                font: { color: "white" },
+                font: { color: "black" },
               }}
               config={{ displayModeBar: false }}
               useResizeHandler={true}
@@ -306,10 +352,12 @@ function Dashboard() {
           {/* Combination Chart */}
           <div
             className="graph-item"
-            onClick={()=>handleGraphClick('combination-chart')}
-            style={{marginLeft:"50px"}}
+            onClick={() => handleGraphClick("combination-chart")}
+            style={{ marginLeft: "50px" }}
           >
-            <h2 className="graph-title">Temperature and Pressure Over Time</h2>
+            <h2 className="graph-title font-effect-shadow-multiple">
+              Temperature and Pressure Over Time
+            </h2>
             <Plot
               data={[
                 {
@@ -318,45 +366,88 @@ function Dashboard() {
                   y: chartData.combination_chart.datasets[0].data,
                   name: "Avg CHW In Temperature",
                   marker: {
-                    color: 'rgba(0, 123, 255, 0.8)',
+                    color: "rgba(0, 123, 255, 0.8)",
+                    line: {
+                      color: "black",
+                      width: 1,
+                    },
                   },
                   yaxis: "y1",
                 },
                 {
-                  type: "scatter",
-                  mode: "lines",
+                  type: "line",
                   x: chartData.combination_chart.labels,
                   y: chartData.combination_chart.datasets[1].data,
                   name: "Avg Pressure",
-                  line: {
-                    color: 'red',
+                  marker: {
+                    color: "darkgreen",
+                    size: "16",
                   },
                   yaxis: "y2",
                 },
               ]}
               layout={{
                 xaxis: {
-                  title: "Month",
-                  color: "white",
-                  gridcolor: "rgba(255, 255, 255, 0.3)",
+                  title: {
+                    text: "Month",
+                    font: {
+                      size: 18, // Change X-axis title font size
+                      color: "black",
+                      family: "Arial", // Make it bold
+                    },
+                  },
+                  tickfont: {
+                    size: 16, // X-axis tick font size
+                    color: "black",
+                    family: "Arial",
+                  },
+                  linecolor: "black",
+                  linewidth: 2,
+                  gridcolor: "black",
                 },
                 yaxis: {
-                  title: "Temperature (°C)",
-                  color: "white",
-                  gridcolor: "rgba(255, 255, 255, 0.3)",
+                  title: {
+                    text: "Temperature (°C)",
+                    font: {
+                      size: 18, // Change Y-axis title font size
+                      color: "black",
+                      family: "Arial",
+                    },
+                  },
+                  tickfont: {
+                    size: 16, // Y-axis tick font size
+                    color: "black",
+                    family: "Arial",
+                  },
+                  linecolor: "black",
+                  linewidth: 2,
+                  gridcolor: "black",
                   side: "left",
                 },
                 yaxis2: {
-                  title: "Pressure",
-                  color: "white",
-                  gridcolor: "rgba(255, 255, 255, 0.3)",
+                  title: {
+                    text: "Pressure",
+                    font: {
+                      size: 18, // Change Y-axis 2 title font size
+                      color: "black",
+                      family: "Arial",
+                    },
+                  },
+                  tickfont: {
+                    size: 16, // Y-axis 2 tick font size
+                    color: "black",
+                    family: "Arial",
+                  },
+                  linecolor: "black",
+                  linewidth: 2,
+                  gridcolor: "black",
                   overlaying: "y",
                   side: "right",
                 },
                 legend: {
                   x: 1.05,
                   y: 1,
-                  font: { color: "white" },
+                  font: { color: "black" },
                 },
                 paper_bgcolor: "rgba(0,0,0,0)",
                 plot_bgcolor: "rgba(0,0,0,0)",
