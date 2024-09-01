@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
 import AxiosService from "../Components/AuthService/AuthService";
 import { useNavigate, Link } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import "./Login.css";
@@ -105,13 +104,9 @@ const Login = () => {
       <div className="login-part">
         <div className="login-background">
           <div className="logo">
-<<<<<<< HEAD
             <img src={Logo} alt="logo" className="logo-img"/>
-=======
-            <img src={Logo} alt="logo"/>
             <span className="company-add-name">Private Limited</span>
             <span className="company-tag-line">Enhancing operational productivity</span>
->>>>>>> a9ddf61e9773bcccdf1e1263f2ff0a7d5940634d
           </div>
         </div>
         <div className="login-form">
