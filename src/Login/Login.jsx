@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import "./Login.css";
-import Logo from "../../public/logopng.png";
+import Logo from "../../public/logopng5.png";
 
 const Validate = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -15,7 +15,7 @@ const Validate = Yup.object().shape({
     .max(15, "Must be less than 15 characters")
     .required("Required")
     .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/,
       "Make it More Strong"
     ),
 });
@@ -105,7 +105,13 @@ const Login = () => {
       <div className="login-part">
         <div className="login-background">
           <div className="logo">
+<<<<<<< HEAD
             <img src={Logo} alt="logo" className="logo-img"/>
+=======
+            <img src={Logo} alt="logo"/>
+            <span className="company-add-name">Private Limited</span>
+            <span className="company-tag-line">Enhancing operational productivity</span>
+>>>>>>> a9ddf61e9773bcccdf1e1263f2ff0a7d5940634d
           </div>
         </div>
         <div className="login-form">
@@ -155,9 +161,9 @@ const Login = () => {
                     </p>
                   )}
                 </div>
-                <div className="form-check-div">
+                <div className="check-div">
                   <input
-                    className="form-check-input"
+                    className="check-input"
                     type="checkbox"
                     id="showPassword"
                     checked={showPassword}
