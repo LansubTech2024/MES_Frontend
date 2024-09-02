@@ -1,72 +1,45 @@
-.data-container {
-  position: absolute;
-  z-index: 0;
-  top: 100px;
-  left: 300px;
-}
-.data-container h4 {
-  font-size: 23px;
-  font-weight: 600;
-  color: black;
-}
-.data-container h4 i {
-  font-size: 24px;
-  color: blue;
-}
-.upload-form {
-  border: 1px solid blue;
-  box-shadow: 5px 5px 20px rgb(129, 123, 123);
-  margin-top: 40px;
-  margin-left: 130px;
-  width: 50rem;
-  height: 24rem;
-  border-radius: 6px;
-}
-.upload-form form {
-  padding: 6rem;
-}
-.arrow {
-  background-color: blue;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  padding: 10px;
-  margin-left: 17rem;
-  margin-bottom: 30px;
-}
-.arrow i {
-  text-align: center;
-  padding: 5px;
-  font-size: 24px;
-  color: aliceblue;
-}
-.upload-form form h2 {
-  font-size: 30px;
-  color: blue;
-  font-weight: 700;
-  text-align: center;
-}
-.file-upload {
-  text-align: center;
-}
-.custom-button {
-  display: inline-block;
-  padding: 10px 20px;
-  margin: 5px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f8f8f8;
-  cursor: pointer;
-  transition: background-color 0.3s;
+.help-support-page {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.custom-button:hover {
-  background-color: #e0e0e0;
+.header-logo {
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 90px;
 }
-.upload-file {
-  display: none;
+
+.contact-info {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-.file-list {
-  margin-top: 10px;
-  text-align: left;
+
+.contact-info h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.contact-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-info li {
+  margin: 15px 0;
+  font-size: 18px;
+}
+.linkedin-link{
+  display: flex;
+}
+.contact-info a {
+  text-decoration: none;
+  color: black;
+}
+
+.contact-info a:hover {
+  color: #0077b5;
 }

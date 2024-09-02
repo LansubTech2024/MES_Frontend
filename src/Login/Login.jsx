@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import "./Login.css";
-import Logo from "../../public/logopng5.png";
+import Logo from "../../public/lansubPT.jpeg";
 
 const Validate = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -13,13 +13,10 @@ const Validate = Yup.object().shape({
     .min(8, "Must be atleast 8 characters")
     .max(15, "Must be less than 15 characters")
     .required("Required")
-    .matches(
-      /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/,
-      "Make it More Strong"
-    ),
 });
 
 const Login = () => {
+  const [isReturningUser, setIsReturningUser] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [loggedUser, setLoggedUser] = useState("");
@@ -95,6 +92,7 @@ const Login = () => {
         position: "top-center",
       });
     } finally {
+      setIsReturningUser(true);
       setLoading(false);
     }
   };
@@ -104,14 +102,22 @@ const Login = () => {
       <div className="login-part">
         <div className="login-background">
           <div className="logo">
-            <img src={Logo} alt="logo" className="logo-img"/>
-            <span className="company-add-name">Private Limited</span>
-            <span className="company-tag-line">Enhancing operational productivity</span>
+            <img
+              src={Logo}
+              alt="logo"
+              className="logo-img"
+              width={500}
+              height={200}
+            />
           </div>
         </div>
         <div className="login-form">
           <div className="login-heading">
-            <h2>Login</h2>
+            <h2>
+              {isReturningUser
+                ? "Welcome Back Vivardhi"
+                : "Welcome To Vivardhi"}
+            </h2>
           </div>
           <Formik
             initialValues={{
@@ -125,8 +131,8 @@ const Login = () => {
             }}
           >
             {({ errors, touched }) => (
-              <Form>
-                <div className="form-group">
+              <Form className="form">
+                <div className="form-div">
                   <Field
                     type="email"
                     name="email"
@@ -141,14 +147,12 @@ const Login = () => {
                 </div>
                 <br />
 
-                <div className="form-group">
+                <div className="form-div">
                   <Field
                     type={showPassword ? "text" : "password"}
                     name="password"
                     placeholder="********"
-                    className={`input ${
-                      errors.password && touched.password ? "input-error" : ""
-                    }`}
+                    className="input"
                   />
                   {errors.password && touched.password && (
                     <p className="error-message" style={{ color: "red" }}>
@@ -156,21 +160,16 @@ const Login = () => {
                     </p>
                   )}
                 </div>
-                <div className="check-div">
+                <label className="checkbox-container">
                   <input
-                    className="check-input"
                     type="checkbox"
-                    id="showPassword"
                     checked={showPassword}
                     onChange={PasswordVisible}
+                    className="checkbox"
                   />
-                  <label htmlFor="showPassword"> Show Password</label>
-                  <Link to="/forgetpassword" className="forget">
-                    Forget Password?
-                  </Link>
-                </div>
-                <br />
-
+                  <p>Show Password</p>
+                  <Link to='/forget-password' className="forgot">Forgot Password?</Link>
+                </label>
                 <button
                   type="submit"
                   className="col-12 btn btn-lg btn-block login-btn mt-4 mb-4 d-flex justify-content-center"

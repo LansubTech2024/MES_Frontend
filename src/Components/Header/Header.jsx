@@ -31,7 +31,7 @@ const Header = () => {
     try {
       // Perform logout API call if necessary
       await axios.post(
-        "http://localhost:8000/api/logout/",
+        "http://127.0.0.1:8000/api/auth/logout",
         {},
         {
           withCredentials: true, // If you're using session authentication
@@ -63,9 +63,7 @@ const Header = () => {
               className="search"
               placeholder="Type to search..."
             />
-            <button type="submit" className="search-btn">
-              <i className="fa-solid fa-magnifying-glass"></i>
-            </button>
+            
           </form>
         <div className="message-profile">
           <div className="notification">

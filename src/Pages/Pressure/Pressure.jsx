@@ -79,7 +79,7 @@ function Pressure() {
           {/* Gauge Meter */}
           <div className="pressure-item">
             <h2
-              className="pressure-title font-effect-shadow-multiple"
+              className="pressure-title"
               style={{ marginLeft: "40px" }}
             >
               Average Pressure
@@ -112,6 +112,20 @@ function Pressure() {
               useResizeHandler={true}
               style={{ width: 600, height: 450 }}
             />
+          </div>
+          <div className="pressure-card">
+            <h2 className="pressure-card-header">Pressure Calculation</h2>
+            <ul className="pressure-card-list">
+              <li>
+                Calculates average pressure from &apos;vaccum_pr&apos; field
+              </li>
+              <li>Rounds result to 2 decimal places</li>
+              <li>Sets up gauge with range 0-100</li>
+              <li>
+                Defines color ranges: green (0-30), yellow (30-70), red (70-100)
+              </li>
+              <li>Sets threshold at 85 for critical pressure</li>
+            </ul>
           </div>
         </div>
       </div>

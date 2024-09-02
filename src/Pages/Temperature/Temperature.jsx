@@ -92,7 +92,7 @@ function Temperature() {
             onClick={() => handleGraphClick("line-chart")}
           >
             <h2
-              className="graph-title font-effect-shadow-multiple"
+              className="graph-title"
               style={{ marginBottom: "80px" }}
             >
               Temperature Trends
@@ -183,7 +183,7 @@ function Temperature() {
             onClick={() => handleGraphClick("waterfall-chart")}
           >
             <h2
-              className="graph-title font-effect-shadow-multiple"
+              className="graph-title"
               style={{ marginBottom: "0px" }}
             >
               Temperature Changes
@@ -249,7 +249,7 @@ function Temperature() {
             onClick={() => handleGraphClick("donut-chart")}
           >
             <h2
-              className="graph-title font-effect-shadow-multiple"
+              className="graph-title"
               style={{ marginRight: "30px" }}
             >
               Temperature Distribution
@@ -285,7 +285,7 @@ function Temperature() {
             onClick={() => handleGraphClick("combination-chart")}
             style={{ marginLeft: "50px" }}
           >
-            <h2 className="graph-title font-effect-shadow-multiple">
+            <h2 className="graph-title">
               Temperature and Pressure Over Time
             </h2>
             <Plot

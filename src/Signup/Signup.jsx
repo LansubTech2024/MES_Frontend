@@ -5,7 +5,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import AxiosService from "../Components/AuthService/AuthService";
 import "./Signup.css";
-import Logo from "../../public/logopng5.png";
+import Logo from "../../public/lansub.png";
 
 const Validate = Yup.object().shape({
   name: Yup.string()
@@ -43,7 +43,7 @@ const Signup = () => {
         toast.success("Account created successfully", {
           position: "top-center",
         });
-        navigate("/login");
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
@@ -58,8 +58,7 @@ const Signup = () => {
   return (
     <div className="signup-container">
       <div className="signup-background">
-          <img src={Logo} alt="Company Logo" className="logo-image" />
-          <span>Private Limited</span>
+          <img src={Logo} alt="Company Logo" width={700} height={200} className="logo-image" />
         </div>
         <div className="signup-form">
           <div className="signup-heading">
@@ -78,52 +77,43 @@ const Signup = () => {
             }}
           >
             {({ errors, touched }) => (
-              <Form>
-                <div className="form-group">
-                  <label className="label-style" htmlFor="name">
-                    Name
-                  </label>
+              <Form className="form">
+                <div className="form-div">
                   <Field
                     type="text"
                     name="name"
                     placeholder="Eg: John"
-                    className="form-control"
+                    className="input"
                   />
                   {errors.name && touched.name && (
                     <p style={{ color: "red" }}>{errors.name}</p>
                   )}
                 </div>
-                <div className="form-group">
-                  <label className="label-style" htmlFor="email">
-                    Email
-                  </label>
+                <div className="form-div">
                   <Field
                     type="email"
                     name="email"
                     placeholder="Eg: johnsmith@abc.com"
-                    className="form-control"
+                    className="input"
                   />
                   {errors.email && touched.email && (
                     <p style={{ color: "red" }}>{errors.email}</p>
                   )}
                 </div>
-                <div className="form-group">
-                  <label className="label-style" htmlFor="password">
-                    Password
-                  </label>
+                <div className="form-div">
                   <Field
                     type={showPassword ? "text" : "password"}
                     name="password"
                     placeholder="********"
-                    className="form-control"
+                    className="input"
                   />
                   {errors.password && touched.password && (
                     <p style={{ color: "red" }}>{errors.password}</p>
                   )}
                 </div>
-                <div className="form-check">
+                <div className="checkbox-container">
                   <input
-                    className="form-check-input"
+                    className="checkbox"
                     type="checkbox"
                     id="showPassword"
                     checked={showPassword}
