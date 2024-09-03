@@ -97,9 +97,6 @@ input:disabled {
     }
   }
 }
-
-<<<<<<< HEAD
-=======
 .input-field {
     width: 100%;
     padding: 10px;
@@ -116,5 +113,5 @@ input:disabled {
     background-color: #ddd;
     cursor: not-allowed;
 }
->>>>>>> 6fb19b35b4dda35273028c8bd52338a4cf77149d
+
 

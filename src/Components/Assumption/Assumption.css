@@ -66,13 +66,13 @@
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   border-radius: 8px;
   background-color: white;
-};
+}
 
 .sub-header-style {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 8px;
-};
+}
 
 .code-style{
   background-color: #f4f4f4;
@@ -80,7 +80,7 @@
   border-radius: 4px;
   white-space: pre-wrap;
   word-break: break-word;
-};
+}
 .performance h2{
     font-size: 30px;
     font-weight: 600;
