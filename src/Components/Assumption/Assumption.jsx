@@ -12,6 +12,8 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 const Assumption = () => {
   const calculateDuration = (startDate, endDate) => {
@@ -83,6 +85,7 @@ const Assumption = () => {
     dispatchedProducts: 832,
     scrapProducts: 70,
   };
+  const getPercentage = (value, total) => (value / total) * 100;
   return (
     <>
       <div className="available">
@@ -103,13 +106,12 @@ const Assumption = () => {
         </div>
         <div className="availabilty-graphs">
           <div className="available-graph full-width">
-            <h3 className="font-effect-emboss">Project Completion Rate</h3>
+            <h3>Project Completion Rate</h3>
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={completionData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis
                   dataKey="date"
-                  label={{ value: "Date", position: "bottom", offset: 0 }}
                 />
                 <YAxis
                   label={{
@@ -125,7 +127,7 @@ const Assumption = () => {
             </ResponsiveContainer>
           </div>
           <div className="available-graph full-width">
-            <h3 className="font-effect-emboss">Resources Allocated</h3>
+            <h3>Resources Allocated</h3>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={resourceData}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -142,8 +144,8 @@ const Assumption = () => {
                 />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="allocated" fill="#1fe074" />
-                <Bar dataKey="total" fill="purple" />
+                <Bar dataKey="allocated" fill="#000" />
+                <Bar dataKey="total" fill="#999999" />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -208,38 +210,58 @@ const Assumption = () => {
       </div>
 
       <div className="quality">
-        <h2>Quality</h2>
-      </div>
+      <h2>Quality</h2>
       <div className="quality-cards">
         <div className="cardStyle">
-          <h3>
-            Total
-            <br />
-            Products
-          </h3>
-          <p>{qualityData.TotalProducts}</p>
+          <h3>Total<br/>Products</h3>
+          <CircularProgressbar
+            value={getPercentage(qualityData.TotalProducts, 1000)}
+            text={`${getPercentage(qualityData.TotalProducts, 1000).toFixed(2)}%`}
+            styles={buildStyles({
+              pathColor: '#0C0404',
+              textColor: '#413839',
+              trailColor: '#999999', 
+            })}
+          />
         </div>
         <div className="cardStyle">
-          <h3>
-            Defective
-            <br />
-            Products
-          </h3>
-          <p>{qualityData.defectiveProducts}</p>
+          <h3>Defective<br/>Products</h3>
+          <CircularProgressbar
+            value={getPercentage(qualityData.defectiveProducts, qualityData.TotalProducts)}
+            text={`${getPercentage(qualityData.defectiveProducts, qualityData.TotalProducts).toFixed(2)}%`}
+            styles={buildStyles({
+              pathColor: '#0C0404',
+              textColor: '#413839',
+              trailColor: '#999999', 
+            })}
+          />
         </div>
         <div className="cardStyle">
           <h3>Dispatched Products</h3>
-          <p>{qualityData.dispatchedProducts}</p>
+          <CircularProgressbar
+            value={getPercentage(qualityData.dispatchedProducts, qualityData.TotalProducts)}
+            text={`${getPercentage(qualityData.dispatchedProducts, qualityData.TotalProducts).toFixed(2)}%`}
+            styles={buildStyles({
+              pathColor: '#0C0404',
+              textColor: '#413839',
+              trailColor: '#999999',
+            })}
+          />
         </div>
         <div className="cardStyle">
-          <h3>
-            Scrap
-            <br />
-            Products
-          </h3>
-          <p>{qualityData.scrapProducts}</p>
+          <h3>Scrap<br/>Products</h3>
+          <CircularProgressbar
+            value={getPercentage(qualityData.scrapProducts, qualityData.TotalProducts)}
+            text={`${getPercentage(qualityData.scrapProducts, qualityData.TotalProducts).toFixed(2)}%`}
+            styles={buildStyles({
+              pathColor: '#0C0404',
+              textColor: '#413839',
+              trailColor: '#999999',
+            })}
+          />
         </div>
       </div>
+    </div>
     </>
   );
 };

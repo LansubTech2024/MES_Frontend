@@ -5,7 +5,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import AxiosService from "../Components/AuthService/AuthService";
 import "./Signup.css";
-import Logo from "../../public/lansub.png";
+import Logo from "../../public/lansubPT2.jpeg";
 
 const Validate = Yup.object().shape({
   name: Yup.string()
@@ -42,14 +42,25 @@ const Signup = () => {
       if (res.status === 201) {
         toast.success("Account created successfully", {
           position: "top-center",
+          autoClose: 3000, // 3 seconds
         });
-        navigate("/");
+        setTimeout(() => {
+          navigate("/login");
+        }, 3000); // Navigate to login after 3 seconds
       }
     } catch (error) {
+      if (error.response && error.response.status === 409) { // Assuming 409 is the status code for conflict/duplicate account
+        toast.error("Already have an account", {
+          position: "top-center",
+          autoClose: 3000, // 3 seconds
+        });
+      } else {
+        toast.error("Failed to create account. Please try again", {
+          position: "top-center",
+          autoClose: 3000, // 3 seconds
+        });
+      }
       console.log(error);
-      toast.error("Failed to create account.Please try again", {
-        position: "top-center",
-      });
     } finally {
       setLoading(false);
     }
@@ -58,7 +69,7 @@ const Signup = () => {
   return (
     <div className="signup-container">
       <div className="signup-background">
-          <img src={Logo} alt="Company Logo" width={700} height={200} className="logo-image" />
+          <img src={Logo} alt="Company Logo" width={500} height={200} className="logo-image" />
         </div>
         <div className="signup-form">
           <div className="signup-heading">
@@ -77,43 +88,43 @@ const Signup = () => {
             }}
           >
             {({ errors, touched }) => (
-              <Form className="form">
-                <div className="form-div">
+              <Form className="signup-form-main">
+                <div className="signup-form-div">
                   <Field
                     type="text"
                     name="name"
                     placeholder="Eg: John"
-                    className="input"
+                    className="signup-input"
                   />
                   {errors.name && touched.name && (
-                    <p style={{ color: "red" }}>{errors.name}</p>
+                    <p className="error-signup-message" style={{ color: "red" }}>{errors.name}</p>
                   )}
                 </div>
-                <div className="form-div">
+                <div className="signup-form-div">
                   <Field
                     type="email"
                     name="email"
                     placeholder="Eg: johnsmith@abc.com"
-                    className="input"
+                    className="signup-input"
                   />
                   {errors.email && touched.email && (
-                    <p style={{ color: "red" }}>{errors.email}</p>
+                    <p className="error-signup-message" style={{ color: "red" }}>{errors.email}</p>
                   )}
                 </div>
-                <div className="form-div">
+                <div className="signup-form-div">
                   <Field
                     type={showPassword ? "text" : "password"}
                     name="password"
                     placeholder="********"
-                    className="input"
+                    className="signup-input"
                   />
                   {errors.password && touched.password && (
-                    <p style={{ color: "red" }}>{errors.password}</p>
+                    <p className="error-signup-message" style={{ color: "red" }}>{errors.password}</p>
                   )}
                 </div>
-                <div className="checkbox-container">
+                <div className="signup-checkbox-container">
                   <input
-                    className="checkbox"
+                    className="signup-checkbox"
                     type="checkbox"
                     id="showPassword"
                     checked={showPassword}

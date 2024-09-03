@@ -75,11 +75,11 @@ function Dashboard() {
       <Sidebar />
       <div className="cards-container">
         <button className="download-btn" onClick={handleDownload}>
-          <FaDownload size={22} color="blue" className="fa-down" />
+          <FaDownload size={22} color="black" className="fa-down" />
         </button>
         <div className="card-container">
           {/* Total Entries */}
-          <div className="card" style={{ padding: "34px" }}>
+          <div className="card" style={{ padding: "39px" }}>
             <h2>Total Entries</h2>
             <p style={{ fontSize: "20px" }}>{total_entries.total_entries}</p>
           </div>

@@ -5,8 +5,8 @@ body{
 }
 .login-container{
   background: white;
-  width: 80%;
-  min-height: 600px;
+  width: 90%;
+  min-height: 500px;
   margin-left: 150px;
   margin-top: 30px;
   overflow: hidden;
@@ -15,24 +15,11 @@ body{
   max-width: 1200px;
   font-family: 'Plus Jakarta Sans', 'Noto Sans', sans-serif;
 }
-.login-company-name{
-  display: flex;
-  border-bottom: 1px solid;
-  gap: 10px;
-}
-.login-company-name img{
-  margin-left: 20px;
-}
-.login-company-name h2{
-  font-size: 18px;
-  font-weight: normal;
-  color: black;
-  font-weight: bold;
-}
 .login-background{
   margin-left: 19rem;
   padding: 20px;
   color: white; 
+  margin-bottom: 0px;
 }
 .company-tag-line{
   margin-left: 150px;
@@ -40,17 +27,17 @@ body{
   font-size: 20px;
 }
 .login-form{
-  width: 40%;
-  padding:10px;
+  width: 43%;
+  padding:5px;
   margin-left: 20rem;
 }
 .login-form h2{
-  margin: 0 0 10px;
+  margin: 0;
   text-align: center;
   color: black;
 }
-.login-form,.form{
-  margin-top: 0px;
+.form{
+  margin-top: 20px;
 }
 .input:focus {
   border-color: #1281ea;
@@ -71,7 +58,8 @@ body{
   transition: 0.5s;
 }
 .form-div .input{
-  width: 100%;
+  width: 90%;
+  padding: 10px;
   font-size: 20px;
   color: black;
   border-radius: 27px;
@@ -85,18 +73,23 @@ body{
 .checkbox-container{
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 10px;
-  margin-left: 20px;
+  gap: 3px;
+  margin-top: 0px;
+  margin-left: 10px;
 }
 .checkbox{
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
+}
+.checkbox-container p{
+  font-size: 16px;
+  font-weight: normal;
+  color: black;
 }
 .forgot{
    color: black;
    font-size: 16px;
-   margin-left: 100px;
+   margin-left: 190px;
    font-weight: normal;
    text-decoration: none;
 }
@@ -107,7 +100,7 @@ body{
   width: 70%;
   padding: 10px;
   margin-top: 10px;
-  margin-left: 100px;
+  margin-left: 80px;
   font-size: 18px;
   font-weight: 600;
   border: none;
@@ -153,6 +146,7 @@ body{
   display: flex;
   justify-content: center;
   margin-left: 20px;
+  margin-bottom: 10px;
 }
 .signup p{
   font-size: 18px;
@@ -162,6 +156,7 @@ body{
   margin-top: 18px;
   font-size: 19px;
   text-decoration: none;
+  color: #244461;
 }
 .spinner-border {
   display: inline-block;

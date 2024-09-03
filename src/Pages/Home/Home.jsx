@@ -1,8 +1,6 @@
 import Header from '../../Components/Header/Header'
 import Sidebar from '../../Components/SideBar/Sidebar'
-import Logo from '/logopng.png'
-import { RiLinkedinBoxLine } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
+import Logo from '/lansub.png'
 import "./Home.css";
 
 
@@ -13,7 +11,7 @@ const Home = () => {
       <Sidebar />
       <main className="main">
         <div className="main-content">
-          <img src={Logo} alt='home-logo'/>
+          <img src={Logo} alt='home-logo' width={500}/>
         </div>
         <section className="overview-section">
                 <div className="overview">

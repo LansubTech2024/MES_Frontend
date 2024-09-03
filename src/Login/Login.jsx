@@ -5,14 +5,14 @@ import { ToastContainer, toast } from "react-toastify";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import "./Login.css";
-import Logo from "../../public/lansubPT.jpeg";
+import Logo from "../../public/lansubPT2.jpeg";
 
 const Validate = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
   password: Yup.string()
     .min(8, "Must be atleast 8 characters")
     .max(15, "Must be less than 15 characters")
-    .required("Required")
+    .required("Required"),
 });
 
 const Login = () => {
@@ -90,6 +90,7 @@ const Login = () => {
       console.log(error);
       toast.error("Incorrect email or password", {
         position: "top-center",
+        autoClose: 3000,
       });
     } finally {
       setIsReturningUser(true);
@@ -112,12 +113,49 @@ const Login = () => {
           </div>
         </div>
         <div className="login-form">
-          <div className="login-heading">
-            <h2>
-              {isReturningUser
-                ? "Welcome Back Vivardhi"
-                : "Welcome To Vivardhi"}
-            </h2>
+          <div className="login-heading" style={{ textAlign: "center", color:"black", fontWeight:"bold"}}>
+            {isReturningUser ? (
+              <>
+                <div
+                  style={{
+                    fontSize: "20px", // Font size for "Welcome Back"
+                    letterSpacing: "1px", // Letter spacing for "Welcome Back"
+                  }}
+                >
+                  Welcome Back
+                </div>
+                <div
+                  style={{
+                    fontSize: "30px", // Larger font size for "Vivardhi"
+                    letterSpacing: "3px", // Increased letter spacing for "Vivardhi"
+                    marginTop: "5px", // Optional: Adjusts space between the two lines
+                  }}
+                >
+                  VIVARDHI
+                </div>
+              </>
+            ) : (
+              <>
+                <div
+                  style={{
+                    fontSize: "20px", // Font size for "Welcome To"
+                    letterSpacing: "1px", // Letter spacing for "Welcome To"
+                  }}
+                >
+                  Welcome To
+                </div>
+                <div
+                  style={{
+                    fontSize: "30px", // Larger font size for "Vivardhi"
+                    letterSpacing: "3px", // Increased letter spacing for "Vivardhi"
+                    marginTop: "5px", 
+                    fontFamily:"monospace"// Optional: Adjusts space between the two lines
+                  }}
+                >
+                  VIVARDHI
+                </div>
+              </>
+            )}
           </div>
           <Formik
             initialValues={{
@@ -168,7 +206,9 @@ const Login = () => {
                     className="checkbox"
                   />
                   <p>Show Password</p>
-                  <Link to='/forget-password' className="forgot">Forgot Password?</Link>
+                  <Link to="/forget-password" className="forgot">
+                    Forgot Password?
+                  </Link>
                 </label>
                 <button
                   type="submit"

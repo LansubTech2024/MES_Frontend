@@ -5,6 +5,7 @@ import {
   RiMessage3Line,
   RiLogoutBoxLine,
   RiUser3Line,
+  RiSearchLine
 } from "react-icons/ri";
 import MessagePopup from "../MessagePopup/MessagePopup";
 import axios from "axios";
@@ -63,7 +64,9 @@ const Header = () => {
               className="search"
               placeholder="Type to search..."
             />
-            
+            <button className="search-btn">
+            <RiSearchLine size={24}/>
+            </button>
           </form>
         <div className="message-profile">
           <div className="notification">

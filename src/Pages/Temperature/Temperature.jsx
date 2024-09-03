@@ -83,7 +83,7 @@ function Temperature() {
       <Sidebar />
       <div className="graphs-container">
         <button className="download-btn" onClick={handleDownload}>
-          <FaDownload size={22} color="blue" className="fa-down" />
+          <FaDownload size={22} color="black" className="fa-down" />
         </button>
         <div className="graphs-grid">
           {/* Line Chart */}
@@ -104,26 +104,26 @@ function Temperature() {
                   {
                     label: "CHW In",
                     data: chartData.line_chart.datasets[0].data,
-                    borderColor: "#0b1d78", // Line color
-                    backgroundColor: "Blue", // Background color under the line
+                    borderColor: "blue", // Line color
+                    backgroundColor: "LightBlue", // Background color under the line
                   },
                   {
                     label: "CHW Out",
                     data: chartData.line_chart.datasets[1].data,
-                    borderColor: "Violet", // Line color
-                    backgroundColor: "Green", // Background color under the line
+                    borderColor: "#000", // Line color
+                    backgroundColor: "rgba(102, 102, 102, 0.2)", // Background color under the line
                   },
                   {
                     label: "COW In",
                     data: chartData.line_chart.datasets[2].data,
-                    borderColor: "LightBlue", // Line color
-                    backgroundColor: "#800080", // Background color under the line
+                    borderColor: "DarkBlue", // Line color
+                    backgroundColor: "rgba(102, 102, 102, 0.2)", // Background color under the line
                   },
                   {
                     label: "COW Out",
                     data: chartData.line_chart.datasets[3].data,
-                    borderColor: "Black", // Line color
-                    backgroundColor: "#1cac78", // Background color under the line
+                    borderColor: "#666666", // Line color
+                    backgroundColor: "rgba(102, 102, 102, 0.2)", // Background color under the line
                   },
                 ],
               }}
@@ -151,7 +151,7 @@ function Temperature() {
                       size: "16", // X-axis ticks color
                     },
                     grid: {
-                      color: "black", // X-axis grid lines color
+                      color: "#B6B6B4", // X-axis grid lines color
                     },
                   },
                   y: {
@@ -168,7 +168,7 @@ function Temperature() {
                       size: "16", // Y-axis ticks color
                     },
                     grid: {
-                      color: "black", // X-axis grid lines color
+                      color: "#B6B6B4", // X-axis grid lines color
                     },
                   },
                 },
@@ -196,7 +196,7 @@ function Temperature() {
                   x: chartData.tempchange_line_chart.x,
                   y: chartData.tempchange_line_chart.y,
                   line: {
-                    color: "#00c698",
+                    color: "blue",
                     width: 3,
                     shape: "spline",
                     smoothing: 1.3,
@@ -219,7 +219,7 @@ function Temperature() {
                     color: "black",
                     size: 16,
                   },
-                  gridcolor: "black",
+                  gridcolor: "#B6B6B4",
                 },
                 xaxis: {
                   title: "Process Stage",
@@ -231,7 +231,7 @@ function Temperature() {
                     color: "black",
                     size: 16,
                   },
-                  gridcolor: "black",
+                  gridcolor: "#B6B6B4",
                 },
                 paper_bgcolor: "rgba(0,0,0,0)",
                 plot_bgcolor: "rgba(0,0,0,0)",
@@ -296,7 +296,7 @@ function Temperature() {
                   y: chartData.combination_chart.datasets[0].data,
                   name: "Avg CHW In Temperature",
                   marker: {
-                    color: "rgba(0, 123, 255, 0.8)",
+                    color: "#999999",
                     line: {
                       color: "black",
                       width: 1,
@@ -310,7 +310,7 @@ function Temperature() {
                   y: chartData.combination_chart.datasets[1].data,
                   name: "Avg Pressure",
                   marker: {
-                    color: "darkgreen",
+                    color: "#000",
                     size: "16",
                   },
                   yaxis: "y2",
@@ -333,7 +333,7 @@ function Temperature() {
                   },
                   linecolor: "black",
                   linewidth: 2,
-                  gridcolor: "black",
+                  gridcolor: "#B6B6B4",
                 },
                 yaxis: {
                   title: {
@@ -370,7 +370,7 @@ function Temperature() {
                   },
                   linecolor: "black",
                   linewidth: 2,
-                  gridcolor: "black",
+                  gridcolor: "#B6B6B4",
                   overlaying: "y",
                   side: "right",
                 },

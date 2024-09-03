@@ -6,8 +6,8 @@ body{
 .signup-container{
   background: white;
   width: 90%;
-  min-height: 600px;
-  margin-left: 200px;
+  min-height: 500px;
+  margin-left: 150px;
   margin-top: 30px;
   overflow: hidden;
   box-shadow: 10px 15px 25px rgba(0, 0, 0, 0.2);
@@ -15,33 +15,14 @@ body{
   max-width: 1200px;
   font-family: 'Plus Jakarta Sans', 'Noto Sans', sans-serif;
 }
-.signup-company-name{
-  display: flex;
-  border-bottom: 1px solid;
-  gap: 10px;
-}
-.signup-company-name h2{
-  font-size: 18px;
-  font-weight: normal;
-  color: black;
-  font-weight: bold;
-}
 .signup-background{
-  margin-left: 15rem;
+  margin-left: 19rem;
   padding: 20px;
   color: white; 
 }
-.signup-background span{
-    display: flex;
-   justify-content: flex-start;
-   margin-left: 120px;
-   font-size: 40px;
-   font-weight: 600;
-   color: #2d038f;
-}
 .signup-form{
   width: 40%;
-  padding:10px;
+  padding:5px;
   margin-left: 20rem;
 }
 .signup-form h2{
@@ -49,33 +30,44 @@ body{
   text-align: center;
   color: black;
 }
-.signup-form .form{
-    margin-top: 0px;
-}
-.form-div{
+.signup-form-div{
     position: relative;
 }
-.form-div label{
+.signup-form-div label{
   padding: 10px;
   font-size: 19px;
   color: #333;
   pointer-events: none;
   transition: 0.5s;
 }
-.form-div .input{
-  width: 100%;
+.error-signup-message {
+  color: red;
+  font-size: 14px;
+  margin-left: 10px;
+  margin-top: 0;
+}
+.signup-form-div .signup-input{
+  width: 90%;
   padding: 10px;
   font-size: 20px;
   color: black;
   border-radius: 27px;
   padding-left: 20px;
+  margin: 10px;
 }
-.signup-form .input::placeholder{
+.signup-form .signup-input::placeholder{
     color: rgb(117, 115, 115);
     font-size: 18px;
 }
 .signup-form a:hover{
     color: #1281ea;
+}
+.signup-checkbox-container{
+  margin-left: 15px;
+}
+.signup-checkbox-container label{
+  font-weight: normal;
+  color: black;
 }
 .signup-form button{
     width: 70%;
