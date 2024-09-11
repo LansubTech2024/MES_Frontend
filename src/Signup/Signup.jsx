@@ -45,7 +45,7 @@ const Signup = () => {
           autoClose: 3000, // 3 seconds
         });
         setTimeout(() => {
-          navigate("/login");
+          navigate("/");
         }, 3000); // Navigate to login after 3 seconds
       }
     } catch (error) {
