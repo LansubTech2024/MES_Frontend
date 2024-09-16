@@ -116,3 +116,78 @@
     font-weight: 600;
     color: black;
   }
+
+
+ 
+  @media only screen and (min-width: 1200px) {
+    .availability {
+      grid-template-columns: repeat(3, 1fr); /* Three columns on wider screens */
+    }
+  
+    .available-card {
+      width: 900px; /* Increase card size for larger screens */
+    }
+    .availabilty-graphs {
+      grid-column: span 2;
+    }
+    .availabilty-graphs .h3{
+      font-weight: 600;
+    }
+  }
+  
+  /* For medium screens (tablets, small desktops) */
+  @media only screen and (max-width: 992px) {
+    .availability {
+      grid-template-columns: 1fr 1fr; /* Two columns on medium screens */
+    }
+  
+    .available-card {
+      width: 450px; /* Medium size for cards */
+    }
+  }
+  
+  /* For tablet screens (768px and smaller) */
+  @media only screen and (max-width: 768px) {
+    .availability {
+      grid-template-columns: 1fr; /* Single column layout for smaller screens */
+      padding: 10px;
+    }
+  
+    .available-card {
+      width: 100%; /* Make cards full-width */
+    }
+  
+    .machine-meter, .manpower-meter {
+      flex-direction: column;
+      gap: 10px; /* Stack meters vertically */
+    }
+  }
+  @media only screen and (max-width: 480px) {
+    .available-card {
+      width: 100%;
+      margin-top: 20px;
+    }
+  
+    .quality-cards {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+  
+    .cardStyle {
+      width: 100%; /* Full-width for small devices */
+      max-width: 250px;
+    }
+  
+    .performance h2 {
+      font-size: 24px; /* Smaller font size for mobile screens */
+    }
+    .available-card h3 {
+      font-size: 18px; /* Adjust title size for small screens */
+    }
+  
+    .available-card p {
+      font-size: 16px; /* Adjust paragraph size */
+    }
+  }
+  
