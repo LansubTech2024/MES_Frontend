@@ -13,11 +13,11 @@
 }
 
 .card {
-  background-color: 	white;
+  background-color: 	#dceeff;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 5px 10px 25px rgba(0, 0, 0, 0.1);
-  width: 400px;
+  width: 300px;
   text-align: center;
   margin-bottom: 20px;
   margin-left: 30px;
@@ -25,14 +25,14 @@
 
 .card h2 {
   margin-bottom: 10px;
-  font-size: 23px;
-  color: black;
+  font-size: 18px;
+  color: #0b6fa4;
 }
 
 .card p {
   font-size: 20px;
-  color: black;
-  font-weight: normal;
+  color: #666;
+  font-weight: bold;
 }
 
 .download-btn{
@@ -41,6 +41,8 @@
   padding: 10px;
   cursor: pointer;
   border-radius: 50%;
+  border: 1px solid;
+  color: #0b6fa4;
 }
 
 .graphs-grid {
@@ -58,7 +60,7 @@
 .graph-title {
   font-size: 30px;
   font-weight: bold;
-  color: black;
+  color: #0b6fa4;
   text-align: center;
 }
 

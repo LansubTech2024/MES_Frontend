@@ -10,7 +10,7 @@
     transition-property: width;
     transition-duration: 0.5s;
     box-shadow: 0px 0px 6px rgba(0,0,0,0.73);
-    background-color: #232B2B;
+    background-color: #000080;
 }
 
 
@@ -38,10 +38,10 @@
     margin: 10px 0 10px;
 }
 .list-item li a:hover{
-  color: #4b0dba;
+  color: #85C1E9;
 }
 ul li a{
-    color: rgb(241 245 249);
+    color: #D5D8DC;
     text-decoration: none;
     font-size: 18px;
     width: 100vw;

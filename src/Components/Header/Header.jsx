@@ -65,13 +65,13 @@ const Header = () => {
               placeholder="Type to search..."
             />
             <button className="search-btn">
-            <RiSearchLine size={24}/>
+            <RiSearchLine size={24} color="#2980B9"/>
             </button>
           </form>
         <div className="message-profile">
           <div className="notification">
               <span className="message-icon-div">
-                <RiMessage3Line className="message-icon" onClick={openDialog} />
+                <RiMessage3Line className="message-icon" onClick={openDialog} color="#1A5276" />
               </span>
               {isDialogOpen && (
                 <MessagePopup onClose={closeDialog}/>
