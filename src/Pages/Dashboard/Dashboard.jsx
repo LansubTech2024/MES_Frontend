@@ -75,11 +75,11 @@ function Dashboard() {
       <Sidebar />
       <div className="cards-container">
         <button className="download-btn" onClick={handleDownload}>
-          <FaDownload size={22} color="black" className="fa-down" />
+          <FaDownload size={22} color="#0e68a4" className="fa-down" />
         </button>
         <div className="card-container">
           {/* Total Entries */}
-          <div className="card" style={{ padding: "39px" }}>
+          <div className="card" style={{ padding: "34px" }}>
             <h2>Total Entries</h2>
             <p style={{ fontSize: "20px" }}>{total_entries.total_entries}</p>
           </div>
@@ -99,7 +99,7 @@ function Dashboard() {
           </div>
 
           {/* Average Temperatures Card */}
-          <div className="card" style={{ width: "450px" }}>
+          <div className="card" style={{ width: "300px" }}>
             <h2>Average Temperature</h2>
             <p>In : {avg_temps.avg_chw_in_temp.toFixed(2)}°C</p>
             <p>Out : {avg_temps.avg_chw_out_temp.toFixed(2)}°C</p>

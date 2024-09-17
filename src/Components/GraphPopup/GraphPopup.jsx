@@ -87,8 +87,8 @@ const GraphPopup = ({ isOpen, onRequestClose, graphType }) => {
         {
           label: "Predicted Values",
           data: predictiveData.values,
-          borderColor: "#333333",
-          backgroundColor: "#666666",
+          borderColor: "#A3C9F1",
+          backgroundColor: "#5A89C9",
           fill: true,
         },
       ],
@@ -106,20 +106,20 @@ const GraphPopup = ({ isOpen, onRequestClose, graphType }) => {
             {
                 label: 'CHW In Temperature',
                 data: predictiveData.chw_in_temp,
-                borderColor: '#000',
-                backgroundColor: '#999999',
+                borderColor: '#948d71',
+                backgroundColor: '#e49ae5',
             },
             {
                 label: 'CHW Out Temperature',
                 data: predictiveData.chw_out_temp,
-                borderColor: 'DarkBlue',
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: '#f7a49e',
+                backgroundColor: '#d9d7c2',
             },
             {
                 label: 'Temperature Difference',
                 data: predictiveData.temp_diff,
-                borderColor: '#808080',
-                backgroundColor: 'white',
+                borderColor: '#99e5db',
+                backgroundColor: '#fff4aa',
             }
         ],
     };
@@ -147,8 +147,8 @@ const renderDonutLineChart = () => {
       {
         label: 'Temperature',
         data: predictiveData.datasets[0].data,
-        borderColor: '#000',
-        backgroundColor: '#999999',
+        borderColor: '#9aba95',
+        backgroundColor: '#d5f3d1',
         tension: 0.1,
       },
     ],
@@ -192,15 +192,15 @@ const renderDonutLineChart = () => {
         {
           label: "Temperature",
           data: predictiveData.temp_values,
-          borderColor: "#333333",
-          backgroundColor: "#999999",
+          borderColor: "#eab0a2",
+          backgroundColor: "#775d46",
           yAxisID: "y-axis-1",
         },
         {
           label: "Pressure",
           data: predictiveData.pressure_values,
-          borderColor: "#808080",
-          backgroundColor: "#494F55",
+          borderColor: "#5b818a",
+          backgroundColor: "#b4d8e8",
           yAxisID: "y-axis-2",
         },
       ],
@@ -262,7 +262,7 @@ const renderDonutLineChart = () => {
     >
       <div className="popup-content">
       <button className="detail-download-btn" onClick={handleDownload}>
-          <FaDownload size={22} color="black" className="fa-down" />
+          <FaDownload size={22} color="#0e68a4" className="fa-down" />
         </button>
         <h2>
           {graphType.charAt(0).toUpperCase() + graphType.slice(1)} Analysis

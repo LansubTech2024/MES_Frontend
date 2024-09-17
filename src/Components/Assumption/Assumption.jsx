@@ -122,7 +122,7 @@ const Assumption = () => {
                 />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="rate" stroke="blue" />
+                <Line type="monotone" dataKey="rate" stroke="#357abd" />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -140,12 +140,15 @@ const Assumption = () => {
                     value: "Resources",
                     angle: -90,
                     position: "insideLeft",
+                    text:{
+                      color : "#333333",
+                    }
                   }}
                 />
                 <Tooltip />
-                <Legend />
-                <Bar dataKey="allocated" fill="#000" />
-                <Bar dataKey="total" fill="#999999" />
+                <Legend color="#333333" />
+                <Bar dataKey="allocated" fill="#a3c9f1" />
+                <Bar dataKey="total" fill="#1d4f91" />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -165,7 +168,7 @@ const Assumption = () => {
             id="machine-performance-gauge"
             nrOfLevels={10}
             percent={machineEfficiency}
-            textColor="#000"
+            textColor="#1d4f91"
             arcWidth={0.3}
             needleColor="#000"
             needleBaseColor="#000"
@@ -191,7 +194,7 @@ const Assumption = () => {
             id="manpower-performance-gauge"
             nrOfLevels={10}
             percent={manpowerEfficiency / 10} // Assuming a maximum output of 1000 units
-            textColor="#000"
+            textColor="#1d4f91"
             arcWidth={0.3}
             needleColor="#000"
             needleBaseColor="#000"
@@ -218,8 +221,8 @@ const Assumption = () => {
             value={getPercentage(qualityData.TotalProducts, 1000)}
             text={`${getPercentage(qualityData.TotalProducts, 1000).toFixed(2)}%`}
             styles={buildStyles({
-              pathColor: '#0C0404',
-              textColor: '#413839',
+              pathColor: '#1d4f91',
+              textColor: '#0b6fa4',
               trailColor: '#999999', 
             })}
           />
@@ -230,9 +233,9 @@ const Assumption = () => {
             value={getPercentage(qualityData.defectiveProducts, qualityData.TotalProducts)}
             text={`${getPercentage(qualityData.defectiveProducts, qualityData.TotalProducts).toFixed(2)}%`}
             styles={buildStyles({
-              pathColor: '#0C0404',
-              textColor: '#413839',
-              trailColor: '#999999', 
+              pathColor: '#1d4f91',
+              textColor: '#1d4f91',
+              trailColor: '#4a90e2', 
             })}
           />
         </div>
@@ -242,9 +245,9 @@ const Assumption = () => {
             value={getPercentage(qualityData.dispatchedProducts, qualityData.TotalProducts)}
             text={`${getPercentage(qualityData.dispatchedProducts, qualityData.TotalProducts).toFixed(2)}%`}
             styles={buildStyles({
-              pathColor: '#0C0404',
-              textColor: '#413839',
-              trailColor: '#999999',
+              pathColor: '#1d4f91',
+              textColor: '#1d4f91',
+              trailColor: '#4a90e2',
             })}
           />
         </div>
@@ -254,9 +257,9 @@ const Assumption = () => {
             value={getPercentage(qualityData.scrapProducts, qualityData.TotalProducts)}
             text={`${getPercentage(qualityData.scrapProducts, qualityData.TotalProducts).toFixed(2)}%`}
             styles={buildStyles({
-              pathColor: '#0C0404',
-              textColor: '#413839',
-              trailColor: '#999999',
+              pathColor: '#1d4f91',
+              textColor: '#1d4f91',
+              trailColor: '#4a90e2',
             })}
           />
         </div>

@@ -73,7 +73,7 @@ function Pressure() {
       <Sidebar />
       <div className="pressure-container">
         <button className="download-btn" onClick={handleDownload}>
-          <FaDownload size={22} color="black" className="fa-down" />
+          <FaDownload size={22} color="#0e68a4" className="fa-down" />
         </button>
         <div className="pressure-grid">
           {/* Gauge Meter */}
