@@ -33,7 +33,7 @@ function Pressure() {
 
   useEffect(() => {
     axios
-      .get("https://vivardhi.in/api/charts/")
+      .get("http://88.222.245.134:8000/api/charts/")
       .then((response) => setChartData(response.data))
       .catch((error) => {
         console.error("Error fetching graph data:", error);

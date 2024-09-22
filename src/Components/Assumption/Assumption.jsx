@@ -67,7 +67,7 @@ const Assumption = () => {
 
   const manpowerData = {
     output: 100, // Total Output
-    manHours: 20, // Total Man-Hours
+    manHours: 30, // Total Man-Hours
     temperature: 75, // Temperature
     pressure: 120, // Pressure
   };
@@ -193,11 +193,18 @@ const Assumption = () => {
           <GaugeChart
             id="manpower-performance-gauge"
             nrOfLevels={10}
-            percent={manpowerEfficiency / 10} // Assuming a maximum output of 1000 units
             textColor="#1d4f91"
+            percent={manpowerEfficiency / 10} 
             arcWidth={0.3}
             needleColor="#000"
             needleBaseColor="#000"
+            colors={["#00FF00", "#FFFF00", "#FF0000"]} 
+            arcPadding={0.02}
+            arcColor={value => {
+                if (value > 0.7) return "#00FF00"; 
+                if (value > 0.3) return "#FFFF00"; 
+                if (value <= 0.3) return "#FF0000"; 
+              }}
           />
           <p>Output per Man-Hour: {manpowerEfficiency.toFixed(2)} units/hour</p>
         </div>
