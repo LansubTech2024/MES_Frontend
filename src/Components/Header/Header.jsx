@@ -65,6 +65,7 @@ const Header = () => {
               placeholder="Type to search..."
             />
             <button className="search-btn">
+              
             <RiSearchLine size={24} color="#2980B9"/>
             </button>
           </form>

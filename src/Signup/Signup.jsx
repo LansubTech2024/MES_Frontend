@@ -69,7 +69,7 @@ const Signup = () => {
   return (
     <div className="signup-container">
       <div className="signup-background">
-          <img src={Logo} alt="Company Logo" width={500} height={200} className="logo-image" />
+          <img src={Logo} alt="Company Logo" className="logo-image" />
         </div>
         <div className="signup-form">
           <div className="signup-heading">

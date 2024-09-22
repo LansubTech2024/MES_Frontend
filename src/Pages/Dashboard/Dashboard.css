@@ -64,8 +64,19 @@
   text-align: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200x) {
   .graphs-grid {
     grid-template-columns: 1fr;
+  }
+}
+@media (max-width:576x){
+  .cards-container{
+    padding:10px;
+    display: block;
+  }
+  .card {
+    display: block;
+    width: 100%;
+    max-width: 300px;
   }
 }

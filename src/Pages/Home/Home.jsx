@@ -11,7 +11,7 @@ const Home = () => {
       <Sidebar />
       <main className="main">
         <div className="main-content">
-          <img src={Logo} alt='home-logo' width={500}/>
+          <img src={Logo} alt='home-logo' />
         </div>
         <section className="overview-section">
                 <div className="overview">

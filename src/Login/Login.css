@@ -16,6 +16,10 @@
   color: white; 
   margin-bottom: 0px;
 }
+.login-container .logo img{
+  width: 500px;
+  height: 200px;
+}
 .company-tag-line{
   margin-left: 150px;
   color: black;
@@ -81,7 +85,7 @@
   font-weight: normal;
   color: black;
 }
-.forgot{
+.checkbox-container .forgot{
    color: black;
    font-size: 16px;
    margin-left: 190px;
@@ -170,47 +174,94 @@
   }
 }
 
-@media (min-width: 1200px) {
-  .login-container {
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .login-container{
     padding: 40px;
+    max-height:40%;
   }
-
+  
   .login-form {
-    width: 40%;
+    max-width: 80%; /* Adjust form width for smaller screens */
   }
 }
-@media (max-width: 1199px) and (min-width: 992px)  {
-  .login-container {
-    padding: 40px;
-  }
 
+@media (max-width: 992px) {
   .login-form {
-    width: 60%;
+    max-width: 90%; /* Adjust form width for even smaller screens */
   }
 }
-@media (max-width: 991px) and (min-width: 768px) {
-  .login-container {
-    padding: 40px;
-  }
 
-  .login-form {
-    width: 80%;
-  }
-  .company-tag-line {
-    font-size: 18px;
-  }
-}
-@media (max-width: 767px) and (min-width: 480px) {
-  .login-container {
-    margin: 20px;
+@media (max-width: 768px) {
+  .login-container{
     padding: 20px;
+    width: 80%;
+    max-height: 80%;
+  }
+  .company-tag-line {
+    font-size: 18px; /* Smaller font size on smaller screens */
   }
 
   .login-form {
-    width: 90%;
+    padding: 15px; /* Reduce padding for smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .login-container {
+    padding: 10px; /* Add padding for mobile */
+    width: 100%; /* Make container full width */
+    margin: 0; /* Remove margin to utilize full width */
+    box-shadow: none; /* Remove box-shadow if it affects layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    height: 100vh; /* Full viewport height */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+  .login-container .logo img{
+    padding: 20px;
+    width: 350px;
+    margin-right: 18rem;
   }
 
   .company-tag-line {
-    font-size: 16px;
+    font-size: 16px; /* Adjust font size */
+    text-align: center; /* Center text on small screens */
+    margin: 0; /* Remove margin */
+    width: 100%;
+  }
+
+  .login-form {
+    padding: 10px; /* Adjust padding for small screens */
+    width: 100%; /* Full width for form on small screens */
+    max-width: 20rem; /* Remove max-width */
+    margin: 0 auto; /* Center the form horizontally */
+  }
+
+  .input, .form-div .input {
+    font-size: 16px; /* Adjust font size for inputs */
+    width: calc(100% - 20px); /* Full width minus padding */
+  }
+
+  .checkbox-container p {
+    font-size: 14px; /* Adjust font size for checkbox text */
+    margin: 0; /* Remove margin */
+  }
+
+  .checkbox-container .forgot {
+    font-size: 14px; /* Adjust font size for forgot text */
+    margin: 10px 0; /* Margin for spacing */
+    text-align: left; /* Center align text */
+    display: block; /* Ensure block display for full width */
+    margin-left: 60px;
+  }
+
+  .login-form button {
+    font-size: 16px; /* Adjust font size for button */
+    width: 50%; /* Full width button */
+    padding: 10px; /* Increase padding for better touch area */
+    box-sizing: border-box; /* Include padding in width calculation */
   }
 }

@@ -162,3 +162,17 @@ ul li a i{
     top: 0;
     transform: rotate(-45deg);
   }
+
+  @media (max-width:1200x){
+  .sidebar{
+    padding: 20px;
+  }
+  }
+  @media (max-width:576x){
+    .sidebar{
+      width:40px;
+    }
+    .nav-toggle{
+      left:40px;
+    }
+  }
