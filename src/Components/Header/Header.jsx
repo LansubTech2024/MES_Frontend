@@ -104,7 +104,7 @@ const Header = () => {
                 </li>
                 <li>
                   <RiLogoutBoxLine size={22} />
-                  <a href="#" onClick={handleLogout}>
+                  <a href="/" onClick={handleLogout}>
                     Logout
                   </a>
                 </li>
