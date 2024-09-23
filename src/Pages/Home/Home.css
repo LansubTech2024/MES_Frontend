@@ -8,6 +8,9 @@
    justify-content: center;
    margin-top: 50px;
 }
+.main-content img{
+    width: 500px;
+}
 .main-content .social-contact{
     text-align: center;
 }
@@ -34,4 +37,30 @@
 
 .overview p {
     margin: 10px 0 0;
+}
+
+@media (max-width:1200x) {
+   .main{
+   padding:20px;
+   } 
+}
+@media (max-width:992x){
+    .main{
+        padding:20px;
+    }
+}
+@media (max-width:768x){
+    .main{
+        padding:20px;
+    }
+}
+@media (max-width:576x){
+    .main{
+        padding:10px;
+    }
+}
+.main-content img{
+  width:300px;
+  padding:20px;
+  margin-left: 50px;
 }

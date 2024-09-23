@@ -107,8 +107,7 @@ const Login = () => {
               src={Logo}
               alt="logo"
               className="logo-img"
-              width={500}
-              height={200}
+              
             />
           </div>
         </div>
