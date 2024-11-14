@@ -53,4 +53,4 @@ jobs:
           app-name: 'samplefrontendserver'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6B34E3D0127F4D20B398F5CF68DD2FFD }}
-          package: .
+          package: ./dist
